@@ -71,7 +71,11 @@
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="{{ url('/dashboard') }}">Home</a>
+                    @if (auth()->user()->role == 2)
+                        <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                    @elseif(auth()->user()->role == 1)
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    @endif
                 @else
                     <a href="{{ route('login') }}">Login</a>
 

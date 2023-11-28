@@ -17,12 +17,25 @@
 
                 <li class="nav-header">HOME</li>
 
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                {{-- Role Admin --}}
+                @if (Auth::check() && Auth::user()->role == '1')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- Role User --}}
+                @if (Auth::check() && Auth::user()->role == '2')
+                    <li class="nav-item">
+                        <a href="{{ route('user.dashboard') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="nav-header">INTERFACE</li>
 
@@ -59,12 +72,15 @@
                     <hr class="solid" style="border-top: 1px solid #b1a9a9;">
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Manajemen Users</p>
-                    </a>
-                </li>
+                {{-- Role Admin --}}
+                @if (Auth::check() && Auth::user()->role == '1')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Manajemen Users</p>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="post">

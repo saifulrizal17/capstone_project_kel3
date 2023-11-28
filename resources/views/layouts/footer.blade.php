@@ -6,6 +6,7 @@
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; {{ date('Y') }} <a style="color: #007bff"
-            href="{{ route('dashboard') }}">{{ config('app.name') }}</a>.</strong> All rights
+            href="{{ auth()->user()->role == 1 ? route('admin.dashboard') : route('user.dashboard') }}">{{ config('app.name') }}</a>.</strong>
+    All rights
     reserved.
 </footer>

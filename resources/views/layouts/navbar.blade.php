@@ -6,7 +6,8 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
+            <a href="{{ auth()->user()->role == 1 ? route('admin.dashboard') : route('user.dashboard') }}"
+                class="nav-link">Dashboard</a>
         </li>
     </ul>
 

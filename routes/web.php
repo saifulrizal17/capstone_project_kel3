@@ -15,10 +15,27 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Custum Authenticate 
+Route::get('/login', 'AuthController@showlogin')->name('login');
+Route::post('/login', 'AuthController@login')->name('login');
+Route::get('/register', 'AuthController@showregister')->name('register');
+Route::post('/register', 'AuthController@register')->name('register');
+Route::post('/logout', 'AuthController@logout')->name('logout');
 
+//Akses All Role
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
+
+
+// Akses Role User 
+Route::group(['middleware' => 'cekRole:2'], function () {
+    Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
+});
+
+// Akses Role Admin 
+Route::group(['middleware' => 'cekRole:1'], function () {
+    Route::get('/admin-dashboard', 'AdminController@index')->name('admin.dashboard');
 });
