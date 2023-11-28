@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
-                                href="{{ auth()->user()->role == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
+                                href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
                         </li>
                     </ol>
                 </div><!-- /.col -->

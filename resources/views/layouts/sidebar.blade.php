@@ -18,7 +18,7 @@
                 <li class="nav-header">HOME</li>
 
                 {{-- Role Admin --}}
-                @if (Auth::check() && Auth::user()->role == '1')
+                @if (Auth::check() && Auth::user()->role_id == '1')
                     <li class="nav-item">
                         <a href="{{ route('admin.dashboard') }}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -28,7 +28,7 @@
                 @endif
 
                 {{-- Role User --}}
-                @if (Auth::check() && Auth::user()->role == '2')
+                @if (Auth::check() && Auth::user()->role_id == '2')
                     <li class="nav-item">
                         <a href="{{ route('user.dashboard') }}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -73,7 +73,7 @@
                 </li>
 
                 {{-- Role Admin --}}
-                @if (Auth::check() && Auth::user()->role == '1')
+                @if (Auth::check() && Auth::user()->role_id == '1')
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
