@@ -54,7 +54,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="modals" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>Perubahan Modal</p>
                     </a>

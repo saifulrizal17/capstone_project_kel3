@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TblPerubahanModalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +35,14 @@ Route::middleware('auth')->group(function () {
 // Akses Role User 
 Route::group(['middleware' => 'cekRole:2'], function () {
     Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
+
+    Route::get('/modals', [TblPerubahanModalController::class, 'index'])->name('perubahanModal');
+Route::get('/modals/create', [TblPerubahanModalController::class, 'create'])->name('createPerubahanModal');
+Route::post('/modals', [TblPerubahanModalController::class, 'store'])->name('storePerubahanModal');
+Route::get('/modals/{id}/edit', [TblPerubahanModalController::class, 'edit'])->name('editPerubahanModal');
+Route::put('/modals/{id}', [TblPerubahanModalController::class, 'update'])->name('updatePerubahanModal');
+
+Route::get('/modals/{id}', [TblPerubahanModalController::class, 'destroy'])->name('deletePerubahanModal');
 });
 
 // Akses Role Admin 
