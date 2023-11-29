@@ -46,4 +46,13 @@ Route::middleware(['checkrole:2'])->group(function () {
 // Akses Role Admin 
 Route::middleware(['checkrole:1'])->group(function () {
     Route::get('/admin-dashboard', 'AdminController@index')->name('admin.dashboard');
+
+    Route::get('/users', 'UsersController@index')->name('admin.users.index');
+    Route::get('/users/create', 'UsersController@create')->name('admin.users.create');
+    Route::post('/users', 'UsersController@store')->name('admin.users.store');
+    Route::get('/users/{user}', 'UsersController@show')->name('admin.users.show');
+    Route::get('/users/{user}/edit', 'UsersController@edit')->name('admin.users.edit');
+    Route::put('/users/{user}', 'UsersController@update')->name('admin.users.update');
+    Route::get('/users/delete/{user}', 'UsersController@destroy')->name('admin.users.destroy');
+    Route::get('/users/reset-password/{id}', 'UsersController@resetPassword')->name('admin.users.resetPassword');
 });
