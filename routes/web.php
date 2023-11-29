@@ -31,21 +31,19 @@ Route::middleware('auth')->group(function () {
     // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
 
-
 // Akses Role User 
-Route::group(['middleware' => 'cekRole:2'], function () {
+Route::middleware(['checkrole:2'])->group(function () {
     Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
 
     Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
-Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');
-Route::post('/modals', [PerubahanModalController::class, 'store'])->name('storePerubahanModal');
-Route::get('/modals/{id}/edit', [PerubahanModalController::class, 'edit'])->name('editPerubahanModal');
-Route::put('/modals/{id}', [PerubahanModalController::class, 'update'])->name('updatePerubahanModal');
-
-Route::get('/modals/{id}', [PerubahanModalController::class, 'destroy'])->name('deletePerubahanModal');
+    Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');
+    Route::post('/modals', [PerubahanModalController::class, 'store'])->name('storePerubahanModal');
+    Route::get('/modals/{id}/edit', [PerubahanModalController::class, 'edit'])->name('editPerubahanModal');
+    Route::put('/modals/{id}', [PerubahanModalController::class, 'update'])->name('updatePerubahanModal');
+    Route::get('/modals/{id}', [PerubahanModalController::class, 'destroy'])->name('deletePerubahanModal');
 });
 
 // Akses Role Admin 
-Route::group(['middleware' => 'cekRole:1'], function () {
+Route::middleware(['checkrole:1'])->group(function () {
     Route::get('/admin-dashboard', 'AdminController@index')->name('admin.dashboard');
 });
