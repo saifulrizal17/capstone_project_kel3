@@ -1,12 +1,12 @@
 <?php
 
-// app/TblPerubahanModal.php
+// app/PerubahanModal.php
 
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TblPerubahanModal extends Model
+class PerubahanModal extends Model
 {
     protected $primaryKey = 'id';
     public $incrementing = false;

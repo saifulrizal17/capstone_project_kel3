@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TblPerubahanModal;
+use App\PerubahanModal;
 
 
-class TblPerubahanModalController extends Controller
+class PerubahanModalController extends Controller
 {
    
 public function index()
 {
-    $perubahanModals = TblPerubahanModal::all(); // Ubah ini sesuai dengan cara Anda mendapatkan data
+    $perubahanModals = PerubahanModal::all(); // Ubah ini sesuai dengan cara Anda mendapatkan data
 
     return view('perubahan_modals.index', compact('perubahanModals'));
 }
@@ -34,7 +34,7 @@ public function index()
         ]);
 
         // Simpan data baru ke dalam tabel
-        TblPerubahanModal::create($request->all());
+        PerubahanModal::create($request->all());
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('perubahanModal')->with('success', 'Data berhasil ditambahkan');
@@ -42,7 +42,7 @@ public function index()
 
     public function edit($id)
     {
-        $perubahanModal = TblPerubahanModal::findOrFail($id);
+        $perubahanModal = PerubahanModal::findOrFail($id);
     
         return view('perubahan_modals.edit', compact('perubahanModal'));
     }
@@ -55,14 +55,14 @@ public function index()
             'jumlah' => 'required',
         ]);
     
-        TblPerubahanModal::findOrFail($id)->update($request->all());
+        PerubahanModal::findOrFail($id)->update($request->all());
     
         return redirect()->route('perubahanModal')->with('success', 'Data berhasil diperbarui');
     }
     public function destroy($id)
     {
         // Temukan data berdasarkan ID dan hapus
-        TblPerubahanModal::findOrFail($id)->delete();
+        PerubahanModal::findOrFail($id)->delete();
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('perubahanModal')->with('success', 'Data berhasil dihapus');
