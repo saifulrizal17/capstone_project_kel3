@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary bg-primary elevation-4">
     <!-- Brand Logo -->
     <div>
-        <a href="{{ route('welcome') }}" class="brand-link">
+        <a href="{{ route('frondend') }}" class="brand-link">
             <img src="{{ asset('/admin/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                 class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">{{ config('app.name') }}</span>

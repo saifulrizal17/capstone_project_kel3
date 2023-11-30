@@ -15,9 +15,10 @@ use App\Http\Controllers\NeracaController;
 |
 */
 
+// Halaman Awal (Landing Page)
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('frondend.index');
+})->name('frondend');
 
 // Auth::routes();
 
@@ -30,6 +31,8 @@ Route::post('/logout', 'AuthController@logout')->name('logout');
 
 //Akses All Role
 Route::middleware('auth')->group(function () {
+
+    //========================= Ini Route My Profile =========================\\
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::put('/profile/aboutme/{user}', 'ProfileController@updateAboutMe')->name('profile.update.aboutme');
     Route::put('/profile/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
@@ -37,8 +40,10 @@ Route::middleware('auth')->group(function () {
 
 // Akses Role User 
 Route::middleware(['checkrole:2'])->group(function () {
+    //Dashboard User
     Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
-    //========================= Ini Route Modal =========================\\
+
+    //========================= Ini Route Perubahan Modal =========================\\
     Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
     Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');
     Route::post('/modals', [PerubahanModalController::class, 'store'])->name('storePerubahanModal');
@@ -48,15 +53,16 @@ Route::middleware(['checkrole:2'])->group(function () {
 
 
     //========================= Ini Route Neraca =========================\\
-
     Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
 });
 
 
 // Akses Role Admin 
 Route::middleware(['checkrole:1'])->group(function () {
+    //Dashboard Admin
     Route::get('/admin-dashboard', 'AdminController@index')->name('admin.dashboard');
 
+    //========================= Ini Route Manajemen Users =========================\\
     Route::get('/users', 'UsersController@index')->name('admin.users.index');
     Route::get('/users/create', 'UsersController@create')->name('admin.users.create');
     Route::post('/users', 'UsersController@store')->name('admin.users.store');
@@ -65,4 +71,10 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::put('/users/{user}', 'UsersController@update')->name('admin.users.update');
     Route::get('/users/delete/{user}', 'UsersController@destroy')->name('admin.users.destroy');
     Route::get('/users/reset-password/{id}', 'UsersController@resetPassword')->name('admin.users.resetPassword');
+
+    //========================= Ini Route Perubahan Modal =========================\\
+    Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
+
+    //========================= Ini Route Neraca =========================\\
+    Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
 });
