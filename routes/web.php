@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PerubahanModalController;
+use App\Http\Controllers\NeracaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +36,22 @@ Route::middleware('auth')->group(function () {
 // Akses Role User 
 Route::middleware(['checkrole:2'])->group(function () {
     Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
-
+//========================= Ini Route Modal ====================================================\\
     Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
     Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');
     Route::post('/modals', [PerubahanModalController::class, 'store'])->name('storePerubahanModal');
     Route::get('/modals/{id}/edit', [PerubahanModalController::class, 'edit'])->name('editPerubahanModal');
     Route::put('/modals/{id}', [PerubahanModalController::class, 'update'])->name('updatePerubahanModal');
     Route::get('/modals/{id}', [PerubahanModalController::class, 'destroy'])->name('deletePerubahanModal');
+
+
+//========================= Ini Route Neraca ====================================================\\
+
+    Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
+
+
 });
+
 
 // Akses Role Admin 
 Route::middleware(['checkrole:1'])->group(function () {
