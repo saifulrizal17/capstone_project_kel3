@@ -6,7 +6,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ auth()->user()->role == 1 ? route('admin.dashboard') : route('user.dashboard') }}"
+            <a href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}"
                 class="nav-link">Dashboard</a>
         </li>
     </ul>
@@ -140,6 +140,16 @@
                         {{ Auth::user()->name }} - Web Developer
                         <small>Member since Nov. 2023</small>
                     </p>
+                </li>
+                <li class="user-footer">
+                    <form id="logout-form" action="{{ route('logout') }}" method="post">
+                        @csrf
+                    </form>
+
+                    <a href="{{ route('profile.index') }}" class="btn btn-default btn-flat">My Profile</a>
+
+                    <a href="javascript:void(0)" class="nav-link btn btn-default btn-flat float-right"
+                        onclick="$('#logout-form').submit();">Sign out</a>
                 </li>
             </ul>
         </li>
