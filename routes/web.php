@@ -79,3 +79,23 @@ Route::middleware(['checkrole:1'])->group(function () {
 
   
 });
+
+//========================= Ini Route Aruskas =========================\\
+
+// Menampilkan semua catatan keuangan
+Route::get('/aruskas', 'CatatanKeuanganController@index')->name('catatan_keuangan.index');
+
+// Menampilkan formulir untuk menambah catatan keuangan baru
+Route::get('/aruskas/create', 'CatatanKeuanganController@create')->name('createAruskas');
+
+// Menyimpan catatan keuangan baru
+Route::post('/aruskas', 'CatatanKeuanganController@store')->name('storeAruskas');
+
+// Menampilkan formulir untuk mengedit catatan keuangan
+Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('editAruskas');
+
+// Mengupdate catatan keuangan yang sudah ada
+Route::put('/aruskas/{catatanKeuangan}/update', 'CatatanKeuanganController@update')->name('updateAruskas');
+
+// Menghapus catatan keuangan
+Route::delete('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('deleteAruskas');
