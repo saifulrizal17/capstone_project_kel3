@@ -40,7 +40,7 @@
                 <li class="nav-header">INTERFACE</li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('catatan_keuangan.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>Arus Kas</p>
                     </a>
@@ -54,14 +54,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="modals" class="nav-link">
+                    <a href="{{ route('perubahanModal') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>Perubahan Modal</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="neraca" class="nav-link">
+                    <a href="{{ route('neraca.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-balance-scale"></i>
                         <p>Neraca</p>
                     </a>

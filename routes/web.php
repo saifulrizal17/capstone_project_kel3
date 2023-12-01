@@ -37,11 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/aboutme/{user}', 'ProfileController@updateAboutMe')->name('profile.update.aboutme');
     Route::put('/profile/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
 
-      //========================= Ini Route Perubahan Modal =========================\\
-      Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
+    //========================= Ini Route Perubahan Modal =========================\\
+    Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
 
-      //========================= Ini Route Neraca =========================\\
-      Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
+    //========================= Ini Route Neraca =========================\\
+    Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
+
+    //========================= Ini Route Aruskas =========================\\
+    Route::get('/aruskas', 'CatatanKeuanganController@index')->name('catatan_keuangan.index');
 });
 
 // Akses Role User 
@@ -49,16 +52,19 @@ Route::middleware(['checkrole:2'])->group(function () {
     //Dashboard User
     Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
 
+    //========================= Ini Route Arus Kas =========================\\
+    Route::get('/aruskas/create', 'CatatanKeuanganController@create')->name('createAruskas');
+    Route::post('/aruskas', 'CatatanKeuanganController@store')->name('storeAruskas');
+    Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('editAruskas');
+    Route::put('/aruskas/{catatanKeuangan}/update', 'CatatanKeuanganController@update')->name('updateAruskas');
+    Route::delete('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('deleteAruskas');
+
     //========================= Ini Route Perubahan Modal =========================\\
-    
     Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');
     Route::post('/modals', [PerubahanModalController::class, 'store'])->name('storePerubahanModal');
     Route::get('/modals/{id}/edit', [PerubahanModalController::class, 'edit'])->name('editPerubahanModal');
     Route::put('/modals/{id}', [PerubahanModalController::class, 'update'])->name('updatePerubahanModal');
     Route::get('/modals/{id}', [PerubahanModalController::class, 'destroy'])->name('deletePerubahanModal');
-
-
-   
 });
 
 
@@ -76,26 +82,4 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::put('/users/{user}', 'UsersController@update')->name('admin.users.update');
     Route::get('/users/delete/{user}', 'UsersController@destroy')->name('admin.users.destroy');
     Route::get('/users/reset-password/{id}', 'UsersController@resetPassword')->name('admin.users.resetPassword');
-
-  
 });
-
-//========================= Ini Route Aruskas =========================\\
-
-// Menampilkan semua catatan keuangan
-Route::get('/aruskas', 'CatatanKeuanganController@index')->name('catatan_keuangan.index');
-
-// Menampilkan formulir untuk menambah catatan keuangan baru
-Route::get('/aruskas/create', 'CatatanKeuanganController@create')->name('createAruskas');
-
-// Menyimpan catatan keuangan baru
-Route::post('/aruskas', 'CatatanKeuanganController@store')->name('storeAruskas');
-
-// Menampilkan formulir untuk mengedit catatan keuangan
-Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('editAruskas');
-
-// Mengupdate catatan keuangan yang sudah ada
-Route::put('/aruskas/{catatanKeuangan}/update', 'CatatanKeuanganController@update')->name('updateAruskas');
-
-// Menghapus catatan keuangan
-Route::delete('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('deleteAruskas');
