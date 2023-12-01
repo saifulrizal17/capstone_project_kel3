@@ -37,7 +37,7 @@
                             <tr>
                                 <th> ID </th>
                                 <th>ID User</th>
-                                <th>Nama</th> <!-- Ubah kolom nama di sini -->
+                                <th>Nama</th>
                                 <th>Tanggal Perubahan</th>
                                 <th>Keterangan</th>
                                 <th>Jumlah</th>
