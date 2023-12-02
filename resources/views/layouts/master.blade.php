@@ -86,6 +86,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('admin/js/pages/dashboard.js') }}"></script>
 
+    @include('sweetalert::alert')
 
     @yield('addJavascript')
 </body>
