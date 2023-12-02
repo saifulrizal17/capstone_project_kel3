@@ -69,7 +69,7 @@
                 {{-- Role User --}}
                 @if (Auth::check() && Auth::user()->role_id == '2')
                     <li class="nav-item">
-                        <a href="{{ route('catatan_keuangan.index') }}" class="nav-link">
+                        <a href="{{ route('aruskas.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-chart-line"></i>
                             <p>Arus Kas</p>
                         </a>
