@@ -82,4 +82,13 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::put('/users/{user}', 'UsersController@update')->name('admin.users.update');
     Route::get('/users/delete/{user}', 'UsersController@destroy')->name('admin.users.destroy');
     Route::get('/users/reset-password/{id}', 'UsersController@resetPassword')->name('admin.users.resetPassword');
+
+    //========================= Ini Route Kategori =========================\\
+    Route::get('/kategori', 'KategoriController@index')->name('admin.kategori.index');
+    Route::get('/kategori/create', 'KategoriController@create')->name('admin.kategori.create');
+    Route::post('/kategori', 'KategoriController@store')->name('admin.kategori.store');
+    Route::get('/kategori/{kategori}', 'KategoriController@show')->name('admin.kategori.show');
+    Route::get('/kategori/{kategori}/edit', 'KategoriController@edit')->name('admin.kategori.edit');
+    Route::put('/kategori/{kategori}', 'KategoriController@update')->name('admin.kategori.update');
+    Route::get('/kategori/delete/{kategori}', 'KategoriController@destroy')->name('admin.kategori.destroy');
 });
