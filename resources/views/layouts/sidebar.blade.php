@@ -39,12 +39,42 @@
 
                 <li class="nav-header">INTERFACE</li>
 
-                <li class="nav-item">
-                    <a href="{{ route('catatan_keuangan.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>Arus Kas</p>
-                    </a>
-                </li>
+                {{-- Role Admin --}}
+                @if (Auth::check() && Auth::user()->role_id == '1')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-chart-line"></i>
+                            <p>
+                                Arus Kas
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview bg-light">
+                            <li class="nav-item">
+                                <a href="{{ route('aruskas.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Catatan Keuangan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.kategori.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+                {{-- Role User --}}
+                @if (Auth::check() && Auth::user()->role_id == '2')
+                    <li class="nav-item">
+                        <a href="{{ route('catatan_keuangan.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-chart-line"></i>
+                            <p>Arus Kas</p>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">

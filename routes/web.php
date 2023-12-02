@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
 
     //========================= Ini Route Aruskas =========================\\
-    Route::get('/aruskas', 'CatatanKeuanganController@index')->name('catatan_keuangan.index');
+    Route::get('/aruskas', 'CatatanKeuanganController@index')->name('aruskas.index');
 });
 
 // Akses Role User 
