@@ -28,41 +28,37 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('storePerubahanModal') }}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="id">ID</label>
-                                    <input type="text" name="id" id="id" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_user">ID User</label>
-                                    <input type="text" name="id_user" id="id_user" class="form-control" required
-                                        value="{{ auth()->user()->id }}" readonly>
-                                </div>
+                            <form action="{{ route('storePerubahanModal') }}"method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                {{ method_field('POST') }}
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="tanggal_perubahan">Tanggal Perubahan</label>
+                                        <input type="date" name="tanggal_perubahan" id="tanggal_perubahan"
+                                            class="form-control" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="tanggal_perubahan">Tanggal Perubahan</label>
-                                    <input type="date" name="tanggal_perubahan" id="tanggal_perubahan"
-                                        class="form-control" required>
+                                    <div class="form-group">
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea name="keterangan" id="keterangan" rows="3" class="form-control" required
+                                            placeholder="Masukkan keterangan"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="jumlah">Jumlah</label>
+                                        <input type="text" name="jumlah" id="jumlah" class="form-control" required
+                                            placeholder="Masukkan jumlah">
+                                    </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="keterangan">Keterangan</label>
-                                    <textarea name="keterangan" id="keterangan" rows="3" class="form-control" required
-                                        placeholder="Masukkan keterangan"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="jumlah">Jumlah</label>
-                                    <input type="text" name="jumlah" id="jumlah" class="form-control" required
-                                        placeholder="Masukkan jumlah">
-                                </div>
-
-                                <div class="text-right">
-                                    <a href="{{ route('perubahanModal') }}" class="btn btn-outline-secondary mr-2"
-                                        role="button">Batal</a>
-
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                <div class="card-footer">
+                                    <a class="btn btn-secondary" href="{{ route('perubahanModal') }}">
+                                        <i class="fa fa-arrow-left"></i> Kembali
+                                    </a>
+                                    <button type="submit" class="btn btn-primary"
+                                        onclick="return confirm('Apakah Anda yakin ingin menambahkan data ini?');">
+                                        <i class="fas fa-plus"></i>
+                                        Tambah
+                                    </button>
                                 </div>
                             </form>
                         </div>

@@ -20,53 +20,55 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- Main content -->
-    <section class="content">
+    <div class="content">
         <div class="container-fluid">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('updatePerubahanModal', $perubahanModal->id) }}" method="post">
-                        @csrf
-                        @method('PUT')
 
-                        <div class="form-group">
-                            <label for="id_user">ID</label>
-                            <input type="text" name="id_user" id="id_user" class="form-control" required
-                                value="{{ $perubahanModal->id }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="id_user">ID User</label>
-                            <input type="text" name="id_user" id="id_user" class="form-control" required
-                                value="{{ $perubahanModal->id_user }}" readonly>
-                        </div>
+            {{-- main content here --}}
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ route('updatePerubahanModal', $perubahanModal->id) }}" method="post"
+                                enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
 
-                        <div class="form-group">
-                            <label for="tanggal_perubahan">Tanggal Perubahan</label>
-                            <input type="date" name="tanggal_perubahan" id="tanggal_perubahan" class="form-control"
-                                required value="{{ $perubahanModal->tanggal_perubahan }}">
-                        </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="tanggal_perubahan">Tanggal Perubahan</label>
+                                        <input type="date" name="tanggal_perubahan" id="tanggal_perubahan"
+                                            class="form-control" required value="{{ $perubahanModal->tanggal_perubahan }}">
+                                    </div>
 
-                        <div class="form-group">
-                            <label for="keterangan">Keterangan</label>
-                            <textarea name="keterangan" id="keterangan" rows="3" class="form-control" required
-                                placeholder="Masukkan keterangan">{{ $perubahanModal->keterangan }}</textarea>
-                        </div>
+                                    <div class="form-group">
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea name="keterangan" id="keterangan" rows="3" class="form-control" required
+                                            placeholder="Masukkan keterangan">{{ $perubahanModal->keterangan }}</textarea>
+                                    </div>
 
-                        <div class="form-group">
-                            <label for="jumlah">Jumlah</label>
-                            <input type="text" name="jumlah" id="jumlah" class="form-control" required
-                                value="{{ $perubahanModal->jumlah }}">
+                                    <div class="form-group">
+                                        <label for="jumlah">Jumlah</label>
+                                        <input type="text" name="jumlah" id="jumlah" class="form-control" required
+                                            value="{{ $perubahanModal->jumlah }}">
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-secondary" href="{{ route('perubahanModal') }}">
+                                        <i class="fa fa-arrow-left"></i> Kembali
+                                    </a>
+                                    <button type="submit" class="btn btn-primary"
+                                        onclick="return confirm('Apakah Anda yakin ingin menyimpan perubahan data ini?');">
+                                        <i class="fas fa-save"></i>
+                                        Simpan
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="text-right">
-                            <a href="{{ route('perubahanModal') }}" class="btn btn-outline-secondary mr-2"
-                                role="button">Batal</a>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
+    </div><!-- /.container-fluid -->
     </section> <!-- /.content -->
 
     <!-- /.content -->
