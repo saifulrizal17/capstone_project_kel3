@@ -34,7 +34,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Daftar Catatan Keuangan</h3>
                     <div class="card-tools">
-                        <a href="{{ route('createPerubahanModal') }}" class="btn btn-primary btn-sm"><i
+                        <a href="{{ route('perubahanmodal.create') }}" class="btn btn-primary btn-sm"><i
                                 class="fas fa-plus"></i>Tambah Data</a>
                     </div>
                 </div>
@@ -65,13 +65,13 @@
                                     <td>{{ $perubahanModal->jumlah }}</td>
                                     <td>{{ $perubahanModal->keterangan }}</td>
                                     <td>
-                                        <a href="{{ route('editPerubahanModal', $perubahanModal->id) }}"
+                                        <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"
                                             class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
                                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
                                             data-target="#exampleModal{{ $perubahanModal->id }}"><i
                                                 class='fas fa-info-circle'></i>
                                             Detail</a>
-                                        <a href="{{ route('deletePerubahanModal', $perubahanModal->id) }}"
+                                        <a href="{{ route('perubahanmodal.delete', $perubahanModal->id) }}"
                                             class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i>
                                             Hapus</a>
 

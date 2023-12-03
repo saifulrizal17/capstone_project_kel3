@@ -55,7 +55,7 @@ class PerubahanModalController extends Controller
         PerubahanModal::create($requestData);
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('perubahanModal')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('perubahanmodal.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -101,7 +101,7 @@ class PerubahanModalController extends Controller
 
         PerubahanModal::findOrFail($id)->update($request->all());
 
-        return redirect()->route('perubahanModal')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('perubahanmodal.index')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
@@ -116,6 +116,6 @@ class PerubahanModalController extends Controller
         PerubahanModal::findOrFail($id)->delete();
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('perubahanModal')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('perubahanmodal.index')->with('success', 'Data berhasil dihapus');
     }
 }

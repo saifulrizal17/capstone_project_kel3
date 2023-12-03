@@ -38,10 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
 
     //========================= Ini Route Perubahan Modal =========================\\
-    Route::get('/modals', [PerubahanModalController::class, 'index'])->name('perubahanModal');
+    Route::get('/modals', 'PerubahanModalController@index')->name('perubahanmodal.index');
 
     //========================= Ini Route Neraca =========================\\
-    Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca.index');
+    Route::get('/neraca', 'NeracaController@index')->name('neraca.index');
 
     //========================= Ini Route Aruskas =========================\\
     Route::get('/aruskas', 'CatatanKeuanganController@index')->name('aruskas.index');
@@ -60,11 +60,11 @@ Route::middleware(['checkrole:2'])->group(function () {
     Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
 
     //========================= Ini Route Perubahan Modal =========================\\
-    Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');
-    Route::post('/modals', [PerubahanModalController::class, 'store'])->name('storePerubahanModal');
-    Route::get('/modals/{id}/edit', [PerubahanModalController::class, 'edit'])->name('editPerubahanModal');
-    Route::put('/modals/{id}', [PerubahanModalController::class, 'update'])->name('updatePerubahanModal');
-    Route::get('/modals/{id}', [PerubahanModalController::class, 'destroy'])->name('deletePerubahanModal');
+    Route::get('/modals/create', 'PerubahanModalController@create')->name('perubahanmodal.create');
+    Route::post('/modals', 'PerubahanModalController@store')->name('perubahanmodal.store');
+    Route::get('/modals/{id}/edit', 'PerubahanModalController@edit')->name('perubahanmodal.edit');
+    Route::put('/modals/{id}', 'PerubahanModalController@update')->name('perubahanmodal.update');
+    Route::get('/modals/{id}/delete', 'PerubahanModalController@destroy')->name('perubahanmodal.delete');
 });
 
 

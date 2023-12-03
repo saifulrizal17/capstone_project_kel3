@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('updatePerubahanModal', $perubahanModal->id) }}" method="post"
+                            <form action="{{ route('perubahanmodal.update', $perubahanModal->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <a class="btn btn-secondary" href="{{ route('perubahanModal') }}">
+                                    <a class="btn btn-secondary" href="{{ route('perubahanmodal.index') }}">
                                         <i class="fa fa-arrow-left"></i> Kembali
                                     </a>
                                     <button type="submit" class="btn btn-primary"
