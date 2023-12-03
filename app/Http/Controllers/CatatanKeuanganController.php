@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CatatanKeuangan;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
@@ -28,7 +28,12 @@ class CatatanKeuanganController extends Controller
      */
     public function create()
     {
-        return view('CatatanKeuangan.create');
+        $jeniss = \App\Jenis::all();
+        $kategoris = \App\Kategori::all();
+        return view('CatatanKeuangan.create', [
+            'jeniss' => $jeniss,
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
@@ -39,19 +44,27 @@ class CatatanKeuanganController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id_user' => 'nullable|numeric',
-            'tanggal_transaksi' => 'nullable|date',
-            'jumlah' => 'nullable|numeric',
+        $validatedData = $request->validate([
+            'id_jenis' => 'required',
+            'id_kategori' => 'required',
+            'tanggal_transaksi' => 'required|date',
+            'jumlah' => 'required|numeric',
             'keterangan' => 'nullable|string',
-            'jenis' => 'nullable|in:pemasukan,pengeluaran',
-            'kategori' => 'nullable|string',
         ]);
 
-        CatatanKeuangan::create($request->all());
+        // Fix the typo in variable name
+        $catatankeuangan = new CatatanKeuangan($validatedData);
 
-        return redirect()->route('catatan_keuangan.index');
+        // Set the user ID after creating the instance
+        $catatankeuangan->id_user = Auth::id();
+
+        // Save the instance
+        $catatankeuangan->save();
+
+        return redirect()->route('aruskas.index', $catatankeuangan->id)
+            ->with('success', 'Catatan Keuangan berhasil dibuat.');
     }
+
 
     /**
      * Display the specified resource.
@@ -61,7 +74,13 @@ class CatatanKeuanganController extends Controller
      */
     public function show(CatatanKeuangan $catatanKeuangan)
     {
-        //
+        $jeniss = \App\Jenis::all();
+        $kategoris = \App\Kategori::all();
+        return view('CatatanKeuangan.index', [
+            'catatanKeuangan' => $catatanKeuangan,
+            'jeniss' => $jeniss,
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
@@ -72,8 +91,12 @@ class CatatanKeuanganController extends Controller
      */
     public function edit(CatatanKeuangan $catatanKeuangan)
     {
+        $jeniss = \App\Jenis::all();
+        $kategoris = \App\Kategori::all();
         return view('CatatanKeuangan.edit', [
-            'catatanKeuangan' => $catatanKeuangan
+            'catatanKeuangan' => $catatanKeuangan,
+            'jeniss' => $jeniss,
+            'kategoris' => $kategoris
         ]);
     }
 
@@ -86,18 +109,18 @@ class CatatanKeuanganController extends Controller
      */
     public function update(Request $request, CatatanKeuangan $catatanKeuangan)
     {
-        $request->validate([
-            'id_user' => 'nullable|numeric',
-            'tanggal_transaksi' => 'nullable|date',
-            'jumlah' => 'nullable|numeric',
+        $validatedData = $request->validate([
+            'id_jenis' => 'required',
+            'id_kategori' => 'required',
+            'tanggal_transaksi' => 'required|date',
+            'jumlah' => 'required|numeric',
             'keterangan' => 'nullable|string',
-            'jenis' => 'nullable|in:pemasukan,pengeluaran',
-            'kategori' => 'nullable|string',
         ]);
 
-        $catatanKeuangan->update($request->all());
+        $catatanKeuangan->update($validatedData);
 
-        return redirect()->route('catatan_keuangan.index');
+        return redirect()->route('aruskas.index', $catatanKeuangan->id)
+            ->with('success', 'Data Kategori berhasil diperbarui.');
     }
 
     /**
@@ -110,6 +133,7 @@ class CatatanKeuanganController extends Controller
     {
         $catatanKeuangan->delete();
 
-        return redirect()->route('catatan_keuangan.index');
+        return redirect()->route('aruskas.index')
+            ->with('success', 'Data Kategori berhasil dihapus.');
     }
 }

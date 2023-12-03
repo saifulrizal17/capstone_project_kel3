@@ -7,13 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 class CatatanKeuangan extends Model
 {
     protected $table = 'tbl_catatan_keuangan';
-    
+
     protected $fillable = [
         'id_user',
         'tanggal_transaksi',
         'jumlah',
         'keterangan',
-        'jenis',
-        'kategori',
+        'id_jenis',
+        'id_kategori',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+    public function jenis()
+    {
+        return $this->belongsTo(Jenis::class, 'id_jenis');
+    }
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
 }
