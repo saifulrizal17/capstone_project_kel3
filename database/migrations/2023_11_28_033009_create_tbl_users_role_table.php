@@ -14,12 +14,10 @@ class CreateTblUsersRoleTable extends Migration
     public function up()
     {
         Schema::create('tbl_users_role', function (Blueprint $table) {
-            $table->bigIncrements('id_users_role');
-            $table->unsignedBigInteger('role_id');
+            $table->bigIncrements('id');
+            $table->string('name');
             $table->string('deskripsi');
             $table->timestamps();
-
-            $table->foreign('role_id')->references('id')->on('tbl_users')->onDelete('cascade');
         });
     }
 

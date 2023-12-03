@@ -14,14 +14,14 @@ class UsersRoleSeeder extends Seeder
     {
         DB::table('tbl_users_role')->insert([
             [
-                'role_id' => 1,
+                'name' => 'Admin',
                 'deskripsi' => 'Administrator',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'role_id' => 2,
-                'deskripsi' => 'User',
+                'name' => 'User',
+                'deskripsi' => 'Pengguna',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

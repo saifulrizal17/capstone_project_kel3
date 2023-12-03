@@ -13,7 +13,7 @@ class CatatanKeuanganSeeder extends Seeder
     {
         DB::table('tbl_catatan_keuangan')->insert([
             [
-                'id_user' => 1,
+                'id_user' => 2,
                 'id_jenis' => 1,
                 'id_kategori' => 3,
                 'tanggal_transaksi' => '2023-01-01',

@@ -22,10 +22,12 @@ class CreateTblUsersTable extends Migration
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedInteger('role_id')->default(2);
+            $table->unsignedBigInteger('role_id')->default(2);
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('tbl_users_role')->onDelete('cascade');
         });
     }
 
