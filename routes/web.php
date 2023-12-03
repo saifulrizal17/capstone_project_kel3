@@ -53,11 +53,11 @@ Route::middleware(['checkrole:2'])->group(function () {
     Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
 
     //========================= Ini Route Arus Kas =========================\\
-    Route::get('/aruskas/create', 'CatatanKeuanganController@create')->name('createAruskas');
-    Route::post('/aruskas', 'CatatanKeuanganController@store')->name('storeAruskas');
-    Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('editAruskas');
-    Route::put('/aruskas/{catatanKeuangan}/update', 'CatatanKeuanganController@update')->name('updateAruskas');
-    Route::delete('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('deleteAruskas');
+    Route::get('/aruskas/create', 'CatatanKeuanganController@create')->name('aruskas.create');
+    Route::post('/aruskas', 'CatatanKeuanganController@store')->name('aruskas.store');
+    Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('aruskas.edit');
+    Route::put('/aruskas/{catatanKeuangan}', 'CatatanKeuanganController@update')->name('aruskas.update');
+    Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
 
     //========================= Ini Route Perubahan Modal =========================\\
     Route::get('/modals/create', [PerubahanModalController::class, 'create'])->name('createPerubahanModal');

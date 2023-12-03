@@ -34,7 +34,7 @@
                     <h3 class="card-title">Edit Catatan Keuangan</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('updateAruskas', $catatanKeuangan->id) }}" method="post"
+                    <form action="{{ route('aruskas.update', $catatanKeuangan->id) }}" method="post"
                         enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}

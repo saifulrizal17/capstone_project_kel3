@@ -35,7 +35,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Daftar Catatan Keuangan</h3>
                     <div class="card-tools">
-                        <a href="{{ route('createAruskas') }}" class="btn btn-primary btn-sm"><i
+                        <a href="{{ route('aruskas.create') }}" class="btn btn-primary btn-sm"><i
                                 class="fas fa-plus"></i>Tambah Catatan</a>
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                                     <td>{{ $catatanKeuangan->tanggal_transaksi }}</td>
                                     <td>{{ $catatanKeuangan->jumlah }}</td>
                                     <td>
-                                        <a href="{{ route('editAruskas', $catatanKeuangan->id) }}"
+                                        <a href="{{ route('aruskas.edit', $catatanKeuangan->id) }}"
                                             class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
                                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
                                             data-target="#exampleModal{{ $catatanKeuangan->id }}"><i
                                                 class='fas fa-info-circle'></i>
                                             Detail</a>
-                                        <a href="{{ route('deleteAruskas', $catatanKeuangan->id) }}"
+                                        <a href="{{ route('aruskas.delete', $catatanKeuangan->id) }}"
                                             class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i>
                                             Hapus</a>
 

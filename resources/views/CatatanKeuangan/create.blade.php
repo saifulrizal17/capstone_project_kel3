@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('storeAruskas') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('aruskas.store') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 {{ method_field('POST') }}
 
