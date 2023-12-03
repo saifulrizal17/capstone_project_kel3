@@ -77,7 +77,7 @@
                 @endif
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('labarugi.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-file-invoice-dollar"></i>
                         <p>Laba/Rugi</p>
                     </a>
