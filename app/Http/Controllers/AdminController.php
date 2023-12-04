@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\CatatanKeuangan;
 
 class AdminController extends Controller
 {
@@ -13,7 +15,26 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $incomeAll = CatatanKeuangan::where('id_jenis', 1)->sum('jumlah');
+        $expenseAll = CatatanKeuangan::where('id_jenis', 2)->sum('jumlah');
+        $balanceAll = $incomeAll - $expenseAll;
+        $totalUsers = User::count();
+        $totalActiveUsers = User::where('is_active', true)->count();
+        $percentageActiveUsers = ($totalActiveUsers / $totalUsers) * 100;
+        $totalAdmins = User::where('role_id', 1)->count();
+        $totalUsers = User::where('role_id', 2)->count();
+        $totalVisitors = 'NaN';
+
+        return view('admin.dashboard', [
+            'balanceAll' => $balanceAll,
+            'incomeAll' => $incomeAll,
+            'expenseAll' => $expenseAll,
+            'percentageActiveUsers' => $percentageActiveUsers,
+            'totalActiveUsers' => $totalActiveUsers,
+            'totalAdmins' => $totalAdmins,
+            'totalUsers' => $totalUsers,
+            'totalVisitors' => $totalVisitors,
+        ]);
     }
 
     /**
