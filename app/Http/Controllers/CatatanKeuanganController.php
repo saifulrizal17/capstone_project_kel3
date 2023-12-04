@@ -16,9 +16,18 @@ class CatatanKeuanganController extends Controller
      */
     public function index()
     {
-        $catatanKeuangans = CatatanKeuangan::all();
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin
+            $catatanKeuangans = CatatanKeuangan::all();
+        } else {
+            // User
+            $user = Auth::user();
+            $catatanKeuangans = CatatanKeuangan::where('id_user', $user->id)->get();
+        }
+
         return view('CatatanKeuangan.index', compact('catatanKeuangans'));
     }
+
 
 
     /**
@@ -120,7 +129,7 @@ class CatatanKeuanganController extends Controller
         $catatanKeuangan->update($validatedData);
 
         return redirect()->route('aruskas.index', $catatanKeuangan->id)
-            ->with('success', 'Data Kategori berhasil diperbarui.');
+            ->with('success', 'Catatan Keuangan berhasil diperbarui.');
     }
 
     /**
@@ -134,6 +143,6 @@ class CatatanKeuanganController extends Controller
         $catatanKeuangan->delete();
 
         return redirect()->route('aruskas.index')
-            ->with('success', 'Data Kategori berhasil dihapus.');
+            ->with('success', 'Catatan Keuangan berhasil dihapus.');
     }
 }

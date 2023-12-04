@@ -16,7 +16,14 @@ class PerubahanModalController extends Controller
      */
     public function index()
     {
-        $perubahanModals = PerubahanModal::all();
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin
+            $perubahanModals = PerubahanModal::all();
+        } else {
+            // User
+            $user = Auth::user();
+            $perubahanModals = PerubahanModal::where('id_user', $user->id)->get();
+        }
         return view('perubahan_modals.index', compact('perubahanModals'));
     }
 
@@ -55,7 +62,8 @@ class PerubahanModalController extends Controller
         PerubahanModal::create($requestData);
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('perubahanmodal.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('perubahanmodal.index')
+            ->with('success', 'Perubahan Modal berhasil ditambahkan');
     }
 
     /**
@@ -101,7 +109,8 @@ class PerubahanModalController extends Controller
 
         PerubahanModal::findOrFail($id)->update($request->all());
 
-        return redirect()->route('perubahanmodal.index')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('perubahanmodal.index')
+            ->with('success', 'Perubahan Modal berhasil diperbarui');
     }
 
     /**
@@ -116,6 +125,7 @@ class PerubahanModalController extends Controller
         PerubahanModal::findOrFail($id)->delete();
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('perubahanmodal.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('perubahanmodal.index')
+            ->with('success', 'Perubahan Modal berhasil dihapus');
     }
 }

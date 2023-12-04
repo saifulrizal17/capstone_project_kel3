@@ -38,24 +38,27 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>ID User</th>
+                                @if (Auth::check() && Auth::user()->role_id == '1')
+                                    <th>Nama Pengguna</th>
+                                @endif
                                 <th>Aset</th>
                                 <th>Kewajiban</th>
                                 <th>Ekuitas</th>
                                 <th>Bulan</th>
-
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = 1 @endphp
                             @foreach ($neracas as $neraca)
                                 <tr>
-                                    <td>{{ $neraca->id }}</td>
-                                    <td>{{ $neraca->id_user }}</td>
+                                    <td>{{ $no++ }}</td>
+                                    @if (Auth::check() && Auth::user()->role_id == '1')
+                                        <td>{{ $neraca->id_user }}</td>
+                                    @endif
                                     <td>{{ $neraca->aset }}</td>
                                     <td>{{ $neraca->kewajiban }}</td>
                                     <td>{{ $neraca->ekuitas }}</td>
                                     <td>{{ $neraca->bulan }}</td>
-
                                 </tr>
                             @endforeach
                         </tbody>

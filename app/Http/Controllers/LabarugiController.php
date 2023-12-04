@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Labarugi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LabarugiController extends Controller
@@ -14,7 +15,14 @@ class LabarugiController extends Controller
      */
     public function index()
     {
-        $labarugiData = Labarugi::all();
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin
+            $labarugiData = Labarugi::all();
+        } else {
+            // User
+            $user = Auth::user();
+            $labarugiData = Labarugi::where('id_user', $user->id)->get();
+        }
 
         return view('Labarugi.index', compact('labarugiData'));
     }

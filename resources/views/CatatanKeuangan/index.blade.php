@@ -43,8 +43,10 @@
                     <table id="data-table" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nama Pengguna</th>
+                                <th>No</th>
+                                @if (Auth::check() && Auth::user()->role_id == '1')
+                                    <th>Nama Pengguna</th>
+                                @endif
                                 <th>Jenis</th>
                                 <th>Kategori</th>
                                 <th>Tanggal Transaksi</th>
@@ -53,16 +55,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = 1 @endphp
                             @foreach ($catatanKeuangans as $catatanKeuangan)
                                 <tr>
-                                    <td>{{ $catatanKeuangan->id }}</td>
-                                    <td>
-                                        @if ($catatanKeuangan->user)
-                                            {{ $catatanKeuangan->user->name }}
-                                        @else
-                                            Pengguna tidak ditemukan
-                                        @endif
-                                    </td>
+                                    <td>{{ $no++ }}</td>
+                                    @if (Auth::check() && Auth::user()->role_id == '1')
+                                        <td>
+                                            @if ($catatanKeuangan->user)
+                                                {{ $catatanKeuangan->user->name }}
+                                            @else
+                                                Pengguna tidak ditemukan
+                                            @endif
+                                        </td>
+                                    @endif
                                     <td> {{ $catatanKeuangan->jenis->name }}
                                     </td>
                                     <td>
@@ -102,7 +107,7 @@
                                                     <div class="modal-body">
                                                         <table class="gg" style="width: 100%">
                                                             <tr>
-                                                                <td class="navy">ID Catatan Keuanagan/td>
+                                                                <td class="navy">ID Catatan Keuanagan </td>
                                                                 <td>{{ $catatanKeuangan->id }}</td>
                                                             </tr>
                                                             <tr>

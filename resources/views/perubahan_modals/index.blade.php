@@ -43,7 +43,9 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Pengguna</th>
+                                @if (Auth::check() && Auth::user()->role_id == '1')
+                                    <th>Nama Pengguna</th>
+                                @endif
                                 <th>Tanggal Perubahan</th>
                                 <th>Jumlah</th>
                                 <th>Keterangan</th>
@@ -51,16 +53,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = 1 @endphp
                             @foreach ($perubahanModals as $perubahanModal)
                                 <tr>
-                                    <td>{{ $perubahanModal->id }}</td>
-                                    <td>
-                                        @if ($perubahanModal->user)
-                                            {{ $perubahanModal->user->name }}
-                                        @else
-                                            Pengguna tidak ditemukan
-                                        @endif
-                                    </td>
+                                    <td>{{ $no++ }}</td>
+                                    @if (Auth::check() && Auth::user()->role_id == '1')
+                                        <td>
+                                            @if ($perubahanModal->user)
+                                                {{ $perubahanModal->user->name }}
+                                            @else
+                                                Pengguna tidak ditemukan
+                                            @endif
+                                        </td>
+                                    @endif
                                     <td>{{ $perubahanModal->tanggal_perubahan }}</td>
                                     <td>{{ $perubahanModal->jumlah }}</td>
                                     <td>{{ $perubahanModal->keterangan }}</td>
@@ -92,7 +97,7 @@
                                                     <div class="modal-body">
                                                         <table class="gg" style="width: 100%">
                                                             <tr>
-                                                                <td class="navy">ID Catatan Keuanagan/td>
+                                                                <td class="navy">ID Catatan Keuanagan </td>
                                                                 <td>{{ $perubahanModal->id }}</td>
                                                             </tr>
                                                             <tr>

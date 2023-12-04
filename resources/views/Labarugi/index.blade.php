@@ -42,16 +42,19 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>User ID</th>
+                                        @if (Auth::check() && Auth::user()->role_id == '1')
+                                            <th>Nama Pengguna</th>
+                                        @endif
                                         <th>Pendapatan</th>
                                         <th>Pengeluaran</th>
                                         <th>Bulan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $no = 1 @endphp
                                     @foreach ($labarugiData as $data)
                                         <tr>
-                                            <td>{{ $data->id }}</td>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $data->id_user }}</td>
                                             <td>{{ $data->pendapatan }}</td>
                                             <td>{{ $data->pengeluaran }}</td>

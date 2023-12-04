@@ -14,9 +14,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::with('jenis')->get(); // Memuat relasi jenis untuk menghindari masalah N+1
+        $kategoris = Kategori::all();
         return view('admin.kategori.index', compact('kategoris'));
-        // $kategoris = Kategori::all();
         // return view('admin.kategori.index', compact('kategoris'));
         // return view('admin.kategori.index');
     }
