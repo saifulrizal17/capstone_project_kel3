@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class PerubahanModal extends Model
 {
@@ -18,5 +19,10 @@ class PerubahanModal extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function getTanggalPerubahanAttribute()
+    {
+        return Carbon::parse($this->attributes['tanggal_perubahan'])->isoFormat('D MMMM Y');
     }
 }

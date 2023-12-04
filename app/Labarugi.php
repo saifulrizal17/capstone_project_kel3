@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Labarugi extends Model
 {
@@ -15,8 +16,8 @@ class Labarugi extends Model
         'bulan',
     ];
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
+    public function getBulanAttribute()
+    {
+        return Carbon::parse($this->attributes['bulan'])->isoFormat('MMMM');
+    }
 }
