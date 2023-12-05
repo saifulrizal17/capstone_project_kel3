@@ -59,7 +59,8 @@
 
                             </span>
 
-                            <a href="#" class="small-box-footer">Detail<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
+                                    class="fas fa-arrow-circle-right"></i></a>
 
                         </div>
                         <!-- /.info-box-content -->
@@ -82,7 +83,8 @@
 
                             </span>
 
-                            <a href="#" class="small-box-footer">Detail<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
+                                    class="fas fa-arrow-circle-right"></i></a>
 
                         </div>
                         <!-- /.info-box-content -->
@@ -95,8 +97,77 @@
             </div>
             <!-- /.row -->
 
+            <!-- Chart -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="chart-responsive">
+                                    <div class="chartjs-size-monitor">
+                                        <div class="chartjs-size-monitor-expand">
+                                            <div class=""></div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink">
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <canvas id="pieChart" height="656" width="1312"
+                                        style="display: block; width: 656px; height: 328px;"
+                                        class="chartjs-render-monitor"></canvas>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <ul class="chart-legend clearfix">
+                                    <li><i class="far fa-circle text-danger"></i> Ballance All</li>
+                                    <li><i class="far fa-circle text-success"></i> Income All</li>
+                                    <li><i class="far fa-circle text-warning"></i> Expense All</li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /Chart -->
+
         </div><!-- /.container-fluid -->
     </section> <!-- /.content -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var pieChartCanvas = document.getElementById("pieChart").getContext("2d");
+
+            var pieChartData = {
+                labels: ["Ballance All", "Income All", "Expense All"],
+                datasets: [{
+                    data: [
+                        {{ $balanceAll }},
+                        {{ $incomeAll }},
+                        {{ $expenseAll }},
+                    ],
+                    backgroundColor: ["#f56954", "#00a65a", "#f39c12"],
+                }],
+            };
+
+            var pieChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+            };
+
+            var pieChart = new Chart(pieChartCanvas, {
+                type: "doughnut",
+                data: pieChartData,
+                options: pieChartOptions,
+            });
+        });
+    </script>
 @endsection
 
 @section('addJavascript')
