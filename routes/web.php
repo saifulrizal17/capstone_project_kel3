@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     //========================= Ini Route Aruskas =========================\\
     Route::get('/aruskas', 'CatatanKeuanganController@index')->name('aruskas.index');
 
-     //========================= Ini Pendapatan dan Pengeluaran =========================\\
-     Route::get('/labarugi', 'LabarugiController@index')->name('labarugi.index');
+    //========================= Ini Pendapatan dan Pengeluaran =========================\\
+    Route::get('/labarugi', 'LabarugiController@index')->name('labarugi.index');
 });
 
 // Akses Role User 

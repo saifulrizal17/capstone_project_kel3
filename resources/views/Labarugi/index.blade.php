@@ -55,7 +55,15 @@
                                     @foreach ($labarugiData as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->id_user }}</td>
+                                            @if (Auth::check() && Auth::user()->role_id == '1')
+                                                <td>
+                                                    @if ($catatanKeuangan->user)
+                                                        {{ $catatanKeuangan->user->name }}
+                                                    @else
+                                                        Pengguna tidak ditemukan
+                                                    @endif
+                                                </td>
+                                            @endif
                                             <td>{{ $data->pendapatan }}</td>
                                             <td>{{ $data->pengeluaran }}</td>
                                             <td>{{ $data->bulan }}</td>

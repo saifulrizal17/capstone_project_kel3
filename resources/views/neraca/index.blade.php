@@ -53,7 +53,13 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     @if (Auth::check() && Auth::user()->role_id == '1')
-                                        <td>{{ $neraca->id_user }}</td>
+                                        <td>
+                                            @if ($neraca->user)
+                                                {{ $neraca->user->name }}
+                                            @else
+                                                Pengguna tidak ditemukan
+                                            @endif
+                                        </td>
                                     @endif
                                     <td>{{ $neraca->aset }}</td>
                                     <td>{{ $neraca->kewajiban }}</td>

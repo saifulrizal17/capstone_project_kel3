@@ -16,6 +16,11 @@ class Labarugi extends Model
         'bulan',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
     public function getBulanAttribute()
     {
         return Carbon::parse($this->attributes['bulan'])->isoFormat('MMMM');
