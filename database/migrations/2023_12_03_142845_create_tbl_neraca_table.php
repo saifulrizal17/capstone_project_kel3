@@ -24,24 +24,6 @@ class CreateTblNeracaTable extends Migration
 
             $table->foreign('id_user')->references('id')->on('tbl_users')->onDelete('cascade');
         });
-
-        // Schema::create('tbl_neraca', function (Blueprint $table) {
-        //     $table->bigInteger('id')->unsigned();  
-        //     $table->unsignedBigInteger('id_user')->nullable();
-        //     $table->decimal('aset', 15, 2)->nullable();
-        //     $table->decimal('kewajiban', 15, 2)->nullable();
-        //     $table->decimal('ekuitas', 15, 2)->nullable();
-        //     $table->year('bulan')->nullable();
-        //     $table->timestamp('created_at')->default(now());
-        //     $table->timestamp('updated_at')->default(now())->onUpdate(now());
-
-        //     $table->primary('id');
-        // });
-
-
-        // Schema::table('tbl_neraca', function (Blueprint $table) {
-        //     $table->foreign('id_user')->references('id')->on('tbl_users')->onDelete('cascade');
-        // });
     }
 
     /**

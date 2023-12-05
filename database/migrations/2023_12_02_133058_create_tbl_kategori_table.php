@@ -16,10 +16,11 @@ class CreateTblKategoriTable extends Migration
         Schema::create('tbl_kategori', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('jenis_id')->nullable();
-            $table->foreign('jenis_id')->references('id')->on('tbl_jenis')->onDelete('cascade');
             $table->string('name');
             $table->string('description');
             $table->timestamps();
+
+            $table->foreign('jenis_id')->references('id')->on('tbl_jenis')->onDelete('cascade');
         });
     }
 

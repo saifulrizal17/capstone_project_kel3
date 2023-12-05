@@ -57,8 +57,8 @@
                                             <td>{{ $no++ }}</td>
                                             @if (Auth::check() && Auth::user()->role_id == '1')
                                                 <td>
-                                                    @if ($catatanKeuangan->user)
-                                                        {{ $catatanKeuangan->user->name }}
+                                                    @if ($data->user)
+                                                        {{ $data->user->name }}
                                                     @else
                                                         Pengguna tidak ditemukan
                                                     @endif

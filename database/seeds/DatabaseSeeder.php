@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             JenisSeeder::class,
             KategoriSeeder::class,
             CatatanKeuanganSeeder::class,
+            LabaRugiSeeder::class,
             PerubahanModalSeeder::class,
             NeracaSeeder::class,
         ]);

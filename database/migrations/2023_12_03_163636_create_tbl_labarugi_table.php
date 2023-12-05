@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTblLabarugisTable extends Migration
+class CreateTblLabarugiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,8 +18,10 @@ class CreateTblLabarugisTable extends Migration
             $table->unsignedBigInteger('id_user')->nullable();
             $table->decimal('pendapatan', 15, 2)->nullable();
             $table->decimal('pengeluaran', 15, 2)->nullable();
-            $table->year('bulan')->nullable();
+            $table->date('bulan')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('tbl_users')->onDelete('cascade');
         });
     }
 

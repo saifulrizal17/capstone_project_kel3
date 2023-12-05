@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class NeracaSeeder extends Seeder
+class LabaRugiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,21 +11,19 @@ class NeracaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_neraca')->insert([
+        DB::table('tbl_labarugi')->insert([
             [
                 'id_user' => 2,
-                'aset' => 100000.00,
-                'kewajiban' => 50000.00,
-                'ekuitas' => 50000.00,
-                'bulan' => '2023-11-01', // Movember 2023
+                'pendapatan' => 100000.00,
+                'pengeluaran' => 50000.00,
+                'bulan' => '2023-11-01', // November 2023
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id_user' => 2,
-                'aset' => 150000.00,
-                'kewajiban' => 75000.00,
-                'ekuitas' => 75000.00,
+                'pendapatan' => 150000.00,
+                'pengeluaran' => 75000.00,
                 'bulan' => '2023-12-01', // December 2023
                 'created_at' => now(),
                 'updated_at' => now(),
