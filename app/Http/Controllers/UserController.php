@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CatatanKeuangan;
 
 class UserController extends Controller
 {
@@ -13,7 +14,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard');
+        $incomeAll = CatatanKeuangan::where('id_jenis', 1)->sum('jumlah');
+        $expenseAll = CatatanKeuangan::where('id_jenis', 2)->sum('jumlah');
+        $balanceAll = $incomeAll - $expenseAll;
+        return view('user.dashboard', [
+            'balanceAll' => $balanceAll,
+            'incomeAll' => $incomeAll,
+            'expenseAll' => $expenseAll,
+        ]);
     }
 
     /**
