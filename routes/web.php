@@ -29,6 +29,12 @@ Route::get('/register', 'AuthController@showregister')->name('register');
 Route::post('/register', 'AuthController@register')->name('register');
 Route::post('/logout', 'AuthController@logout')->name('logout');
 
+//Forget Password
+Route::get('/forgot-password', 'ForgetPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/forgot-password', 'ForgetPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/reset-password/{token}', 'ForgetPasswordController@showResetPasswordForm')->name('password.show');
+Route::post('/reset-password', 'ForgetPasswordController@resetPasswordForm')->name('password.update');
+
 //Akses All Role
 Route::middleware('auth')->group(function () {
 
