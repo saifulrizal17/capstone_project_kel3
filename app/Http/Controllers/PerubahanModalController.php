@@ -34,7 +34,10 @@ class PerubahanModalController extends Controller
      */
     public function create()
     {
-        return view('perubahan_modals.create');
+        $users = \App\User::all();
+        return view('perubahan_modals.create', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -51,17 +54,18 @@ class PerubahanModalController extends Controller
             'jumlah' => 'required',
         ]);
 
-        // Get the currently logged-in user
-        $user = Auth::user();
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin 
+            $request->validate([
+                'id_user' => 'required',
+            ]);
+        } else {
+            // User
+            $request['id_user'] = $user->id;
+        }
 
-        // Add the user ID to the request data
-        $requestData = $request->all();
-        $requestData['id_user'] = $user->id;
+        PerubahanModal::create($request->all());
 
-        // Simpan data baru ke dalam tabel
-        PerubahanModal::create($requestData);
-
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('perubahanmodal.index')
             ->with('success', 'Perubahan Modal berhasil ditambahkan');
     }
@@ -75,9 +79,10 @@ class PerubahanModalController extends Controller
     public function show($id)
     {
         $perubahanModal = PerubahanModal::findOrFail($id);
-
-        return view('perubahan_modals.index', compact('perubahanModal'));
+        $users = \App\User::all();
+        return view('perubahan_modals.index', compact('perubahanModal', 'users'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,8 +93,8 @@ class PerubahanModalController extends Controller
     public function edit($id)
     {
         $perubahanModal = PerubahanModal::findOrFail($id);
-
-        return view('perubahan_modals.edit', compact('perubahanModal'));
+        $users = \App\User::all();
+        return view('perubahan_modals.edit', compact('perubahanModal', 'users'));
     }
 
     /**
@@ -107,11 +112,22 @@ class PerubahanModalController extends Controller
             'jumlah' => 'required',
         ]);
 
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin 
+            $request->validate([
+                'id_user' => 'required',
+            ]);
+        } else {
+            // User
+            $request['id_user'] = PerubahanModal::findOrFail($id)->id_user;
+        }
+
         PerubahanModal::findOrFail($id)->update($request->all());
 
         return redirect()->route('perubahanmodal.index')
             ->with('success', 'Perubahan Modal berhasil diperbarui');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -121,10 +137,8 @@ class PerubahanModalController extends Controller
      */
     public function destroy($id)
     {
-        // Temukan data berdasarkan ID dan hapus
         PerubahanModal::findOrFail($id)->delete();
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('perubahanmodal.index')
             ->with('success', 'Perubahan Modal berhasil dihapus');
     }

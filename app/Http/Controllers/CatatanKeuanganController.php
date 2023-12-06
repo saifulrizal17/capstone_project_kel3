@@ -28,8 +28,6 @@ class CatatanKeuanganController extends Controller
         return view('CatatanKeuangan.index', compact('catatanKeuangans'));
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -37,9 +35,11 @@ class CatatanKeuanganController extends Controller
      */
     public function create()
     {
+        $users = \App\User::all();
         $jeniss = \App\Jenis::all();
         $kategoris = \App\Kategori::all();
         return view('CatatanKeuangan.create', [
+            'users' => $users,
             'jeniss' => $jeniss,
             'kategoris' => $kategoris
         ]);
@@ -61,19 +61,21 @@ class CatatanKeuanganController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        // Fix the typo in variable name
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin
+            $validatedData['id_user'] = $request->input('id_user');
+        } else {
+            // User
+            $validatedData['id_user'] = Auth::id();
+        }
+
         $catatankeuangan = new CatatanKeuangan($validatedData);
 
-        // Set the user ID after creating the instance
-        $catatankeuangan->id_user = Auth::id();
-
-        // Save the instance
         $catatankeuangan->save();
 
         return redirect()->route('aruskas.index', $catatankeuangan->id)
             ->with('success', 'Catatan Keuangan berhasil dibuat.');
     }
-
 
     /**
      * Display the specified resource.
@@ -83,10 +85,12 @@ class CatatanKeuanganController extends Controller
      */
     public function show(CatatanKeuangan $catatanKeuangan)
     {
+        $users = \App\User::all();
         $jeniss = \App\Jenis::all();
         $kategoris = \App\Kategori::all();
         return view('CatatanKeuangan.index', [
             'catatanKeuangan' => $catatanKeuangan,
+            'users' => $users,
             'jeniss' => $jeniss,
             'kategoris' => $kategoris
         ]);
@@ -100,10 +104,12 @@ class CatatanKeuanganController extends Controller
      */
     public function edit(CatatanKeuangan $catatanKeuangan)
     {
+        $users = \App\User::all();
         $jeniss = \App\Jenis::all();
         $kategoris = \App\Kategori::all();
         return view('CatatanKeuangan.edit', [
             'catatanKeuangan' => $catatanKeuangan,
+            'users' => $users,
             'jeniss' => $jeniss,
             'kategoris' => $kategoris
         ]);
@@ -125,6 +131,14 @@ class CatatanKeuanganController extends Controller
             'jumlah' => 'required|numeric',
             'keterangan' => 'nullable|string',
         ]);
+
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            // Admin 
+            $validatedData['id_user'] = $request->input('id_user');
+        } else {
+            // User
+            $validatedData['id_user'] = $catatanKeuangan->id_user;
+        }
 
         $catatanKeuangan->update($validatedData);
 

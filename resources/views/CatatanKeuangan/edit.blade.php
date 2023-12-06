@@ -40,6 +40,19 @@
                         {{ method_field('PUT') }}
 
                         <div class="card-body">
+                            @if (Auth::check() && Auth::user()->role_id == '1')
+                                <div class="form-group">
+                                    <label for="id_user">Nama User</label>
+                                    <select class="form-control" name="id_user" id="id_user" required="required">
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}"
+                                                {{ $user->id == $catatanKeuangan->id_user ? 'selected' : '' }}>
+                                                {{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
+
                             <div class="form-group">
                                 <label for="id_jenis">Nama Jurusan</label>
                                 <select class="form-control" name="id_jenis" id="id_jenis" required="required">

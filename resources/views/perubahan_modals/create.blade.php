@@ -32,6 +32,19 @@
                                 {{ csrf_field() }}
                                 {{ method_field('POST') }}
                                 <div class="card-body">
+                                    @if (Auth::check() && Auth::user()->role_id == '1')
+                                        <div class="form-group">
+                                            <label for="id_user">Nama User</label>
+                                            <select class="form-control" name="id_user" id="id_user" required="required">
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_user')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    @endif
                                     <div class="form-group">
                                         <label for="tanggal_perubahan">Tanggal Perubahan</label>
                                         <input type="date" name="tanggal_perubahan" id="tanggal_perubahan"
