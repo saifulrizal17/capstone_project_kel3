@@ -42,7 +42,8 @@ class ProfileController extends Controller
             'address' => $request->input('address'),
         ]);
 
-        return redirect()->route('profile.index')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('profile.index')
+            ->with('success', 'About Me berhasil diperbarui.');
     }
 
     public function updatePassword(Request $request, User $user)
@@ -60,6 +61,7 @@ class ProfileController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        return redirect()->route('profile.index')->with('success', 'Password berhasil diperbarui.');
+        return redirect()->route('profile.index')
+            ->with('success', 'Password berhasil diperbarui.');
     }
 }

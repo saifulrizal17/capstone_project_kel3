@@ -16,8 +16,6 @@ class KategoriController extends Controller
     {
         $kategoris = Kategori::all();
         return view('admin.kategori.index', compact('kategoris'));
-        // return view('admin.kategori.index', compact('kategoris'));
-        // return view('admin.kategori.index');
     }
 
     /**
@@ -52,7 +50,7 @@ class KategoriController extends Controller
         $kategori->save();
 
         return redirect()->route('admin.kategori.index', $kategori->id)
-            ->with('success', 'Mata Pelajaran berhasil dibuat.');
+            ->with('success', 'Kategori berhasil dibuat.');
     }
 
     /**
@@ -105,7 +103,7 @@ class KategoriController extends Controller
         $kategori->update($validatedData);
 
         return redirect()->route('admin.kategori.index', $kategori->id)
-            ->with('success', 'Data Kategori berhasil diperbarui.');
+            ->with('success', 'Kategori berhasil diperbarui.');
     }
 
     /**
@@ -119,6 +117,6 @@ class KategoriController extends Controller
         $kategori->delete();
 
         return redirect()->route('admin.kategori.index')
-            ->with('success', 'Data Kategori berhasil dihapus.');
+            ->with('success', 'Kategori berhasil dihapus.');
     }
 }

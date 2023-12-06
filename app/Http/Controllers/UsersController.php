@@ -59,7 +59,8 @@ class UsersController extends Controller
 
         $user = User::create($validatedData);
 
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index', $user->id)
+            ->with('success', 'User berhasil dibuat.');
     }
 
     /**
@@ -122,7 +123,8 @@ class UsersController extends Controller
         // Update user berdasarkan ID
         User::findOrFail($id)->update($validatedData);
 
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User berhasil diperbarui.');
     }
 
     /**
@@ -135,7 +137,8 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User berhasil dihapus.');
     }
 
 
@@ -144,8 +147,8 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return redirect()->route('users.index')
-                ->with('error', 'User not found');
+            return redirect()->route('admin.users.index')
+                ->with('error', 'User tidak ditemukan.');
         }
 
         // Set password default
@@ -155,6 +158,7 @@ class UsersController extends Controller
         // Update password user
         $user->update(['password' => $hashedPassword]);
 
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index')
+            ->with('success', 'Password berhasil direset.');
     }
 }
