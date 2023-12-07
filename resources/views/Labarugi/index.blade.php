@@ -29,55 +29,55 @@
     <div class="content">
         <div class="container-fluid">
 
-            {{-- main content here --}}
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-outline card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Data Laba/Rugi</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="data-table" class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        @if (Auth::check() && Auth::user()->role_id == '1')
-                                            <th>Nama Pengguna</th>
-                                        @endif
-                                        <th>Pendapatan</th>
-                                        <th>Pengeluaran</th>
-                                        <th>Bulan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $no = 1 @endphp
-                                    @foreach ($labarugiData as $data)
+                            <div class="table-responsive">
+                                <table id="data-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <th>ID</th>
                                             @if (Auth::check() && Auth::user()->role_id == '1')
-                                                <td>
-                                                    @if ($data->user)
-                                                        {{ $data->user->name }}
-                                                    @else
-                                                        Pengguna tidak ditemukan
-                                                    @endif
-                                                </td>
+                                                <th>Nama Pengguna</th>
                                             @endif
-                                            <td>{{ $data->pendapatan }}</td>
-                                            <td>{{ $data->pengeluaran }}</td>
-                                            <td>{{ $data->bulan }}</td>
+                                            <th>Pendapatan</th>
+                                            <th>Pengeluaran</th>
+                                            <th>Bulan</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @php $no = 1 @endphp
+                                        @foreach ($labarugiData as $data)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                @if (Auth::check() && Auth::user()->role_id == '1')
+                                                    <td>
+                                                        @if ($data->user)
+                                                            {{ $data->user->name }}
+                                                        @else
+                                                            Pengguna tidak ditemukan
+                                                        @endif
+                                                    </td>
+                                                @endif
+                                                <td>{{ $data->pendapatan }}</td>
+                                                <td>{{ $data->pengeluaran }}</td>
+                                                <td>{{ $data->bulan }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div><!-- /.container-fluid -->
-    </div>
+        </div>
+    </div><!-- /.container-fluid -->
     <!-- /.content -->
 @endsection
 

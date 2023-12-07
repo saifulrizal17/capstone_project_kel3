@@ -39,98 +39,101 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="data-table" class="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                @if (Auth::check() && Auth::user()->role_id == '1')
-                                    <th>Nama Pengguna</th>
-                                @endif
-                                <th>Tanggal Perubahan</th>
-                                <th>Jumlah</th>
-                                <th>Keterangan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php $no = 1 @endphp
-                            @foreach ($perubahanModals as $perubahanModal)
+                    <div class="table-responsive">
+                        <table id="data-table" class="table table-striped table-bordered table-hover">
+                            <thead>
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <th>ID</th>
                                     @if (Auth::check() && Auth::user()->role_id == '1')
-                                        <td>
-                                            @if ($perubahanModal->user)
-                                                {{ $perubahanModal->user->name }}
-                                            @else
-                                                Pengguna tidak ditemukan
-                                            @endif
-                                        </td>
+                                        <th>Nama Pengguna</th>
                                     @endif
-                                    <td>{{ $perubahanModal->tanggal_perubahan }}</td>
-                                    <td>{{ $perubahanModal->jumlah }}</td>
-                                    <td>{{ $perubahanModal->keterangan }}</td>
-                                    <td>
-                                        <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"
-                                            class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
-                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
-                                            data-target="#exampleModal{{ $perubahanModal->id }}"><i
-                                                class='fas fa-info-circle'></i>
-                                            Detail</a>
-                                        <a href="{{ route('perubahanmodal.delete', $perubahanModal->id) }}"
-                                            class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i>
-                                            Hapus</a>
+                                    <th>Tanggal Perubahan</th>
+                                    <th>Jumlah</th>
+                                    <th>Keterangan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $no = 1 @endphp
+                                @foreach ($perubahanModals as $perubahanModal)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        @if (Auth::check() && Auth::user()->role_id == '1')
+                                            <td>
+                                                @if ($perubahanModal->user)
+                                                    {{ $perubahanModal->user->name }}
+                                                @else
+                                                    Pengguna tidak ditemukan
+                                                @endif
+                                            </td>
+                                        @endif
+                                        <td>{{ $perubahanModal->tanggal_perubahan }}</td>
+                                        <td>{{ $perubahanModal->jumlah }}</td>
+                                        <td>{{ $perubahanModal->keterangan }}</td>
+                                        <td>
+                                            <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"
+                                                class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
+                                            <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                data-target="#exampleModal{{ $perubahanModal->id }}"><i
+                                                    class='fas fa-info-circle'></i>
+                                                Detail</a>
+                                            <a href="{{ route('perubahanmodal.delete', $perubahanModal->id) }}"
+                                                class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i>
+                                                Hapus</a>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{ $perubahanModal->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Detail
-                                                            Data
-                                                            Perubahan Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table class="gg" style="width: 100%">
-                                                            <tr>
-                                                                <td class="navy">ID Catatan Keuanagan </td>
-                                                                <td>{{ $perubahanModal->id }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="navy"> Nama Pengguna </td>
-                                                                <td>{{ $perubahanModal->user->name }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="navy"> Tanggal Perubahan </td>
-                                                                <td>{{ $perubahanModal->tanggal_perubahan }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="navy"> Jumlah </td>
-                                                                <td>{{ $perubahanModal->jumlah }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="navy"> Keterangan </td>
-                                                                <td>{{ $perubahanModal->keterangan }}</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal"> <i class="fa fa-arrow-left"></i>
-                                                            Kembali</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $perubahanModal->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Detail
+                                                                Data
+                                                                Perubahan Modal</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table class="gg" style="width: 100%">
+                                                                <tr>
+                                                                    <td class="navy">ID Catatan Keuanagan </td>
+                                                                    <td>{{ $perubahanModal->id }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="navy"> Nama Pengguna </td>
+                                                                    <td>{{ $perubahanModal->user->name }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="navy"> Tanggal Perubahan </td>
+                                                                    <td>{{ $perubahanModal->tanggal_perubahan }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="navy"> Jumlah </td>
+                                                                    <td>{{ $perubahanModal->jumlah }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="navy"> Keterangan </td>
+                                                                    <td>{{ $perubahanModal->keterangan }}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal"> <i class="fa fa-arrow-left"></i>
+                                                                Kembali</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
