@@ -24,8 +24,11 @@ class CatatanKeuanganController extends Controller
             $user = Auth::user();
             $catatanKeuangans = CatatanKeuangan::where('id_user', $user->id)->get();
         }
-
-        return view('CatatanKeuangan.index', compact('catatanKeuangans'));
+        $jeniss = \App\Jenis::all();
+        return view('CatatanKeuangan.index', [
+            'catatanKeuangans' => $catatanKeuangans,
+            'jeniss' => $jeniss,
+        ]);
     }
 
     /**
@@ -158,5 +161,41 @@ class CatatanKeuanganController extends Controller
 
         return redirect()->route('aruskas.index')
             ->with('success', 'Catatan Keuangan berhasil dihapus.');
+    }
+
+    public function filter(Request $request)
+    {
+        if (auth()->user()->role == 'admin') {
+            // Admin
+            $query = CatatanKeuangan::query();
+        } else {
+            // User
+            $query = CatatanKeuangan::where('id_user', auth()->user()->id);
+        }
+
+        $jenis = $request->input('jenis');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        if ($jenis) {
+            $query->where('id_jenis', $jenis);
+        }
+
+        if ($start_date) {
+
+            $query->whereDate('tanggal_transaksi', '>=', $start_date);
+        }
+
+        if ($end_date) {
+            $query->whereDate('tanggal_transaksi', '<=', $end_date);
+        }
+
+        $catatanKeuangans = $query->get();
+        $jeniss = \App\Jenis::all();
+
+        return view('CatatanKeuangan.index', [
+            'catatanKeuangans' => $catatanKeuangans,
+            'jeniss' => $jeniss,
+        ]);
     }
 }

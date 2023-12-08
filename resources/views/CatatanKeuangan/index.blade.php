@@ -41,6 +41,38 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <!-- Filter -->
+                            <div class="text-center mb-3">
+                                <h5>Filter Data</h5>
+                            </div>
+                            <form action="{{ route('aruskas.filter') }}" method="POST">
+                                @csrf
+                                <div class="d-flex justify-content-center flex-wrap border-bottom pb-3">
+                                    <div class="form-group
+                                    mr-2 mb-2">
+                                        <select class="form-control equal-width" name="jenis" id="jenis">
+                                            <option value="">Pilih Jenis Catatan</option>
+                                            @foreach ($jeniss as $jenis)
+                                                <option value="{{ $jenis->id }}">{{ $jenis->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mr-2 mb-2">
+                                        <input type="date" class="form-control equal-width" id="start_date"
+                                            name="start_date" title="Tanggal Awal">
+                                    </div>
+
+                                    <div class="form-group mr-2 mb-2">
+                                        <input type="date" class="form-control equal-width" id="end_date"
+                                            name="end_date" title="Tanggal Akhir">
+                                    </div>
+
+                                    <div class="form-group mr-2 mb-2">
+                                        <button class="btn btn-outline-dark"><i class="fas fa-filter"></i> Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
                             <div class="table-responsive">
                                 <table id="data-table" class="table table-striped table-bordered table-hover">
                                     <thead>

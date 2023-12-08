@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('aruskas.edit');
     Route::put('/aruskas/{catatanKeuangan}', 'CatatanKeuanganController@update')->name('aruskas.update');
     Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
+    Route::post('/aruskas/filtersubmit', 'CatatanKeuanganController@filter')->name('aruskas.filter');
 
     //========================= Ini Pendapatan dan Pengeluaran =========================\\
     Route::get('/labarugi', 'LabarugiController@index')->name('labarugi.index');
