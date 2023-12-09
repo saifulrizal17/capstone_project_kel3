@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CatatanKeuangan;
+use App\CatatanKeuanganExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatatanKeuanganController extends Controller
 {
@@ -165,7 +166,7 @@ class CatatanKeuanganController extends Controller
 
     public function filter(Request $request)
     {
-        if (auth()->user()->role == 'admin') {
+        if (Auth::check() && Auth::user()->role_id == '1') {
             // Admin
             $query = CatatanKeuangan::query();
         } else {
@@ -193,9 +194,59 @@ class CatatanKeuanganController extends Controller
         $catatanKeuangans = $query->get();
         $jeniss = \App\Jenis::all();
 
+        session(['filtered_data' => $catatanKeuangans]);
+
         return view('CatatanKeuangan.index', [
             'catatanKeuangans' => $catatanKeuangans,
             'jeniss' => $jeniss,
         ]);
+    }
+
+    public function viewPDF(Request $request)
+    {
+        $filteredData = session('filtered_data');
+
+        if (!$filteredData) {
+            $query = CatatanKeuangan::query();
+            $filteredData = $query->get();
+        }
+
+        $pdfContent = view('CatatanKeuangan.viewpdf', compact('filteredData'))->render();
+
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML($pdfContent);
+        $mpdf->Output();
+    }
+
+    public function exportPDF(Request $request)
+    {
+        $filteredData = session('filtered_data');
+
+        if (!$filteredData) {
+            $query = CatatanKeuangan::query();
+            $filteredData = $query->get();
+        }
+
+        $pdfContent = view('CatatanKeuangan.viewpdf', compact('filteredData'))->render();
+
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML($pdfContent);
+        $filename = 'download-pdf-catatan-keuangan.pdf';
+        $mpdf->Output($filename, 'D');
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $filteredData = session('filtered_data');
+
+        if (!$filteredData) {
+            $query = CatatanKeuangan::query();
+            $filteredData = $query->get();
+        }
+
+        $filename = 'download-excel-catatan-keuangan.xlsx';
+        $filteredDataArray = $filteredData->toArray();
+
+        return Excel::download(new CatatanKeuanganExport($filteredDataArray), $filename);
     }
 }

@@ -68,7 +68,20 @@
                                     </div>
 
                                     <div class="form-group mr-2 mb-2">
-                                        <button class="btn btn-outline-dark"><i class="fas fa-filter"></i> Filter</button>
+                                        <button type="submit" class="btn btn-outline-dark"><i class="fas fa-filter"></i>
+                                            Filter</button>
+                                    </div>
+                                    {{-- <div class="form-group mr-2 mb-2">
+                                        <a href="{{ route('aruskas.viewpdf') }}" target="_blank"
+                                            class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> View PDF</a>
+                                    </div> --}}
+                                    <div class="form-group mr-2 mb-2">
+                                        <a href="{{ route('aruskas.exportPDF') }}" target="_blank"
+                                            class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> Export PDF</a>
+                                    </div>
+                                    <div class="form-group mr-2 mb-2">
+                                        <a href="{{ route('aruskas.exportExcel') }}" class="btn btn-outline-primary"><i
+                                                class="fas fa-file-excel"></i> Export Excel</a>
                                     </div>
                                 </div>
                             </form>

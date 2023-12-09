@@ -61,7 +61,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('aruskas.edit');
     Route::put('/aruskas/{catatanKeuangan}', 'CatatanKeuanganController@update')->name('aruskas.update');
     Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
-    Route::post('/aruskas/filtersubmit', 'CatatanKeuanganController@filter')->name('aruskas.filter');
+    Route::post('/aruskas', 'CatatanKeuanganController@filter')->name('aruskas.filter');
+    Route::get('/aruskas/view/pdf', 'CatatanKeuanganController@viewPDF')->name('aruskas.viewpdf');
+    Route::get('/aruskas/export/pdf', 'CatatanKeuanganController@exportPDF')->name('aruskas.exportPDF');
+    Route::get('/aruskas/export/excel', 'CatatanKeuanganController@exportExcel')->name('aruskas.exportExcel');
 
     //========================= Ini Pendapatan dan Pengeluaran =========================\\
     Route::get('/labarugi', 'LabarugiController@index')->name('labarugi.index');
