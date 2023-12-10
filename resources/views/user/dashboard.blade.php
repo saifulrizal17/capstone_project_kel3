@@ -97,49 +97,58 @@
             </div>
             <!-- /.row -->
 
-            <!-- Chart -->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="chart-responsive">
-                                    <div class="chartjs-size-monitor">
-                                        <div class="chartjs-size-monitor-expand">
-                                            <div class=""></div>
-                                        </div>
-                                        <div class="chartjs-size-monitor-shrink">
-                                            <div class=""></div>
-                                        </div>
-                                    </div>
-                                    <canvas id="pieChart" height="656" width="1312"
-                                        style="display: block; width: 656px; height: 328px;"
-                                        class="chartjs-render-monitor"></canvas>
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-3">
-                                <ul class="chart-legend clearfix">
-                                    <li><i class="far fa-circle text-danger"></i> Ballance All</li>
-                                    <li><i class="far fa-circle text-success"></i> Income All</li>
-                                    <li><i class="far fa-circle text-warning"></i> Expense All</li>
-
-                                </ul>
-                            </div>
-
+                <section class="col-lg-6 connectedSortable">
+                    <div class="card height-100">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fa fa-chart-pie mr-1"></i>
+                                Grafik Arus Kas
+                            </h3>
                         </div>
-
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <!-- Morris chart - Sales -->
+                                <div class="chart tab-pane active" id="revenue-chart">
+                                    <canvas id="pieChart" height="240"></canvas>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="chart-legend clearfix">
+                                        <li><i class="far fa-circle text-danger"></i> Ballance All</li>
+                                        <li><i class="far fa-circle text-success"></i> Income All</li>
+                                        <li><i class="far fa-circle text-warning"></i> Expense All</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </section>
 
-                </div>
-
+                <section class="col-lg-6 connectedSortable">
+                    <div class="card height-100">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fa fa-chart-pie mr-1"></i>
+                                Grafik Laba Rugi
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <!-- Morris chart - Sales -->
+                                <div class="chart tab-pane active" id="revenue-chart">
+                                    <canvas id="myChart" height="180"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <!-- /Chart -->
 
         </div><!-- /.container-fluid -->
     </section> <!-- /.content -->
+@endsection
 
+@section('addJavascript')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var pieChartCanvas = document.getElementById("pieChart").getContext("2d");
@@ -168,7 +177,36 @@
             });
         });
     </script>
-@endsection
-
-@section('addJavascript')
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($labels) !!},
+                datasets: [{
+                    label: 'Pendapatan',
+                    data: {!! json_encode($pendapatan) !!},
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Pengeluaran',
+                    data: {!! json_encode($pengeluaran) !!},
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+    </script>
 @endsection
