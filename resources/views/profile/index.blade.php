@@ -53,15 +53,16 @@
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Balance</b> <a class="float-right">Loading...</a>
+                                    <b>Balance All</b> <a class="float-right">Rp. {{ number_format($balance, 2) }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Income</b> <a class="float-right">Loading...</a>
+                                    <b>Income All</b> <a class="float-right">Rp. {{ number_format($income, 2) }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Expense</b> <a class="float-right">Loading...</a>
+                                    <b>Expense All</b> <a class="float-right">Rp. {{ number_format($expense, 2) }}</a>
                                 </li>
                             </ul>
+
                         </div>
                     </div>
 
@@ -107,12 +108,12 @@
                             </h3>
                             <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item"><a class="nav-link btn-sm " href="#history"
+                                    <li class="nav-item"><a class="nav-link btn-sm active" href="#history"
                                             data-toggle="tab">History</a></li>
                                     <li class="nav-item"><a class="nav-link btn-sm" href="#password"
                                             data-toggle="tab">Password</a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link btn-sm active" href="#about_me"
+                                    <li class="nav-item"><a class="nav-link btn-sm " href="#about_me"
                                             data-toggle="tab">About
                                             Me</a>
                                     </li>
@@ -122,126 +123,35 @@
 
                         <div class="card-body">
                             <div class="tab-content">
-
                                 {{-- History --}}
-                                <div class=" tab-pane" id="history">
+                                <div class="active tab-pane" id="history">
                                     <div class="timeline timeline-inverse">
-                                        <div class="time-label">
-                                            <span class="bg-gray">
-                                                30 November 2023
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-danger"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 13.20</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pengeluaran Loading...
-                                                </h3>
+                                        @foreach ($financialHistory as $transaction)
+                                            <div class="time-label">
+                                                <span class="bg-gray">{{ $transaction->tanggal_transaksi }}</span>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-danger"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 13.00</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pengeluaran Loading...
-                                                </h3>
+                                            <div>
+                                                <i
+                                                    class="fas fa-user bg-{{ $transaction->id_jenis == 1 ? 'primary' : 'danger' }}"></i>
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="far fa-clock"></i>
+                                                        {{ $transaction->created_at->format('H:i') }}</span>
+                                                    <h3 class="timeline-header border-0">
+                                                        @if (Auth::check() && Auth::user()->role_id == '1')
+                                                            <a href="{{ route('aruskas.index') }}"><span
+                                                                    style="color: black">{{ $transaction->user->name }}</span>
+                                                                {{ $transaction->jenis->name }}</a>
+                                                        @endif
+                                                        @if (Auth::check() && Auth::user()->role_id == '2')
+                                                            <a href="{{ route('aruskas.index') }}">
+                                                                {{ $transaction->jenis->name }}</a>
+                                                        @endif
+                                                        {{ $transaction->keterangan }}
+                                                        Rp. {{ number_format($transaction->jumlah) }}
+                                                    </h3>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-primary"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12.50</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pendaparan Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-danger"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12.40</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pengeluaran Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-primary"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12.30</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pendaparan Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-label">
-                                            <span class="bg-gray">
-                                                29 Noveember 2023
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-danger"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 1 days ago</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pengeluaran Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-primary"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 1 days ago</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pendaparan Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-label">
-                                            <span class="bg-gray">
-                                                28 November 2023
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-danger"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pengeluaran Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fas fa-user bg-primary"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Arus Kas</a>
-                                                    Pendaparan Loading...
-                                                </h3>
-                                            </div>
-                                        </div>
+                                        @endforeach
 
                                         <div>
                                             <i class="far fa-clock bg-gray"></i>
@@ -290,7 +200,7 @@
                                 </div>
 
                                 {{-- About Me --}}
-                                <div class="active tab-pane" id="about_me">
+                                <div class="tab-pane" id="about_me">
                                     <form class="form-horizontal"
                                         action="{{ route('profile.update.aboutme', ['user' => $user->id]) }}"
                                         method="post" enctype="multipart/form-data">

@@ -5,15 +5,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use App\CatatanKeuangan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 
 class ProfileController extends Controller
 {
     public function index()
     {
-        $user = auth()->user(); // Assuming you want to get the authenticated user
-        return view('profile.index', compact('user'));
+        $user = Auth::user();
+        if (Auth::check() && Auth::user()->role_id == '1') {
+            //Admin
+            $financialHistory = CatatanKeuangan::orderBy('tanggal_transaksi', 'desc')->get();
+
+            $income = CatatanKeuangan::where('id_jenis', 1)->sum('jumlah');
+            $expense = CatatanKeuangan::where('id_jenis', 2)->sum('jumlah');
+            $balance = $income - $expense;
+        } else {
+            // User
+            $financialHistory = CatatanKeuangan::where('id_user', $user->id)
+                ->orderBy('tanggal_transaksi', 'desc')
+                ->get();
+
+            $income = CatatanKeuangan::where('id_user', $user->id)
+                ->where('id_jenis', 1)
+                ->sum('jumlah');
+
+            $expense = CatatanKeuangan::where('id_user', $user->id)
+                ->where('id_jenis', 2)
+                ->sum('jumlah');
+
+            $balance = $income - $expense;
+        }
+
+        return view('profile.index', compact('user', 'financialHistory', 'balance', 'income', 'expense'));
     }
+
 
 
     public function updateAboutMe(Request $request, User $user)
@@ -63,5 +91,11 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.index')
             ->with('success', 'Password berhasil diperbarui.');
+    }
+
+    public function showHistory()
+    {
+        $history = CatatanKeuangan::orderBy('tanggal_transaksi', 'desc')->get();
+        return View::make('profile.index', compact('history'));
     }
 }
