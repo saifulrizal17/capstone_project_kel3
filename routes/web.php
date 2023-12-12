@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PerubahanModalController;
 use App\Http\Controllers\NeracaController;
+use App\Http\Controllers\CatatanKeuanganController;
+
 
 
 /*
@@ -61,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('aruskas.edit');
     Route::put('/aruskas/{catatanKeuangan}', 'CatatanKeuanganController@update')->name('aruskas.update');
     Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
-    Route::post('/aruskas', 'CatatanKeuanganController@filter')->name('aruskas.filter');
+    Route::post('/aruskas/filter', 'CatatanKeuanganController@filter')->name('aruskas.filter');
     Route::get('/aruskas/view/pdf', 'CatatanKeuanganController@viewPDF')->name('aruskas.viewpdf');
     Route::get('/aruskas/export/pdf', 'CatatanKeuanganController@exportPDF')->name('aruskas.exportPDF');
     Route::get('/aruskas/export/excel', 'CatatanKeuanganController@exportExcel')->name('aruskas.exportExcel');

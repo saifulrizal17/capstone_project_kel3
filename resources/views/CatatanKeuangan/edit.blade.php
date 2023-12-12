@@ -78,13 +78,19 @@
                             <div class="form-group">
                                 <label for="tanggal_transaksi">Tanggal Transaksi:</label>
                                 <input type="date" name="tanggal_transaksi" class="form-control"
-                                    value="{{ $catatanKeuangan->tanggal_transaksi }}">
+                                    value="{{ $catatanKeuangan->getTanggalTransaksiFormattedForInput() }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="jumlah">Jumlah:</label>
-                                <input type="text" name="jumlah" class="form-control"
-                                    value="{{ $catatanKeuangan->jumlah }}">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" name="jumlah" class="form-control"
+                                        value="{{ $catatanKeuangan->jumlah }}">
+                                </div>
+
                             </div>
 
                             <div class="form-group">
@@ -111,4 +117,42 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+@endsection
+
+@section('addJavascript')
+    <script>
+        function updateKategoriOptions() {
+            var selectedJenisId = document.getElementById('id_jenis').value;
+            var kategoriDropdown = document.getElementById('id_kategori');
+
+            // Reset options
+            kategoriDropdown.innerHTML = '';
+
+            // Add options based on selected jenis_id
+            if (selectedJenisId !== "") {
+                @foreach ($kategoris as $kategori)
+                    if (selectedJenisId == 1 && {{ $kategori->jenis_id }} == 1) {
+                        var option = document.createElement('option');
+                        option.value = "{{ $kategori->id }}";
+                        option.text = "{{ $kategori->name }}";
+                        kategoriDropdown.add(option);
+                    } else if (selectedJenisId == 2 && {{ $kategori->jenis_id }} == 2) {
+                        var option = document.createElement('option');
+                        option.value = "{{ $kategori->id }}";
+                        option.text = "{{ $kategori->name }}";
+                        kategoriDropdown.add(option);
+                    }
+                @endforeach
+            } else {
+                // If no jenis is selected, display a placeholder in the kategoriDropdown
+                var placeholderOption = document.createElement('option');
+                placeholderOption.value = "";
+                placeholderOption.text = "Pilih Jenis Catatan Terlebih Dahulu";
+                kategoriDropdown.add(placeholderOption);
+            }
+        }
+
+        // Initial call to populate kategori options based on default selected jenis_id
+        updateKategoriOptions();
+    </script>
 @endsection

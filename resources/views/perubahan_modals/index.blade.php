@@ -68,7 +68,7 @@
                                             </td>
                                         @endif
                                         <td>{{ $perubahanModal->tanggal_perubahan }}</td>
-                                        <td>{{ $perubahanModal->jumlah }}</td>
+                                        <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2) }}</td>
                                         <td>{{ $perubahanModal->keterangan }}</td>
                                         <td>
                                             <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"

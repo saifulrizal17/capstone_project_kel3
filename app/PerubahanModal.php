@@ -25,4 +25,9 @@ class PerubahanModal extends Model
     {
         return Carbon::parse($this->attributes['tanggal_perubahan'])->isoFormat('D MMMM Y');
     }
+
+    public function getTanggalPerubahanFormattedForInput()
+    {
+        return Carbon::parse($this->attributes['tanggal_perubahan'])->format('Y-m-d');
+    }
 }

@@ -125,7 +125,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $catatanKeuangan->tanggal_transaksi }}</td>
-                                                <td>{{ $catatanKeuangan->jumlah }}</td>
+                                                <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2) }}</td>
                                                 <td>
                                                     <a href="{{ route('aruskas.edit', $catatanKeuangan->id) }}"
                                                         class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
@@ -173,8 +173,8 @@
                                                                             <td>{{ $catatanKeuangan->kategori->name }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="navy"> Tanggal Transaksi </td>
-                                                                            <td>{{ $catatanKeuangan->tanggal_transaksi }}
+                                                                            <td class="navy">Tanggal Transaksi</td>
+                                                                            <td>{{ $catatanKeuangan->tanggalTransaksiIndo }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>

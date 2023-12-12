@@ -46,7 +46,6 @@
                                             <th>Aset</th>
                                             <th>Kewajiban</th>
                                             <th>Ekuitas</th>
-                                            <th>Bulan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,10 +62,9 @@
                                                         @endif
                                                     </td>
                                                 @endif
-                                                <td>{{ $neraca->aset }}</td>
-                                                <td>{{ $neraca->kewajiban }}</td>
-                                                <td>{{ $neraca->ekuitas }}</td>
-                                                <td>{{ $neraca->bulan }}</td>
+                                                <td>{{ 'Rp. ' . number_format($neraca->aset, 2) }}</td>
+                                                <td>{{ 'Rp. ' . number_format($neraca->kewajiban, 2) }}</td>
+                                                <td>{{ 'Rp. ' . number_format($neraca->ekuitas, 2) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -37,4 +37,9 @@ class CatatanKeuangan extends Model
     {
         return Carbon::parse($this->attributes['tanggal_transaksi'])->isoFormat('D MMMM Y');
     }
+
+    public function getTanggalTransaksiFormattedForInput()
+    {
+        return Carbon::parse($this->attributes['tanggal_transaksi'])->format('Y-m-d');
+    }
 }

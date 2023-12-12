@@ -35,7 +35,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Ballance All</span>
                             <span class="info-box-number">
-                                <h3>{{ $balanceAll }}</h3>
+                                <h3>Rp. {{ number_format($balanceAll, 2) }}</h3>
 
 
                             </span>
@@ -55,7 +55,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Income All</span>
                             <span class="info-box-number">
-                                <h3>{{ $incomeAll }}</h3>
+                                <h3>Rp. {{ number_format($incomeAll, 2) }}</h3>
 
                             </span>
 
@@ -79,7 +79,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Expanse All</span>
                             <span class="info-box-number">
-                                <h3>{{ $expenseAll }}</h3>
+                                <h3>Rp. {{ number_format($expenseAll, 2) }}</h3>
 
                             </span>
 
