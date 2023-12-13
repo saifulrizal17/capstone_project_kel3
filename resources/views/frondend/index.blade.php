@@ -29,6 +29,7 @@
                         Selamat datang di Sejahtera.id, kawan setia dalam perjalanan Anda menuju kebebasan
                         finansial. Kami adalah pelopor solusi keuangan yang membawa perubahan positif dalam cara
                         Anda mengelola dan merencanakan keuangan pribadi.
+                        -Nyoba
                     </p>
                     <a href="#" class="btn-learn-more">Learn More</a>
                 </div>
