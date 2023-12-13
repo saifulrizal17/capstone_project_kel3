@@ -174,17 +174,19 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="navy">Tanggal Transaksi</td>
-                                                                            <td>{{ $catatanKeuangan->tanggalTransaksiIndo }}
+                                                                            <td>{{ $catatanKeuangan->tanggal_transaksi }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="navy"> Jumlah </td>
-                                                                            <td>{{ $catatanKeuangan->jumlah }}</td>
+                                                                            <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2) }}
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="navy"> Keterangan </td>
                                                                             <td>{{ $catatanKeuangan->keterangan }}</td>
                                                                         </tr>
+
                                                                     </table>
                                                                 </div>
                                                                 <div class="modal-footer">

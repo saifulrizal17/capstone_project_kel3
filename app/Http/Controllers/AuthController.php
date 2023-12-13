@@ -29,9 +29,9 @@ class AuthController extends Controller
         } else {
             if (Auth::attempt($credentials)) {
                 if (Auth::user()->role_id == '1') {
-                    return redirect('/admin-dashboard');
+                    return redirect('/admin-dashboard')->with('success', 'Selamat Datang Admin Di Website Sejahtera.id.');
                 } elseif (Auth::user()->role_id == '2') {
-                    return redirect('/user-dashboard');
+                    return redirect('/user-dashboard')->with('success', 'Selamat Datang User Di Website Sejahtera.id.');
                 }
             }
         }

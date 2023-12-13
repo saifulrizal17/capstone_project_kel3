@@ -112,7 +112,8 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="navy"> Jumlah </td>
-                                                                    <td>{{ $perubahanModal->jumlah }}</td>
+                                                                    <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2) }}
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="navy"> Keterangan </td>
