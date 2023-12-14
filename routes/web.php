@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::put('/profile/aboutme/{user}', 'ProfileController@updateAboutMe')->name('profile.update.aboutme');
     Route::put('/profile/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
+    Route::get('/user/delete-profile-photo', 'ProfileController@deleteProfilePhoto')->name('user.deleteProfilePhoto');
 
     //========================= Ini Route Perubahan Modal =========================\\
     Route::get('/modals', 'PerubahanModalController@index')->name('perubahanmodal.index');

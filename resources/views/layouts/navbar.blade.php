@@ -37,19 +37,20 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ asset('/admin/img/user1-128x128.jpg') }}" class="user-image img-circle elevation-2"
-                    alt="User Image">
+                <img src="{{ Auth::user()->profile_photo ? asset('/upload/profile photo/' . Auth::user()->profile_photo) : asset('/upload/profile photo/profile-default.png') }}"
+                    class="user-image img-circle elevation-2" alt="User Image">
+
                 <span class="d-none d-md-inline">&nbsp;{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="{{ asset('/admin/img/user1-128x128.jpg') }}" class="img-circle elevation-2"
-                        alt="User Image">
+                    <img src="{{ Auth::user()->profile_photo ? asset('/upload/profile photo/' . Auth::user()->profile_photo) : asset('/upload/profile photo/profile-default.png') }}"
+                        class="img-circle elevation-2" alt="User Image">
 
                     <p>
                         {{ Auth::user()->name }} - Web Developer
-                        <small>Member since Nov. 2023</small>
+                        <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                     </p>
                 </li>
                 <li class="user-footer">

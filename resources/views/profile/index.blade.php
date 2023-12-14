@@ -29,15 +29,6 @@
     <div class="content">
         <div class="container-fluid">
 
-            @if (session('success'))
-                <div class="alert alert-primary alert-dismissible fade show">
-                    {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-
             <div class="row">
                 <div class="col-md-4">
 
@@ -45,9 +36,18 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle"
-                                    src="{{ asset('/admin/img/user1-128x128.jpg') }}" alt="User profile picture">
+                                @if (Auth::user()->profile_photo)
+                                    <img class="profile-user-img img-fluid img-circle"
+                                        src="{{ asset('/upload/profile photo/' . $user->profile_photo) }}"
+                                        alt="User profile picture">
+                                @else
+                                    <img class="profile-user-img img-fluid img-circle"
+                                        src="{{ asset('/upload/profile photo/profile-default.png') }}"
+                                        alt="User profile picture">
+                                @endif
                             </div>
+
+
 
                             <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
@@ -138,14 +138,18 @@
                                                         {{ $transaction->created_at->format('H:i') }}</span>
                                                     <h3 class="timeline-header border-0">
                                                         @if (Auth::check() && Auth::user()->role_id == '1')
-                                                            <a href="{{ route('aruskas.index') }}"><span
+                                                            <a href="{{ route('aruskas.index') }}"
+                                                                style="color: {{ $transaction->jenis->id == 1 ? 'blue' : ($transaction->jenis->id == 2 ? 'red' : 'black') }}"><span
                                                                     style="color: black">{{ $transaction->user->name }}</span>
                                                                 {{ $transaction->jenis->name }}</a>
                                                         @endif
                                                         @if (Auth::check() && Auth::user()->role_id == '2')
-                                                            <a href="{{ route('aruskas.index') }}">
-                                                                {{ $transaction->jenis->name }}</a>
+                                                            <a href="{{ route('aruskas.index') }}"
+                                                                style="color: {{ $transaction->jenis->id == 1 ? 'blue' : ($transaction->jenis->id == 2 ? 'red' : 'black') }}">
+                                                                {{ $transaction->jenis->name }}
+                                                            </a>
                                                         @endif
+
                                                         {{ $transaction->keterangan }}
                                                         Rp. {{ number_format($transaction->jumlah) }}
                                                     </h3>
@@ -273,13 +277,39 @@
                                         <hr>
 
                                         <div class="form-group row">
-                                            <div class="offset-sm-2 col-sm-10">
-                                                <button type="submit" class="btn btn-danger">Simpan</button>
+                                            <label for="inputProfilePhoto" class="col-sm-2 col-form-label">Foto
+                                                Profile</label>
+                                            <div class="col-sm-10">
+                                                <input id="profile_photo" type="file"
+                                                    class="form-control-file @error('profile_photo') is-invalid @enderror"
+                                                    name="profile_photo" accept="image/*">
+                                                @error('profile_photo')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                                <br>
+                                                <img id="preview"
+                                                    src="{{ Auth::user()->profile_photo ? asset('/upload/profile photo/' . Auth::user()->profile_photo) : asset('/upload/profile photo/profile-default.png') }}"
+                                                    class="img-fluid rounded-circle" alt="Preview"
+                                                    style="max-width: 100%; max-height: 200px;">
+                                                <br>
+                                                @if (Auth::user()->profile_photo)
+                                                    <a href="{{ route('user.deleteProfilePhoto') }}">
+                                                        Hapus Foto Profile Menjadi Foto Profile Default</a>
+                                                @endif
                                             </div>
                                         </div>
-                                    </form>
-
                                 </div>
+
+                                <hr>
+
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn btn-danger">Simpan</button>
+                                    </div>
+                                </div>
+                                </form>
+                                <br><br>
+
                             </div>
                         </div>
                     </div>
@@ -292,4 +322,21 @@
 @endsection
 
 @section('addJavascript')
+    <script>
+        document.getElementById('profile_photo').addEventListener('change', function() {
+            var preview = document.getElementById('preview');
+            var fileInput = document.getElementById('profile_photo');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\CatatanKeuangan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProfileController extends Controller
@@ -42,8 +43,6 @@ class ProfileController extends Controller
         return view('profile.index', compact('user', 'financialHistory', 'balance', 'income', 'expense'));
     }
 
-
-
     public function updateAboutMe(Request $request, User $user)
     {
         $request->validate([
@@ -52,6 +51,7 @@ class ProfileController extends Controller
             'phone_number' => 'required|string|max:20',
             'job_title' => 'required|string|max:255',
             'address' => 'required|string',
+            'profile_photo' => 'nullable|file|max:2048',
         ], [
             'name.required' => 'Kolom nama wajib diisi.',
             'email.required' => 'Kolom email wajib diisi.',
@@ -60,7 +60,16 @@ class ProfileController extends Controller
             'phone_number.max' => 'Nomor telepon tidak boleh melebihi 20 karakter.',
             'job_title.required' => 'Kolom pekerjaan wajib diisi.',
             'address.required' => 'Kolom alamat wajib diisi.',
+            'profile_photo.max' => 'Ukuran gambar tidak boleh melebihi 2048 kilobita.',
         ]);
+
+        if ($user->profile_photo) {
+            $existingFilePath = public_path('upload/profile photo/' . $user->profile_photo);
+
+            if (file_exists($existingFilePath)) {
+                unlink($existingFilePath);
+            }
+        }
 
         $user->update([
             'name' => $request->input('name'),
@@ -69,6 +78,21 @@ class ProfileController extends Controller
             'job_title' => $request->input('job_title'),
             'address' => $request->input('address'),
         ]);
+
+        if ($request->hasFile('profile_photo')) {
+            $profilePhoto = $request->file('profile_photo');
+
+            if ($profilePhoto->isValid() && strpos($profilePhoto->getMimeType(), 'image/') === 0) {
+                $folderName = 'profile photo';
+                $fileName = now()->format('YmdHis') . '-' . $profilePhoto->getClientOriginalName();
+
+                $profilePhoto->move(public_path('upload/' . $folderName), $fileName);
+
+                $user->update([
+                    'profile_photo' => $fileName,
+                ]);
+            }
+        }
 
         return redirect()->route('profile.index')
             ->with('success', 'About Me berhasil diperbarui.');
@@ -97,5 +121,25 @@ class ProfileController extends Controller
     {
         $history = CatatanKeuangan::orderBy('tanggal_transaksi', 'desc')->get();
         return View::make('profile.index', compact('history'));
+    }
+
+    public function deleteProfilePhoto()
+    {
+        $user = Auth::user();
+
+        if ($user->profile_photo) {
+            $existingFilePath = public_path('upload/profile photo/' . $user->profile_photo);
+
+            if (file_exists($existingFilePath)) {
+                unlink($existingFilePath);
+            }
+
+            $user->profile_photo = null;
+            $user->save();
+
+            return redirect()->route('profile.index')->with('success', 'Foto Profile berhasil dihapus.');
+        }
+
+        return redirect()->route('profile.index')->with('error', 'Foto Profile gagal dihapus.');
     }
 }

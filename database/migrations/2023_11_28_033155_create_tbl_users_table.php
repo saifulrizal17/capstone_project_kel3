@@ -20,6 +20,7 @@ class CreateTblUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('job_title')->nullable();
             $table->string('address')->nullable();
+            $table->string('profile_photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('role_id')->default(2);
