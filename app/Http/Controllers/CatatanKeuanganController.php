@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CatatanKeuangan;
-use App\CatatanKeuanganExport;
+use App\Exports\CatatanKeuanganExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

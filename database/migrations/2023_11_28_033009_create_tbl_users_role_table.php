@@ -16,7 +16,7 @@ class CreateTblUsersRoleTable extends Migration
         Schema::create('tbl_users_role', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('deskripsi');
+            $table->string('description');
             $table->timestamps();
         });
     }

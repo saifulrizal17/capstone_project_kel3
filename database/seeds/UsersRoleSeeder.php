@@ -15,13 +15,13 @@ class UsersRoleSeeder extends Seeder
         DB::table('tbl_users_role')->insert([
             [
                 'name' => 'Admin',
-                'deskripsi' => 'Administrator',
+                'description' => 'Administrator',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'User',
-                'deskripsi' => 'Pengguna',
+                'description' => 'Pengguna',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

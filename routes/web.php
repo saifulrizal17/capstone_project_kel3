@@ -76,24 +76,26 @@ Route::middleware('auth')->group(function () {
 // Akses Role User 
 Route::middleware(['checkrole:2'])->group(function () {
     //Dashboard User
-    Route::get('/user-dashboard', 'UserController@index')->name('user.dashboard');
+    Route::get('/user-dashboard', 'UserDashboardController@index')->name('user.dashboard');
 });
 
 
 // Akses Role Admin 
 Route::middleware(['checkrole:1'])->group(function () {
     //Dashboard Admin
-    Route::get('/admin-dashboard', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/admin-dashboard', 'AdminDashboardController@index')->name('admin.dashboard');
 
     //========================= Ini Route Manajemen Users =========================\\
-    Route::get('/users', 'UsersController@index')->name('admin.users.index');
-    Route::get('/users/create', 'UsersController@create')->name('admin.users.create');
-    Route::post('/users', 'UsersController@store')->name('admin.users.store');
-    Route::get('/users/{user}', 'UsersController@show')->name('admin.users.show');
-    Route::get('/users/{user}/edit', 'UsersController@edit')->name('admin.users.edit');
-    Route::put('/users/{user}', 'UsersController@update')->name('admin.users.update');
-    Route::get('/users/delete/{user}', 'UsersController@destroy')->name('admin.users.destroy');
-    Route::get('/users/reset-password/{id}', 'UsersController@resetPassword')->name('admin.users.resetPassword');
+    Route::get('/users', 'ManajemenUsersController@index')->name('admin.users.index');
+    Route::get('/users/create', 'ManajemenUsersController@create')->name('admin.users.create');
+    Route::post('/users', 'ManajemenUsersController@store')->name('admin.users.store');
+    Route::get('/users/{user}/edit', 'ManajemenUsersController@edit')->name('admin.users.edit');
+    Route::put('/users/{user}', 'ManajemenUsersController@update')->name('admin.users.update');
+    Route::get('/users/delete/{user}', 'ManajemenUsersController@destroy')->name('admin.users.destroy');
+    Route::get('/user/delete-profile-photo/{user}', 'ManajemenUsersController@deleteProfilePhoto')->name('admin.users.deleteProfilePhoto');
+    Route::get('/users/reset-password/{id}', 'ManajemenUsersController@resetPassword')->name('admin.users.resetPassword');
+    Route::post('/users/import-excel', 'ManajemenUsersController@importExcel')->name('admin.users.import.excel');
+    Route::get('/users/download/template', 'ManajemenUsersController@downloadTemplate')->name('admin.users.download.template');
 
     //========================= Ini Route Kategori =========================\\
     Route::get('/kategori', 'KategoriController@index')->name('admin.kategori.index');

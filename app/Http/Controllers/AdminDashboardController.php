@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\CatatanKeuangan;
 use App\Labarugi;
-use App\User;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class AdminDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $userId = Auth::id();
-        $labarugiData = Labarugi::where('id_user', $userId)->orderBy('bulan')->get();
+        $labarugiData = Labarugi::orderBy('bulan')->get();
 
         $labels = [];
         $pendapatan = [];
         $pengeluaran = [];
 
-        // Pemetaan nama bulan ke urutan
         $monthMapping = [
             'Januari' => 1,
             'Februari' => 2,
@@ -52,20 +49,26 @@ class UserController extends Controller
             $pengeluaran[$index] = $labarugi->pengeluaran;
         }
 
-        $incomeAll = CatatanKeuangan::where('id_user', $userId)
-            ->where('id_jenis', 1)
-            ->sum('jumlah');
-
-        $expenseAll = CatatanKeuangan::where('id_user', $userId)
-            ->where('id_jenis', 2)
-            ->sum('jumlah');
-
+        $incomeAll = CatatanKeuangan::where('id_jenis', 1)->sum('jumlah');
+        $expenseAll = CatatanKeuangan::where('id_jenis', 2)->sum('jumlah');
         $balanceAll = $incomeAll - $expenseAll;
 
-        return view('user.dashboard', [
+        $totalUsers = User::count();
+        $totalActiveUsers = User::where('is_active', true)->count();
+        $percentageActiveUsers = ($totalActiveUsers / $totalUsers) * 100;
+        $totalAdmins = User::where('role_id', 1)->count();
+        $totalUsers = User::where('role_id', 2)->count();
+        $totalVisitors = 'NaN';
+
+        return view('admin.dashboard', [
             'balanceAll' => $balanceAll,
             'incomeAll' => $incomeAll,
             'expenseAll' => $expenseAll,
+            'percentageActiveUsers' => $percentageActiveUsers,
+            'totalActiveUsers' => $totalActiveUsers,
+            'totalAdmins' => $totalAdmins,
+            'totalUsers' => $totalUsers,
+            'totalVisitors' => $totalVisitors,
             'labels' => $labels,
             'pendapatan' => $pendapatan,
             'pengeluaran' => $pengeluaran,

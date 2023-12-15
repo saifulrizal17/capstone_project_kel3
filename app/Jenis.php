@@ -9,7 +9,8 @@ class Jenis extends Model
     protected $table = 'tbl_jenis';
 
     protected $fillable = [
-        'jenis',
+        'id',
+        'name',
     ];
 
     public function kategoris()

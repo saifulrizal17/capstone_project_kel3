@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Exports;
 
-use Illuminate\Support\Collection;
+use App\CatatanKeuangan;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;

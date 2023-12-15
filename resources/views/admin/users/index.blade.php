@@ -3,10 +3,18 @@
 @section('addCss')
     <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <style>
-        .navy {
-            width: 150px;
+        .btn-group .dropdown-menu a {
+            color: #007bff;
+        }
+
+        .btn-group .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .btn-group .dropdown-menu a:hover,
+        .btn-group .dropdown-menu a:focus {
             background-color: #007bff;
-            color: white;
+            color: #fff;
         }
     </style>
 @endsection
@@ -18,14 +26,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Data Users</h1>
+                    <h1 class="m-0 text-dark">Manajemen Users</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item text-primary"><a
                                 href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Data Users</li>
+                        <li class="breadcrumb-item active">Manajemen Users</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -45,20 +53,70 @@
                                 List Data Users
                             </h3>
                             <div class="card-tools">
-                                <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm"><i
-                                        class="fas fa-user-plus"></i> Tambah
-                                    Users</a>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Tambah / Import Users
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('admin.users.create') }}"
+                                            class="dropdown-item btn btn-primary btn-sm">
+                                            <i class="fas fa-user-plus"></i> Tambah Users
+                                        </a>
+                                        <a href="#" class="dropdown-item btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#importModal">
+                                            <i class="fas fa-file-excel"></i> &nbsp;&nbsp; Import Users
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal for file upload -->
+                                <div class="modal fade" id="importModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="importModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="importModalLabel">Import Data Users</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('admin.users.import.excel') }}" method="post"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="file">Choose Excel File</label>
+                                                        <input type="file" class="form-control-file" id="file"
+                                                            name="file" required>
+                                                    </div>
+
+                                                    <p>Download template excel: <a
+                                                            href="{{ route('admin.users.download.template') }}">Download
+                                                            Template</a></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Import</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="data-table" class="table table-striped table-bordered table-hover">
+                                <table id="data-table" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>ID User</th>
+                                            <th>No</th>
+                                            <th>Foto Profile</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>No HP</th>
                                             <th>Role</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -66,10 +124,10 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID User</th>
+                                            <th>No</th>
+                                            <th>Foto Profile</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>No Hp</th>
                                             <th>Role</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -80,17 +138,14 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                {{-- <td>{{ $user->id }}</td> --}}
+                                                <td>
+                                                    <img src="{{ $user->profile_photo ? asset('upload/profile photo/' . $user->profile_photo) : asset('upload/profile photo/profile-default.png') }}"
+                                                        alt="Profile Photo" class="img-fluid rounded-circle"
+                                                        style="max-width: 100%; max-height: 50px;">
+                                                </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->phone_number }}</td>
-                                                <td>
-                                                    @if ($user->role_id === 1)
-                                                        Admin
-                                                    @elseif($user->role_id === 2)
-                                                        User
-                                                    @endif
-                                                </td>
+                                                <td>{{ $user->roles->name }}</td>
                                                 <td>
                                                     @if ($user->is_active === 1)
                                                         <span class="badge badge-success">Aktif</span>
@@ -108,14 +163,6 @@
                                                     <a href="{{ route('admin.users.destroy', ['user' => $user->id]) }}"
                                                         class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i>
                                                         Hapus</a>
-                                                    {{-- <form action="{{ route('admin.users.destroy', ['user' => $user->id]) }}"
-                                                        method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class='fas fa-trash-alt'></i> Hapus
-                                                        </button>
-                                                    </form> --}}
                                                     <a href="{{ route('admin.users.resetPassword', ['id' => $user->id]) }}"
                                                         class="btn btn-secondary btn-sm"><i class='fas fa-key'></i>
                                                         Reset Password</a>
@@ -125,7 +172,8 @@
                                                     <div class="modal fade" id="exampleModal{{ $user->id }}"
                                                         tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-dialog modal-dialog-centered  modal-xl"
+                                                            role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">Detail
@@ -137,46 +185,43 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <table class="gg" style="width: 100%">
-
+                                                                    <table class="table table-bordered"
+                                                                        style="width: 100%">
                                                                         <tr>
-                                                                            <td class="navy">Id Users</td>
-                                                                            <td>{{ $user->id }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="navy">Nama Lengkap</td>
-                                                                            <td>{{ $user->name }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="navy">Email</td>
-                                                                            <td>{{ $user->email }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="navy">No HP</td>
-                                                                            <td>{{ $user->phone_number }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="navy">Pekerjaan</td>
-                                                                            <td>{{ $user->job_title }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="navy">Alamat</td>
-                                                                            <td>{{ $user->address }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="navy">Role</td>
-                                                                            <td>
-                                                                                @if ($user->role_id == 1)
-                                                                                    Admin
-                                                                                @elseif($user->role_id == 2)
-                                                                                    User
-                                                                                @else
-                                                                                    Role tidak valid
-                                                                                @endif
+                                                                            <td rowspan="8"
+                                                                                style="text-align: center; vertical-align: middle;">
+                                                                                <img src="{{ $user->profile_photo ? asset('upload/profile photo/' . $user->profile_photo) : asset('upload/profile photo/profile-default.png') }}"
+                                                                                    alt="Profile Photo"
+                                                                                    class="img-fluid rounded-circle"
+                                                                                    style="max-width: 100%; max-height: 300px; display: inline-block;">
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="navy">Akun (Aktif/Non Aktif)</td>
+                                                                            <td>Nama Lengkap</td>
+                                                                            <td>{{ $user->name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Email</td>
+                                                                            <td>{{ $user->email }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>No HP</td>
+                                                                            <td>{{ $user->phone_number }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Pekerjaan</td>
+                                                                            <td>{{ $user->job_title }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Alamat</td>
+                                                                            <td>{{ $user->address }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Role</td>
+                                                                            <td>{{ $user->roles->name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Status Akun</td>
                                                                             <td>
                                                                                 @if ($user->is_active == 1)
                                                                                     Aktif

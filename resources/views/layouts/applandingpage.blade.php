@@ -10,6 +10,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Favicons -->
+    <link href="{{ asset('/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('/img/logo.png') }}" rel="apple-touch-icon">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -54,7 +58,8 @@
                         @if (auth()->user()->role_id == 2)
                             <a class="nav-link get-started-btn scrollto" href="{{ route('user.dashboard') }}">Dashboard</a>
                         @elseif(auth()->user()->role_id == 1)
-                            <a class="nav-link get-started-btn scrollto" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a class="nav-link get-started-btn scrollto"
+                                href="{{ route('admin.dashboard') }}">Dashboard</a>
                         @endif
                     @else
                         <a href="{{ route('login') }}" class="nav-link get-started-btn scrollto">Login</a>

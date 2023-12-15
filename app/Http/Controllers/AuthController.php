@@ -61,7 +61,7 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login')
-            ->with('success', 'Register berhasil dihapus.');
+            ->with('success', 'Register berhasil dibuat.');
     }
 
     public function logout(Request $request)
