@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class JenisSeeder extends Seeder
+class NeracasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,14 +11,12 @@ class JenisSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_jenis')->insert([
+        DB::table('tbl_neracas')->insert([
             [
-                'name' => 'Pemasukan',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Pengeluaran',
+                'id_user' => 2,
+                'aset' => 100000000.00,
+                'kewajiban' => 15000000.00,
+                'ekuitas' => 50000000.00,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

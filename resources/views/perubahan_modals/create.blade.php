@@ -45,6 +45,21 @@
                                     @enderror
                                 </div>
                             @endif
+
+                            <div class="form-group">
+                                <label for="id_jenis">Jenis Catatan</label>
+                                <select class="form-control" name="id_jenis" id="id_jenis" required="required">
+                                    <option value="">-- Pilih Jenis Perubahan Modal --</option>
+                                    @foreach ($jeniss as $jenis)
+                                        <option value="{{ $jenis->id }}">
+                                            {{ $jenis->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_jenis')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="form-group">
                                 <label for="tanggal_perubahan">Tanggal Perubahan</label>
                                 <input type="date" name="tanggal_perubahan" id="tanggal_perubahan" class="form-control"

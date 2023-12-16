@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class CatatanKeuangan extends Model
 {
-    protected $table = 'tbl_catatan_keuangan';
+    protected $table = 'tbl_catatan_keuangans';
 
     protected $fillable = [
         'id_user',
@@ -25,7 +25,7 @@ class CatatanKeuangan extends Model
 
     public function jenis()
     {
-        return $this->belongsTo(Jenis::class, 'id_jenis');
+        return $this->belongsTo(JenisCatatanKeuangan::class, 'id_jenis');
     }
 
     public function kategori()

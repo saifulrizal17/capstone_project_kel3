@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTblNeracaTable extends Migration
+class CreateTblNeracasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateTblNeracaTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_neraca', function (Blueprint $table) {
+        Schema::create('tbl_neracas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user')->nullable();
             $table->decimal('aset', 15, 2)->nullable();
             $table->decimal('kewajiban', 15, 2)->nullable();
             $table->decimal('ekuitas', 15, 2)->nullable();
-            $table->date('bulan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('tbl_users')->onDelete('cascade');
@@ -33,6 +32,6 @@ class CreateTblNeracaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_neraca');
+        Schema::dropIfExists('tbl_neracas');
     }
 }

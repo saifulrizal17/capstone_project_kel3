@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class UsersRoleSeeder extends Seeder
+class UsersRolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +11,7 @@ class UsersRoleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_users_role')->insert([
+        DB::table('tbl_users_roles')->insert([
             [
                 'name' => 'Admin',
                 'description' => 'Administrator',

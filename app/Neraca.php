@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Neraca extends Model
 {
-    protected $table = 'tbl_neraca';
+    protected $table = 'tbl_neracas';
 
     protected $fillable = [
         'id_user',

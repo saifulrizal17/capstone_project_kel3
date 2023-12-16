@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTblJenisTable extends Migration
+class CreateTblJenisPerubahanModalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTblJenisTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_jenis', function (Blueprint $table) {
+        Schema::create('tbl_jenis_perubahan_modals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('description', 500);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTblJenisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_jenis');
+        Schema::dropIfExists('tbl_jenis_perubahan_modals');
     }
 }

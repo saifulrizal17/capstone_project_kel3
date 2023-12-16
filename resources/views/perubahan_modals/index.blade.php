@@ -47,9 +47,9 @@
                                     @if (Auth::check() && Auth::user()->role_id == '1')
                                         <th>Nama Pengguna</th>
                                     @endif
+                                    <th>Jenis</th>
                                     <th>Tanggal Perubahan</th>
                                     <th>Jumlah</th>
-                                    <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -67,9 +67,9 @@
                                                 @endif
                                             </td>
                                         @endif
+                                        <td> {{ $perubahanModal->jenis->name }}
                                         <td>{{ $perubahanModal->tanggal_perubahan }}</td>
                                         <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2) }}</td>
-                                        <td>{{ $perubahanModal->keterangan }}</td>
                                         <td>
                                             <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"
                                                 class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
@@ -105,6 +105,11 @@
                                                                 <tr>
                                                                     <td class="navy"> Nama Pengguna </td>
                                                                     <td>{{ $perubahanModal->user->name }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="navy"> Kategori Perubahan Modal
+                                                                    </td>
+                                                                    <td>{{ $perubahanModal->jenis->name }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="navy"> Tanggal Perubahan </td>

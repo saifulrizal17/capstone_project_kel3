@@ -4,18 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kategori extends Model
+class KategoriCatatanKeuangan extends Model
 {
-    protected $table = 'tbl_kategori';
+    protected $table = 'tbl_kategori_catatan_keuangans';
 
     protected $fillable = [
-        'jenis_id',
+        'id_jenis',
         'name',
         'description',
     ];
 
     public function jenis()
     {
-        return $this->belongsTo(Jenis::class, 'jenis_id');
+        return $this->belongsTo(Jenis::class, 'id_jenis');
     }
 }

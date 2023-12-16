@@ -25,7 +25,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        $jeniss = \App\Jenis::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
         return view('admin.kategori.create', [
             'jeniss' => $jeniss
         ]);
@@ -41,7 +41,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'jenis_id' => 'required|integer',
+            'id_jenis' => 'required|integer',
             'name' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
@@ -61,7 +61,7 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        $jeniss = \App\Jenis::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
         return view('admin.kategori.index', [
             'kategori' => $kategori,
             'jeniss' => $jeniss
@@ -77,7 +77,7 @@ class KategoriController extends Controller
 
     public function edit(Kategori $kategori)
     {
-        $jeniss = \App\Jenis::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
         return view('admin.kategori.edit', [
             'kategori' => $kategori,
             'jeniss' => $jeniss
@@ -94,7 +94,7 @@ class KategoriController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'jenis_id' => 'required|integer',
+            'id_jenis' => 'required|integer',
             'name' => 'required|string|max:255',
             'description' => 'required|string',
         ]);

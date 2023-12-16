@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Labarugi extends Model
 {
-    protected $table = 'tbl_labarugi';
+    protected $table = 'tbl_labarugis';
 
     protected $fillable = [
         'id_user',

@@ -24,7 +24,9 @@ class PerubahanModalController extends Controller
             $user = Auth::user();
             $perubahanModals = PerubahanModal::where('id_user', $user->id)->get();
         }
-        return view('perubahan_modals.index', compact('perubahanModals'));
+        return view('perubahan_modals.index', [
+            'perubahanModals' => $perubahanModals,
+        ]);
     }
 
     /**
@@ -35,8 +37,10 @@ class PerubahanModalController extends Controller
     public function create()
     {
         $users = \App\User::all();
+        $jeniss = \App\JenisPerubahanModal::all();
         return view('perubahan_modals.create', [
-            'users' => $users
+            'users' => $users,
+            'jeniss' => $jeniss,
         ]);
     }
 
@@ -49,6 +53,7 @@ class PerubahanModalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_jenis' => 'required',
             'tanggal_perubahan' => 'required',
             'keterangan' => 'required',
             'jumlah' => 'required',
@@ -61,6 +66,7 @@ class PerubahanModalController extends Controller
             ]);
         } else {
             // User
+            $user = Auth::user();
             $request['id_user'] = $user->id;
         }
 
@@ -80,9 +86,13 @@ class PerubahanModalController extends Controller
     {
         $perubahanModal = PerubahanModal::findOrFail($id);
         $users = \App\User::all();
-        return view('perubahan_modals.index', compact('perubahanModal', 'users'));
+        $jeniss = \App\JenisPerubahanModal::all();
+        return view('perubahan_modals.index', [
+            'perubahanModal' => $perubahanModal,
+            'users' => $users,
+            'jeniss' => $jeniss,
+        ]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -94,7 +104,12 @@ class PerubahanModalController extends Controller
     {
         $perubahanModal = PerubahanModal::findOrFail($id);
         $users = \App\User::all();
-        return view('perubahan_modals.edit', compact('perubahanModal', 'users'));
+        $jeniss = \App\JenisPerubahanModal::all();
+        return view('perubahan_modals.edit', [
+            'perubahanModal' => $perubahanModal,
+            'users' => $users,
+            'jeniss' => $jeniss,
+        ]);
     }
 
     /**
@@ -107,6 +122,7 @@ class PerubahanModalController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'id_jenis' => 'required',
             'tanggal_perubahan' => 'required',
             'keterangan' => 'required',
             'jumlah' => 'required',

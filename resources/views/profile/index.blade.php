@@ -193,8 +193,6 @@
                                             </div>
                                         </div>
 
-                                        <hr>
-
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
                                                 <button type="submit" class="btn btn-danger">Update Password</button>
@@ -298,24 +296,21 @@
                                                 @endif
                                             </div>
                                         </div>
+
+                                        <hr>
+
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" class="btn btn-danger">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-
-                                <hr>
-
-                                <div class="form-group row">
-                                    <div class="offset-sm-2 col-sm-10">
-                                        <button type="submit" class="btn btn-danger">Simpan</button>
-                                    </div>
-                                </div>
-                                </form>
-                                <br><br>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- /.content -->

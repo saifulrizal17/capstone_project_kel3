@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTblKategoriTable extends Migration
+class CreateTblKategoriCatatanKeuangansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTblKategoriTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_kategori', function (Blueprint $table) {
+        Schema::create('tbl_kategori_catatan_keuangans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('jenis_id')->nullable();
+            $table->unsignedBigInteger('id_jenis');
             $table->string('name');
-            $table->string('description');
+            $table->string('description', 500);
             $table->timestamps();
 
-            $table->foreign('jenis_id')->references('id')->on('tbl_jenis')->onDelete('cascade');
+            $table->foreign('id_jenis')->references('id')->on('tbl_jenis_catatan_keuangans')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateTblKategoriTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_kategori');
+        Schema::dropIfExists('tbl_kategori_catatan_keuangans');
     }
 }

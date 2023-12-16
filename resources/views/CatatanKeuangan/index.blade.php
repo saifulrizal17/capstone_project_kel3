@@ -168,7 +168,7 @@
                                                                             <td>{{ $catatanKeuangan->jenis->name }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="navy"> Kategori Catatan Keuanagan
+                                                                            <td class="navy"> Kategori Catatan Keuangan
                                                                             </td>
                                                                             <td>{{ $catatanKeuangan->kategori->name }}</td>
                                                                         </tr>

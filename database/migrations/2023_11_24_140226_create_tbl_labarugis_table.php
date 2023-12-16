@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTblPerubahanModalTable extends Migration
+class CreateTblLabarugisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTblPerubahanModalTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_perubahan_modal', function (Blueprint $table) {
+        Schema::create('tbl_labarugis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user')->nullable();
-            $table->date('tanggal_perubahan')->nullable();
-            $table->decimal('jumlah', 15, 2)->nullable();
-            $table->text('keterangan')->nullable();
+            $table->decimal('pendapatan', 15, 2)->nullable();
+            $table->decimal('pengeluaran', 15, 2)->nullable();
+            $table->date('bulan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('tbl_users')->onDelete('cascade');
@@ -32,6 +32,6 @@ class CreateTblPerubahanModalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_perubahan_modal');
+        Schema::dropIfExists('tbl_labarugis');
     }
 }

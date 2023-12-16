@@ -25,7 +25,7 @@ class CatatanKeuanganController extends Controller
             $user = Auth::user();
             $catatanKeuangans = CatatanKeuangan::where('id_user', $user->id)->get();
         }
-        $jeniss = \App\Jenis::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
         return view('CatatanKeuangan.index', [
             'catatanKeuangans' => $catatanKeuangans,
             'jeniss' => $jeniss,
@@ -40,8 +40,8 @@ class CatatanKeuanganController extends Controller
     public function create()
     {
         $users = \App\User::all();
-        $jeniss = \App\Jenis::all();
-        $kategoris = \App\Kategori::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
+        $kategoris = \App\KategoriCatatanKeuangan::all();
         return view('CatatanKeuangan.create', [
             'users' => $users,
             'jeniss' => $jeniss,
@@ -90,8 +90,8 @@ class CatatanKeuanganController extends Controller
     public function show(CatatanKeuangan $catatanKeuangan)
     {
         $users = \App\User::all();
-        $jeniss = \App\Jenis::all();
-        $kategoris = \App\Kategori::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
+        $kategoris = \App\KategoriCatatanKeuangan::all();
         return view('CatatanKeuangan.index', [
             'catatanKeuangan' => $catatanKeuangan,
             'users' => $users,
@@ -109,8 +109,8 @@ class CatatanKeuanganController extends Controller
     public function edit(CatatanKeuangan $catatanKeuangan)
     {
         $users = \App\User::all();
-        $jeniss = \App\Jenis::all();
-        $kategoris = \App\Kategori::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
+        $kategoris = \App\KategoriCatatanKeuangan::all();
         return view('CatatanKeuangan.edit', [
             'catatanKeuangan' => $catatanKeuangan,
             'users' => $users,
@@ -192,7 +192,7 @@ class CatatanKeuanganController extends Controller
         }
 
         $catatanKeuangans = $query->get();
-        $jeniss = \App\Jenis::all();
+        $jeniss = \App\JenisCatatanKeuangan::all();
 
         session(['filtered_data' => $catatanKeuangans]);
 

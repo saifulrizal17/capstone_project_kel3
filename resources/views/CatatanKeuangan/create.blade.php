@@ -73,7 +73,7 @@
                                 <label for="id_kategori">Jenis Kategori</label>
                                 <select class="form-control" name="id_kategori" id="id_kategori" required="required">
                                     @foreach ($kategoris as $kategori)
-                                        <option value="{{ $kategori->id }}" data-jenisid="{{ $kategori->jenis_id }}">
+                                        <option value="{{ $kategori->id }}" data-jenisid="{{ $kategori->id_jenis }}">
                                             {{ $kategori->name }}</option>
                                     @endforeach
                                 </select>
@@ -141,15 +141,15 @@
             // Reset options
             kategoriDropdown.innerHTML = '';
 
-            // Add options based on selected jenis_id
+            // Add options based on selected id_jenis
             if (selectedJenisId !== "") {
                 @foreach ($kategoris as $kategori)
-                    if (selectedJenisId == 1 && {{ $kategori->jenis_id }} == 1) {
+                    if (selectedJenisId == 1 && {{ $kategori->id_jenis }} == 1) {
                         var option = document.createElement('option');
                         option.value = "{{ $kategori->id }}";
                         option.text = "{{ $kategori->name }}";
                         kategoriDropdown.add(option);
-                    } else if (selectedJenisId == 2 && {{ $kategori->jenis_id }} == 2) {
+                    } else if (selectedJenisId == 2 && {{ $kategori->id_jenis }} == 2) {
                         var option = document.createElement('option');
                         option.value = "{{ $kategori->id }}";
                         option.text = "{{ $kategori->name }}";
@@ -165,7 +165,7 @@
             }
         }
 
-        // Initial call to populate kategori options based on default selected jenis_id
+        // Initial call to populate kategori options based on default selected id_jenis
         updateKategoriOptions();
     </script>
 @endsection

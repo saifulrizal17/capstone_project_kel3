@@ -49,6 +49,17 @@
                             @endif
 
                             <div class="form-group">
+                                <label for="id_jenis">Nama Jurusan</label>
+                                <select class="form-control" name="id_jenis" id="id_jenis" required="required">
+                                    @foreach ($jeniss as $jenis)
+                                        <option value="{{ $jenis->id }}"
+                                            {{ $jenis->id == $perubahanModal->id_jenis ? 'selected' : '' }}>
+                                            {{ $jenis->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="tanggal_perubahan">Tanggal Perubahan</label>
                                 <input type="date" name="tanggal_perubahan" id="tanggal_perubahan" class="form-control"
                                     required value="{{ $perubahanModal->getTanggalPerubahanFormattedForInput() }}">
