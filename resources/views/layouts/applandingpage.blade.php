@@ -137,6 +137,9 @@
         AOS.init();
     </script>
 
+    @include('sweetalert::alert')
+
+
     <!-- Scripts -->
     <script src="{{ asset('js/main.js') }}"></script>
 

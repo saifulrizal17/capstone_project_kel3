@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FAQ extends Model
+class Contact extends Model
 {
-    protected $table = 'tbl_faqs';
+    protected $table = 'tbl_contacts';
 
     protected $fillable = [
         'id',

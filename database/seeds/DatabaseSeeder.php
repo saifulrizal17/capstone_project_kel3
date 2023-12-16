@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             JenisPerubahanModalsSeeder::class,
             PerubahanModalsSeeder::class,
             NeracasSeeder::class,
-            FAQsSeeder::class,
+            ContactsSeeder::class,
         ]);
     }
 }

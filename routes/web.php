@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\PerubahanModalController;
-use App\Http\Controllers\NeracaController;
-use App\Http\Controllers\CatatanKeuanganController;
+
 
 
 
@@ -21,6 +19,9 @@ use App\Http\Controllers\CatatanKeuanganController;
 Route::get('/', function () {
     return view('frondend.index');
 })->name('frondend');
+
+//Sumbit Form Landing Page
+Route::post('/contact', 'ContactController@submitForm')->name('contact.submit');
 
 // Auth::routes();
 
@@ -105,4 +106,7 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::get('/kategori/{kategori}/edit', 'KategoriController@edit')->name('admin.kategori.edit');
     Route::put('/kategori/{kategori}', 'KategoriController@update')->name('admin.kategori.update');
     Route::get('/kategori/delete/{kategori}', 'KategoriController@destroy')->name('admin.kategori.destroy');
+
+    //========================= Ini Route Contacts =========================\\
+    Route::get('/contact', 'ContactController@index')->name('admin.contact.index');
 });

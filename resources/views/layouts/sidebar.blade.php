@@ -110,6 +110,12 @@
                             <p>Manajemen Users</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.contact.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-envelope"></i>
+                            <p>Contact Messages</p>
+                        </a>
+                    </li>
                 @endif
 
                 <li class="nav-item">
