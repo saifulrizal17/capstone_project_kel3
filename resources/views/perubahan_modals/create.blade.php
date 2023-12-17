@@ -72,7 +72,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="number" name="jumlah" class="form-control" required>
+                                    <input type="text" name="jumlah" class="form-control" required>
                                 </div>
                                 @error('jumlah')
                                     <div class="invalid-feedback">{{ $message }}</div>

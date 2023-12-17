@@ -43,11 +43,11 @@
 
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="jenis_id">Nama Jurusan</label>
-                                    <select class="form-control" name="jenis_id" id="jenis_id" required="required">
+                                    <label for="id_jenis">Nama Jurusan</label>
+                                    <select class="form-control" name="id_jenis" id="id_jenis" required="required">
                                         @foreach ($jeniss as $jenis)
                                             <option value="{{ $jenis->id }}"
-                                                {{ $jenis->id == $kategori->jenis_id ? 'selected' : '' }}>
+                                                {{ $jenis->id == $kategori->id_jenis ? 'selected' : '' }}>
                                                 {{ $jenis->name }}</option>
                                         @endforeach
                                     </select>

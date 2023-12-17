@@ -16,6 +16,6 @@ class KategoriCatatanKeuangan extends Model
 
     public function jenis()
     {
-        return $this->belongsTo(Jenis::class, 'id_jenis');
+        return $this->belongsTo(JenisCatatanKeuangan::class, 'id_jenis');
     }
 }

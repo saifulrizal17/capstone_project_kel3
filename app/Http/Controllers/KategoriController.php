@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Kategori;
+use App\KategoriCatatanKeuangan;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -14,7 +14,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::all();
+        $kategoris = KategoriCatatanKeuangan::all();
         return view('admin.kategori.index', compact('kategoris'));
     }
 
@@ -46,7 +46,7 @@ class KategoriController extends Controller
             'description' => 'required|string',
         ]);
 
-        $kategori = new Kategori($validatedData);
+        $kategori = new KategoriCatatanKeuangan($validatedData);
         $kategori->save();
 
         return redirect()->route('admin.kategori.index', $kategori->id)
@@ -75,7 +75,7 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Kategori $kategori)
+    public function edit(KategoriCatatanKeuangan $kategori)
     {
         $jeniss = \App\JenisCatatanKeuangan::all();
         return view('admin.kategori.edit', [
@@ -99,7 +99,7 @@ class KategoriController extends Controller
             'description' => 'required|string',
         ]);
 
-        $kategori = Kategori::findOrFail($id);
+        $kategori = KategoriCatatanKeuangan::findOrFail($id);
         $kategori->update($validatedData);
 
         return redirect()->route('admin.kategori.index', $kategori->id)
@@ -112,7 +112,7 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kategori $kategori)
+    public function destroy(KategoriCatatanKeuangan $kategori)
     {
         $kategori->delete();
 

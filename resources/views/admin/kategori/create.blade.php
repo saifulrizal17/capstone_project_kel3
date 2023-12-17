@@ -41,8 +41,8 @@
 
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="jenis_id">Jenis Kategori</label>
-                                    <select class="form-control" name="jenis_id" id="jenis_id" required="required">
+                                    <label for="id_jenis">Jenis Kategori</label>
+                                    <select class="form-control" name="id_jenis" id="id_jenis" required="required">
                                         @foreach ($jeniss as $jenis)
                                             <option value="{{ $jenis->id }}">{{ $jenis->name }}</option>
                                         @endforeach
