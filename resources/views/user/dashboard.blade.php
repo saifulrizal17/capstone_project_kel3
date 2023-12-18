@@ -33,9 +33,9 @@
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-chart-line"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Ballance All</span>
+                            <span class="info-box-text">Saldo Keseluruhan</span>
                             <span class="info-box-number">
-                                <h3>Rp. {{ number_format($balanceAll, 2) }}</h3>
+                                <h3>Rp. {{ number_format($balanceAll, 2, ',', '.') }}</h3>
 
 
                             </span>
@@ -53,9 +53,9 @@
                         <span class="info-box-icon bg-success elevation-1"><i class="fa fa-arrow-up"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Income All</span>
+                            <span class="info-box-text">Pendapatan Keseluruhan</span>
                             <span class="info-box-number">
-                                <h3>Rp. {{ number_format($incomeAll, 2) }}</h3>
+                                <h3>Rp. {{ number_format($incomeAll, 2, ',', '.') }}</h3>
 
                             </span>
 
@@ -77,9 +77,80 @@
                         <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-arrow-down"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Expanse All</span>
+                            <span class="info-box-text">Pengeluran Keseluruhan</span>
                             <span class="info-box-number">
-                                <h3>Rp. {{ number_format($expenseAll, 2) }}</h3>
+                                <h3>Rp. {{ number_format($expenseAll, 2, ',', '.') }}</h3>
+
+                            </span>
+
+                            <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
+                                    class="fas fa-arrow-circle-right"></i></a>
+
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Info boxes -->
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-chart-line"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Saldo Bulan Ini </span>
+                            <span class="info-box-number">
+                                <h3>Rp. {{ number_format($balanceMonthNow, 2, ',', '.') }}</h3>
+
+
+                            </span>
+
+                            <a href="#" class="small-box-footer">Detail<i class="fas fa-arrow-circle-right"></i></a>
+
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa fa-arrow-up"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Pendapatam Bulan Ini</span>
+                            <span class="info-box-number">
+                                <h3>Rp. {{ number_format($incomeMonthNow, 2, ',', '.') }}</h3>
+
+                            </span>
+
+                            <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
+                                    class="fas fa-arrow-circle-right"></i></a>
+
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-arrow-down"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Pengeluran Bulan Ini</span>
+                            <span class="info-box-number">
+                                <h3>Rp. {{ number_format($expenseMonthNow, 2, ',', '.') }}</h3>
 
                             </span>
 

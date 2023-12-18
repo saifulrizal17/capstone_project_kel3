@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\User;
+use Mail;
+use Hash;
+use Illuminate\Support\Str;
 
 class ForgetPasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
-
     /**
      * Display the form to request a password reset link.
      *
@@ -27,13 +30,26 @@ class ForgetPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        $this->validateEmail($request);
+        $user = User::where('email', $request->email)->exists();
 
-        $this->broker()->sendResetLink(
-            $this->credentials($request)
-        );
+        if (!$user) {
+            return back()->with('errorMessage', 'Email tidak dapat ditemukan!');
+        } else {
+            $token = Str::random(60);
 
-        return back()->with('status', trans('passwords.sent'));
+            DB::table('tbl_password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+
+            Mail::send('email.forgot', ['token' => $token], function ($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Reset Password');
+            });
+
+            return back()->with('success', 'Kita sudah mengirimkan Link untuk mereset password email Anda!');
+        }
     }
 
     /**
@@ -57,11 +73,22 @@ class ForgetPasswordController extends Controller
      */
     public function resetPasswordForm(Request $request)
     {
-        $request->validate($this->rules(), $this->validationErrorMessages());
+        $updatePassword = DB::table('tbl_password_resets')
+            ->where([
+                'email' => $request->email,
+                'token' => $request->token
+            ])
+            ->first();
 
-        $this->reset($request);
+        if (!$updatePassword) {
+            return back()->withInput()->with('error', 'Invalid token!');
+        }
 
-        return redirect($this->redirectPath())
-            ->with('status', trans('passwords.reset'));
+        $user = User::where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
+
+        DB::table('tbl_password_resets')->where(['email' => $request->email])->delete();
+
+        return redirect('/login')->with('success', 'Password Sudah Diganti!');
     }
 }

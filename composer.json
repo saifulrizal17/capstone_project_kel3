@@ -15,7 +15,8 @@
         "maatwebsite/excel": "^3.1",
         "mpdf/mpdf": "^8.2",
         "phpoffice/phpspreadsheet": "1.10",
-        "realrashid/sweet-alert": "^7.1"
+        "realrashid/sweet-alert": "^7.1",
+        "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

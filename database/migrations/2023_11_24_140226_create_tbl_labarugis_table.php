@@ -16,8 +16,8 @@ class CreateTblLabarugisTable extends Migration
         Schema::create('tbl_labarugis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user')->nullable();
-            $table->decimal('pendapatan', 15, 2)->nullable();
-            $table->decimal('pengeluaran', 15, 2)->nullable();
+            $table->integer('pendapatan')->nullable();
+            $table->integer('pengeluaran')->nullable();
             $table->date('bulan')->nullable();
             $table->timestamps();
 

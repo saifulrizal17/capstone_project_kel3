@@ -18,7 +18,7 @@ class CreateTblPerubahanModalsTable extends Migration
             $table->unsignedBigInteger('id_user')->nullable();
             $table->unsignedBigInteger('id_jenis')->nullable();
             $table->date('tanggal_perubahan')->nullable();
-            $table->decimal('jumlah', 15, 2)->nullable();
+            $table->integer('jumlah')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();
 

@@ -53,13 +53,15 @@
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Balance All</b> <a class="float-right">Rp. {{ number_format($balance, 2) }}</a>
+                                    <b>Balance All</b> <a class="float-right">Rp.
+                                        {{ number_format($balance, 2, ',', '.') }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Income All</b> <a class="float-right">Rp. {{ number_format($income, 2) }}</a>
+                                    <b>Income All</b> <a class="float-right">Rp. {{ number_format($income, 2, ',', '.') }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Expense All</b> <a class="float-right">Rp. {{ number_format($expense, 2) }}</a>
+                                    <b>Expense All</b> <a class="float-right">Rp.
+                                        {{ number_format($expense, 2, ',', '.') }}</a>
                                 </li>
                             </ul>
 
@@ -151,7 +153,7 @@
                                                         @endif
 
                                                         {{ $transaction->keterangan }}
-                                                        Rp. {{ number_format($transaction->jumlah) }}
+                                                        Rp. {{ number_format($transaction->jumlah, 2, ',', '.') }}
                                                     </h3>
                                                 </div>
                                             </div>

@@ -69,7 +69,7 @@
                                         @endif
                                         <td> {{ $perubahanModal->jenis->name }}
                                         <td>{{ $perubahanModal->tanggal_perubahan }}</td>
-                                        <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2) }}</td>
+                                        <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2, ',', '.') }}</td>
                                         <td>
                                             <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"
                                                 class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
@@ -117,7 +117,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="navy"> Jumlah </td>
-                                                                    <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2) }}
+                                                                    <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2, ',', '.') }}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>

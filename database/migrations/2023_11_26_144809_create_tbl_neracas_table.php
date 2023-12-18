@@ -16,9 +16,9 @@ class CreateTblNeracasTable extends Migration
         Schema::create('tbl_neracas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user')->nullable();
-            $table->decimal('aset', 15, 2)->nullable();
-            $table->decimal('kewajiban', 15, 2)->nullable();
-            $table->decimal('ekuitas', 15, 2)->nullable();
+            $table->integer('aset')->nullable();
+            $table->integer('kewajiban')->nullable();
+            $table->integer('ekuitas')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('tbl_users')->onDelete('cascade');

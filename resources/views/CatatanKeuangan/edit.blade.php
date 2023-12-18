@@ -87,8 +87,11 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" name="jumlah" class="form-control"
+                                    <input type="text" name="jumlah" class="form-control currency"
                                         value="{{ $catatanKeuangan->jumlah }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
                                 </div>
 
                             </div>
@@ -120,7 +123,17 @@
 @endsection
 
 @section('addJavascript')
+    <!-- Cleave.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var cleaveC = new Cleave('.currency', {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            });
+        });
+
         function updateKategoriOptions() {
             var selectedJenisId = document.getElementById('id_jenis').value;
             var kategoriDropdown = document.getElementById('id_kategori');

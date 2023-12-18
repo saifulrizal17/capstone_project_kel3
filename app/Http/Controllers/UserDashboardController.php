@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CatatanKeuangan;
 use App\Labarugi;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class UserDashboardController extends Controller
@@ -61,10 +62,27 @@ class UserDashboardController extends Controller
 
         $balanceAll = $incomeAll - $expenseAll;
 
+        $incomeMonthNow = CatatanKeuangan::where('id_user', $userId)
+            ->where('id_jenis', 1)
+            ->whereYear('tanggal_transaksi', Carbon::now()->year)
+            ->whereMonth('tanggal_transaksi', Carbon::now()->month)
+            ->sum('jumlah');
+
+        $expenseMonthNow = CatatanKeuangan::where('id_user', $userId)
+            ->where('id_jenis', 2)
+            ->whereYear('tanggal_transaksi', Carbon::now()->year)
+            ->whereMonth('tanggal_transaksi', Carbon::now()->month)
+            ->sum('jumlah');
+
+        $balanceMonthNow = $incomeMonthNow - $expenseMonthNow;
+
         return view('user.dashboard', [
             'balanceAll' => $balanceAll,
             'incomeAll' => $incomeAll,
             'expenseAll' => $expenseAll,
+            'balanceMonthNow' => $balanceMonthNow,
+            'incomeMonthNow' => $incomeMonthNow,
+            'expenseMonthNow' => $expenseMonthNow,
             'labels' => $labels,
             'pendapatan' => $pendapatan,
             'pengeluaran' => $pengeluaran,

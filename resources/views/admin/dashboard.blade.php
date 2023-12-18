@@ -32,7 +32,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>Rp. {{ number_format($balanceAll, 2) }}</h3>
+                            <h3>Rp. {{ number_format($balanceAll, 2, ',', '.') }}</h3>
                             <p>Balance All</p>
                         </div>
                         <div class="icon">
@@ -45,7 +45,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>Rp. {{ number_format($incomeAll, 2) }}</h3>
+                            <h3>Rp. {{ number_format($incomeAll, 2, ',', '.') }}</h3>
                             <p>Income All</p>
                         </div>
                         <div class="icon">
@@ -58,7 +58,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>Rp. {{ number_format($expenseAll, 2) }}</h3>
+                            <h3>Rp. {{ number_format($expenseAll, 2, ',', '.') }}</h3>
                             <p>Expense All</p>
                         </div>
                         <div class="icon">

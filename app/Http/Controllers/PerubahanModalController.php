@@ -70,6 +70,9 @@ class PerubahanModalController extends Controller
             $request['id_user'] = $user->id;
         }
 
+        $jumlah = str_replace(',', '', $request->input('jumlah'));
+        $request['jumlah'] = $jumlah;
+
         PerubahanModal::create($request->all());
 
         return redirect()->route('perubahanmodal.index')
@@ -137,6 +140,9 @@ class PerubahanModalController extends Controller
             // User
             $request['id_user'] = PerubahanModal::findOrFail($id)->id_user;
         }
+
+        $jumlah = str_replace(',', '', $request->input('jumlah'));
+        $request['jumlah'] = $jumlah;
 
         PerubahanModal::findOrFail($id)->update($request->all());
 

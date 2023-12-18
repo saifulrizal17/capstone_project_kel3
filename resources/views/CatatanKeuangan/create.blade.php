@@ -97,7 +97,10 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" name="jumlah" class="form-control" required>
+                                    <input type="text" name="jumlah" class="form-control currency" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
                                 </div>
                                 @error('jumlah')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -131,7 +134,17 @@
 @endsection
 
 @section('addJavascript')
+    <!-- Cleave.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var cleaveC = new Cleave('.currency', {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            });
+        });
+
         document.getElementById('tanggal_transaksi').valueAsDate = new Date();
 
         function updateKategoriOptions() {

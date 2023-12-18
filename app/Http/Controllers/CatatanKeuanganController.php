@@ -61,9 +61,11 @@ class CatatanKeuanganController extends Controller
             'id_jenis' => 'required',
             'id_kategori' => 'required',
             'tanggal_transaksi' => 'required|date',
-            'jumlah' => 'required|numeric',
+            'jumlah' => 'required',
             'keterangan' => 'nullable|string',
         ]);
+
+        $validatedData['jumlah'] = str_replace(',', '', $validatedData['jumlah']);
 
         if (Auth::check() && Auth::user()->role_id == '1') {
             // Admin
@@ -132,9 +134,11 @@ class CatatanKeuanganController extends Controller
             'id_jenis' => 'required',
             'id_kategori' => 'required',
             'tanggal_transaksi' => 'required|date',
-            'jumlah' => 'required|numeric',
+            'jumlah' => 'required',
             'keterangan' => 'nullable|string',
         ]);
+
+        $validatedData['jumlah'] = str_replace(',', '', $validatedData['jumlah']);
 
         if (Auth::check() && Auth::user()->role_id == '1') {
             // Admin 

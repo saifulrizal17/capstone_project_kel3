@@ -105,7 +105,13 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::get('/kategori/{kategori}', 'KategoriController@show')->name('admin.kategori.show');
     Route::get('/kategori/{kategori}/edit', 'KategoriController@edit')->name('admin.kategori.edit');
     Route::put('/kategori/{kategori}', 'KategoriController@update')->name('admin.kategori.update');
-    Route::get('/kategori/delete/{kategori}', 'KategoriController@destroy')->name('admin.kategori.destroy');
+    // Route::get('/kategori/delete/{kategori}', 'KategoriController@destroy')->name('admin.kategori.destroy');
+
+    //Route Kategori With Ajax
+    Route::get('/kategoriAjax', 'KategoriAjaxController@index')->name('admin.kategori.ajaxIndex');
+    Route::delete('/kategori/ajax/{id}', 'KategoriAjaxController@destroy')->name('admin.kategori.ajaxDestroy');
+
+
 
     //========================= Ini Route Contacts =========================\\
     Route::get('/contact', 'ContactController@index')->name('admin.contact.index');

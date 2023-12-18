@@ -62,9 +62,9 @@
                                                         @endif
                                                     </td>
                                                 @endif
-                                                <td>{{ 'Rp. ' . number_format($neraca->aset, 2) }}</td>
-                                                <td>{{ 'Rp. ' . number_format($neraca->kewajiban, 2) }}</td>
-                                                <td>{{ 'Rp. ' . number_format($neraca->ekuitas, 2) }}</td>
+                                                <td>{{ 'Rp. ' . number_format($neraca->aset, 2, ',', '.') }}</td>
+                                                <td>{{ 'Rp. ' . number_format($neraca->kewajiban, 2, ',', '.') }}</td>
+                                                <td>{{ 'Rp. ' . number_format($neraca->ekuitas, 2, ',', '.') }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

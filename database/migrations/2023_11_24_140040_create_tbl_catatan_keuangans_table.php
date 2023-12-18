@@ -19,7 +19,7 @@ class CreateTblCatatanKeuangansTable extends Migration
             $table->unsignedBigInteger('id_jenis')->nullable();
             $table->unsignedBigInteger('id_kategori')->nullable();
             $table->date('tanggal_transaksi')->nullable();
-            $table->decimal('jumlah', 15, 2)->nullable();
+            $table->integer('jumlah')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();
 

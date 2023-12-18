@@ -71,10 +71,6 @@
                                         <button type="submit" class="btn btn-outline-dark"><i class="fas fa-filter"></i>
                                             Filter</button>
                                     </div>
-                                    {{-- <div class="form-group mr-2 mb-2">
-                                        <a href="{{ route('aruskas.viewpdf') }}" target="_blank"
-                                            class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> View PDF</a>
-                                    </div> --}}
                                     <div class="form-group mr-2 mb-2">
                                         <a href="{{ route('aruskas.exportPDF') }}" target="_blank"
                                             class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> Export PDF</a>
@@ -125,7 +121,8 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $catatanKeuangan->tanggal_transaksi }}</td>
-                                                <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2) }}</td>
+                                                <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2, ',', '.') }}
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('aruskas.edit', $catatanKeuangan->id) }}"
                                                         class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
@@ -179,7 +176,7 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="navy"> Jumlah </td>
-                                                                            <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2) }}
+                                                                            <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2, ',', '.') }}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>

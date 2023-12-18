@@ -64,8 +64,8 @@
                                                         @endif
                                                     </td>
                                                 @endif
-                                                <td>{{ 'Rp. ' . number_format($data->pendapatan, 2) }}</td>
-                                                <td>{{ 'Rp. ' . number_format($data->pengeluaran, 2) }}</td>
+                                                <td>{{ 'Rp. ' . number_format($data->pendapatan, 2, ',', '.') }}</td>
+                                                <td>{{ 'Rp. ' . number_format($data->pengeluaran, 2, ',', '.') }}</td>
                                                 <td>{{ $data->bulan }}</td>
                                             </tr>
                                         @endforeach
