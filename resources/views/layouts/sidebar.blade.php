@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <div>
         <a href="{{ route('frondend') }}" class="brand-link">
-            <img src="{{ asset('/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle ">
+            <img src="{{ asset('/img/logo.png') }}" alt="AdminLTE Logo" class="" style="width: 50px; height: auto;">
             <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
         </a>
     </div>
