@@ -3,8 +3,7 @@
     <!-- Brand Logo -->
     <div>
         <a href="{{ route('frondend') }}" class="brand-link">
-            <img src="{{ asset('/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                style="opacity: .8">
+            <img src="{{ asset('/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle ">
             <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
         </a>
     </div>
@@ -110,7 +109,7 @@
                 </li>
 
 
-                <li class="nav-item">
+                <li>
                     <hr class="solid" style="border-top: 1px solid #b1a9a9;">
                 </li>
 
@@ -150,11 +149,4 @@
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-
-    <style>
-        .nav-sidebar .nav-item:hover {
-            background-color: #f2f201;
-
-        }
-    </style>
 </aside>

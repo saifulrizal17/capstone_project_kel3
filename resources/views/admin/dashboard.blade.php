@@ -33,7 +33,7 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>Rp. {{ number_format($balanceAll, 2, ',', '.') }}</h3>
-                            <p>Balance All</p>
+                            <p>Saldo Keseluruhan</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-balance-scale"></i> <!-- Updated icon class -->
@@ -46,7 +46,7 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>Rp. {{ number_format($incomeAll, 2, ',', '.') }}</h3>
-                            <p>Income All</p>
+                            <p>Pendapatan Keseluruhan</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-arrow-up"></i> <!-- Updated icon class for income -->
@@ -59,7 +59,7 @@
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>Rp. {{ number_format($expenseAll, 2, ',', '.') }}</h3>
-                            <p>Expense All</p>
+                            <p>Pengeluaran Keseluruhan</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-arrow-down"></i> <!-- Updated icon class for expense -->

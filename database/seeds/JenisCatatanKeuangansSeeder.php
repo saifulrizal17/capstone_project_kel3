@@ -13,7 +13,7 @@ class JenisCatatanKeuangansSeeder extends Seeder
     {
         DB::table('tbl_jenis_catatan_keuangans')->insert([
             [
-                'name' => 'Pemasukan',
+                'name' => 'Pendapatan',
                 'description' => 'Pendapatan adalah jumlah uang atau nilai ekonomi lainnya yang diterima atau diperoleh oleh individu, bisnis, atau organisasi dari berbagai sumber. Pendapatan dapat berasal dari penjualan produk atau jasa, investasi, upah atau gaji, sewa, royalti, atau sumber-sumber lainnya.',
                 'created_at' => now(),
                 'updated_at' => now(),
