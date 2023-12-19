@@ -104,11 +104,11 @@
             <p>Temukan keindahan dalam setiap langkah. Bersama {{ config('app.name') }}, kami hadir untuk memberikan
                 pengalaman yang tak terlupakan. Jelajahi dunia bersama kami!</p>
             <div class="social-links">
-                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="github"><i class="fab fa-github"></i></a>
-                <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/saifulrizal17/capstone_project_kel3.git" class="github"><i class="fab fa-github"></i></a>
+                <a href="https://id.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="copyright">
                 &copy; Copyright &copy; {{ date('Y') }} <a style="color: #007bff"
