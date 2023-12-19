@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary bg-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary bg-primary elevation-4 ">
     <!-- Brand Logo -->
     <div>
         <a href="{{ route('frondend') }}" class="brand-link">
@@ -54,7 +54,7 @@
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview bg-light">
+                        <ul class="nav nav-treeview bg-primary">
                             <li class="nav-item">
                                 <a href="{{ route('aruskas.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -150,4 +150,11 @@
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+
+    <style>
+        .nav-sidebar .nav-item:hover {
+            background-color: #f2f201;
+
+        }
+    </style>
 </aside>
