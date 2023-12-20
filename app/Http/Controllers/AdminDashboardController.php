@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\CatatanKeuangan;
 use App\Labarugi;
+use App\PerubahanModal;
 
 class AdminDashboardController extends Controller
 {
@@ -49,6 +50,29 @@ class AdminDashboardController extends Controller
             $pengeluaran[$index] = $labarugi->pengeluaran;
         }
 
+        $data = PerubahanModal::select('id_jenis', \DB::raw('SUM(jumlah) as total'))
+            ->groupBy('id_jenis')
+            ->get();
+
+        $labelspm = [];
+        $values = [];
+
+        foreach ($data as $item) {
+            switch ($item->id_jenis) {
+                case 1:
+                    $labelspm[] = 'Aset';
+                    break;
+                case 2:
+                    $labelspm[] = 'Kewajiban';
+                    break;
+                case 3:
+                    $labelspm[] = 'Ekuitas';
+                    break;
+            }
+
+            $values[] = $item->total;
+        }
+
         $incomeAll = CatatanKeuangan::where('id_jenis', 1)->sum('jumlah');
         $expenseAll = CatatanKeuangan::where('id_jenis', 2)->sum('jumlah');
         $balanceAll = $incomeAll - $expenseAll;
@@ -72,6 +96,8 @@ class AdminDashboardController extends Controller
             'labels' => $labels,
             'pendapatan' => $pendapatan,
             'pengeluaran' => $pengeluaran,
+            'labelspm' => $labelspm,
+            'values' => $values,
         ]);
     }
 }

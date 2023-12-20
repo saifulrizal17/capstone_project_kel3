@@ -37,7 +37,9 @@
                                     <label for="id_user">Nama User</label>
                                     <select class="form-control" name="id_user" id="id_user" required="required">
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @if ($user->role_id != '1')
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     @error('id_user')

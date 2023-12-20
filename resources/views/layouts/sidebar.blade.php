@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary bg-primary elevation-4 ">
     <!-- Brand Logo -->
-    <div>
+    <div style="background-color: #898d91">
         <a href="{{ route('frondend') }}" class="brand-link">
-            <img src="{{ asset('/img/logo.png') }}" alt="AdminLTE Logo" class="" style="width: 50px; height: auto;">
+            <img src="{{ asset('/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle ">
             <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
         </a>
     </div>

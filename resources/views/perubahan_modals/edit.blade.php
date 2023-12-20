@@ -41,9 +41,9 @@
                                     <select class="form-control" name="id_user" id="id_user" required="required">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
-                                                {{ $user->id == $perubahanModal->id_user ? 'selected' : '' }}>
-                                                {{ $user->name }}</option>
-                                        @endforeach
+                                                @if ($user->role_id != '1') {{ $user->id == $perubahanModal->id_user ? 'selected' : '' }}>
+                                                {{ $user->name }}</option> @endif
+                                                @endforeach
                                     </select>
                                 </div>
                             @endif

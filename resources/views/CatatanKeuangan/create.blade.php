@@ -43,9 +43,12 @@
                                 <div class="form-group">
                                     <label for="id_user">Nama User</label>
                                     <select class="form-control" name="id_user" id="id_user" required="required">
-                                        <option value="">-- Pilih Jenis User --</option>
+                                        <option value="">-- Pilih Nama User --</option>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @if ($user->role_id != '1')
+                                                {{-- Hanya tampilkan user, bukan admin --}}
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     @error('id_user')
@@ -53,6 +56,7 @@
                                     @enderror
                                 </div>
                             @endif
+
 
                             <div class="form-group">
                                 <label for="id_jenis">Jenis Catatan</label>

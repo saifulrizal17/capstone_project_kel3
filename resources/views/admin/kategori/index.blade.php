@@ -61,7 +61,76 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="table-body"></tbody>
+                                    <tbody>
+                                        @php $no = 1 @endphp
+                                        @foreach ($kategoris as $kategori)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                {{-- <td>{{ $kategori->id }}</td> --}}
+                                                <td>{{ $kategori->jenis->name ?? 'Tidak Tersedia' }}
+                                                </td>
+                                                <td>{{ $kategori->name }}</td>
+                                                <td>{{ $kategori->description }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.kategori.edit', ['kategori' => $kategori->id]) }}"
+                                                        class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>
+                                                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#exampleModal{{ $kategori->id }}"><i
+                                                            class='fas fa-info-circle'></i>
+                                                        Detail</a>
+
+                                                    <a href="#" class="btn btn-danger btn-sm btn-delete"
+                                                        data-id="{{ $kategori->id }}">
+                                                        <i class='fas fa-trash-alt'></i> Hapus
+                                                    </a>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal{{ $kategori->id }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Detail
+                                                                        Data
+                                                                        Kategori: {{ $kategori->name }}</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="gg" style="width: 100%">
+                                                                        <tr>
+                                                                            <td class="navy">ID Kategori</td>
+                                                                            <td>{{ $kategori->id }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy">Jenis </td>
+                                                                            <td>{{ $kategori->jenis->name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy"> Nama Kategori</td>
+                                                                            <td>{{ $kategori->name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy">Deskripsi</td>
+                                                                            <td>{{ $kategori->description }}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal"> <i
+                                                                            class="fa fa-arrow-left"></i> Kembali</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -87,57 +156,6 @@
         });
 
         $(document).ready(function() {
-            Swal.fire({
-                title: "",
-                text: "Memuat Data",
-                imageUrl: "https://c.tenor.com/I6kN-6X7nhAAAAAj/Loading-buffering.gif",
-                showConfirmButton: false,
-                timer: 400,
-            }).then(() => {
-                // Read Data
-                $.ajax({
-                    url: '{{ route('admin.kategori.ajaxIndex') }}',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.hasOwnProperty('data')) {
-                            var data = response.data;
-
-                            if (data.length === 0) {
-                                $('#table-body').html(
-                                    '<tr><td colspan="5" class="text-center">Data Kategori Kosong</td></tr>'
-                                );
-                            } else {
-                                $('#table-body').empty();
-
-                                $.each(data, function(index, item) {
-                                    var row = '<tr>' +
-                                        '<td>' + item.id + '</td>' +
-                                        '<td>' + item.jenis.name + '</td>' +
-                                        '<td>' + item.name + '</td>' +
-                                        '<td>' + item.description + '</td>' +
-                                        '<td>' + item.action + '</td>' +
-                                        '</tr>';
-                                    $('#table-body').append(row);
-                                });
-
-                                $('#data-table').DataTable();
-
-                            }
-
-                            Swal.close();
-                        } else {
-                            console.error('Invalid response format. Missing "data" key.');
-                            Swal.fire('Error!',
-                                'Format respon tidak valid. Kunci "data" hilang.', 'error');
-                        }
-                    },
-                    error: function(error) {
-                        console.error('Error:', error);
-                        Swal.fire('Error!', 'Terjadi kesalahan saat mengambil data', 'error');
-                    }
-                });
-            });
 
             // Hapus Data
             $('#data-table').on('click', '.btn-delete', function() {

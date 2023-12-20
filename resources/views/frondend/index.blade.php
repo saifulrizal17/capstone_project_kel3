@@ -136,8 +136,111 @@
                     mewujudkan visi dan misi Anda.</p>
             </div>
 
+            <div class="row">
+
+                <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="/img/saiful.png" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Saiful Rizal</h4>
+                            <span>Ketua</span>
+                            <p>"Kalau mau menunggu sampai siap, kita akan menghabiskan sisa hidup kita hanya untuk
+                                menunggu."</p>
+                            <div class="social">
+                                <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://id.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="/img/aan.png" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Aan Bayu Saputra</h4>
+                            <span>Anggota</span>
+                            <p> "Hiduplah seolah engkau mati besok. Belajarlah seolah engkau hidup selamanya."</p>
+                            <div class="social">
+                                <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://id.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="/img/rajendra.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4>Rajendra A.</h4>
+                            <span>Anggota</span>
+                            <p>"Sesulit apapun pelajaran, jangan pernah meragukan potensimu sendiri."</p>
+                            <div class="social">
+                                <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://web.facebook.com/" class="facebook"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/" class="instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://id.linkedin.com/" class="linkedin"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="/img/salma.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4>Salma Salsabila</h4>
+                            <span>Anggota</span>
+                            <p>"Belajar memang melelahkan, namun akan lebih melelahkan lagi jika saat ini kamu tidak
+                                belajar."</p>
+                            <div class="social">
+                                <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://web.facebook.com/" class="facebook"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/" class="instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://id.linkedin.com/" class="linkedin"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="/img/salsa.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4>Salsabila</h4>
+                            <span>Anggota</span>
+                            <p>"Gak ada yang lebih keren dari orang yang mengejar impiannya"</p>
+                            <div class="social">
+                                <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://web.facebook.com/" class="facebook"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/" class="instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://id.linkedin.com/" class="linkedin"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </section>
+
 
     <!-- SVG dengan warna #f3f5fa -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" class="svg-divider">
@@ -171,7 +274,8 @@
 
                     <li data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-question-circle icon-help"></i> <a data-bs-toggle="collapse"
-                            data-bs-target="#faq-list-2" class="collapsed">Bagaimana Sejahtera.id menjaga keamanan informasi
+                            data-bs-target="#faq-list-2" class="collapsed">Bagaimana Sejahtera.id menjaga keamanan
+                            informasi
                             pengguna? <i class="fas fa-chevron-down icon-show"></i><i
                                 class="fas fa-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">

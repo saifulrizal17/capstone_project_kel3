@@ -1,16 +1,15 @@
-
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
 }
 
 a {
-  color: #007bff;
+  color: #009961;
   text-decoration: none;
 }
 
 a:hover {
-  color: #175494;
+  color: #00cc81;
   text-decoration: none;
 }
 
@@ -621,146 +620,99 @@ section {
   }
 }
 
-.features .icon-box h4 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 5px 0 10px 60px;
-}
-
-.features .icon-box i {
-  font-size: 48px;
-  float: left;
-  color: #007bff;
-}
-
-.features .icon-box p {
-  font-size: 15px;
-  color: #848484;
-  margin-left: 60px;
-}
-
-.features .image {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 400px;
-}
-
-.pricing {
-  background-color: #f9f9f9;
-}
-
-.pricing .box {
-  padding: 40px 20px;
-  text-align: center;
-  border-radius: 8px;
+.team .member {
   position: relative;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 5px;
+  background: #fff;
+  transition: 0.5s;
+  height: 100%;
+}
+
+.team .member .pic {
   overflow: hidden;
-  background: #fefefe;
-  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.1);
+  width: 180px;
+  border-radius: 50%;
 }
 
-.pricing .box h3 {
-  font-weight: 400;
-  padding: 15px;
-  margin-top: 15px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #282828;
+.team .member .pic img {
+  transition: ease-in-out 0.3s;
 }
 
-.pricing .box h4 {
-  font-size: 42px;
-  color: #007bff;
-  font-weight: 500;
-  font-family: "Open Sans", sans-serif;
-  margin-bottom: 20px;
+.team .member:hover {
+  transform: translateY(-10px);
 }
 
-.pricing .box h4 sup {
+.team .member .member-info {
+  padding-left: 30px;
+}
+
+.team .member h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
   font-size: 20px;
-  top: -15px;
-  left: -3px;
+  color: #37517e;
 }
 
-.pricing .box h4 span {
-  color: #bababa;
-  font-size: 16px;
-  font-weight: 300;
+.team .member span {
+  display: block;
+  font-size: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  font-weight: 500;
 }
 
-.pricing .box ul {
-  padding: 20px 0;
-  list-style: none;
-  color: #282828;
-  text-align: center;
-  line-height: 20px;
-  font-size: 14px;
-}
-
-.pricing .box ul li {
-  padding-bottom: 16px;
-}
-
-.pricing .box ul i {
-  color: #007bff;
-  font-size: 18px;
-  padding-right: 4px;
-}
-
-.pricing .box ul .na {
-  color: #ccc;
-  text-decoration: line-through;
-}
-
-.pricing .box .btn-wrap {
-  padding: 15px;
-  text-align: center;
-}
-
-.pricing .box .btn-buy {
-  display: inline-block;
-  padding: 10px 40px 12px 40px;
-  border-radius: 50px;
-  border: 2px solid #007bff;
-  color: #007bff;
-  font-size: 14px;
-  font-weight: 400;
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.pricing .box .btn-buy:hover {
-  background: #007bff;
-  color: #fff;
-}
-
-.pricing .recommended {
-  border-color: #007bff;
-}
-
-.pricing .recommended .btn-buy {
-  background: #007bff;
-  color: #fff;
-}
-
-.pricing .recommended .btn-buy:hover {
-  background: #175494;
-  border-color: #175494;
-}
-
-.pricing .recommended-badge {
+.team .member span::after {
+  content: "";
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  font-size: 13px;
-  padding: 3px 25px 6px 25px;
-  background: #edfbf0;
-  color: #007bff;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #cbd6e9;
+  bottom: 0;
+  left: 0;
+}
+
+.team .member p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.team .member .social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.team .member .social a {
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #eff2f8;
+}
+
+.team .member .social a i {
+  color: #37517e;
+  font-size: 16px;
+  margin: 0 2px;
+}
+
+.team .member .social a:hover {
+  background: #47b2e4;
+}
+
+.team .member .social a:hover i {
+  color: #fff;
+}
+
+.team .member .social a+a {
+  margin-left: 8px;
 }
 
 .faq .faq-list {

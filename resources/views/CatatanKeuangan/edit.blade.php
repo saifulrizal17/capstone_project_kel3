@@ -45,9 +45,11 @@
                                     <label for="id_user">Nama User</label>
                                     <select class="form-control" name="id_user" id="id_user" required="required">
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ $user->id == $catatanKeuangan->id_user ? 'selected' : '' }}>
-                                                {{ $user->name }}</option>
+                                            @if ($user->role_id != '1')
+                                                <option value="{{ $user->id }}"
+                                                    {{ $user->id == $catatanKeuangan->id_user ? 'selected' : '' }}>
+                                                    {{ $user->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -70,10 +72,12 @@
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}"
                                             {{ $kategori->id == $catatanKeuangan->id_kategori ? 'selected' : '' }}>
-                                            {{ $kategori->name }}</option>
+                                            {{ $kategori->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
+
 
                             <div class="form-group">
                                 <label for="tanggal_transaksi">Tanggal Transaksi:</label>
@@ -90,7 +94,7 @@
                                     <input type="text" name="jumlah" class="form-control currency"
                                         value="{{ $catatanKeuangan->jumlah }}">
                                     <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
+                                        <span class="input-group-text">,00</span>
                                     </div>
                                 </div>
 
@@ -137,6 +141,7 @@
         function updateKategoriOptions() {
             var selectedJenisId = document.getElementById('id_jenis').value;
             var kategoriDropdown = document.getElementById('id_kategori');
+            var selectedKategoriValue = kategoriDropdown.value; // Store the current selected value
 
             // Reset options
             kategoriDropdown.innerHTML = '';
@@ -144,15 +149,12 @@
             // Add options based on selected id_jenis
             if (selectedJenisId !== "") {
                 @foreach ($kategoris as $kategori)
-                    if (selectedJenisId == 1 && {{ $kategori->id_jenis }} == 1) {
+                    if (selectedJenisId == {{ $kategori->id_jenis }}) {
                         var option = document.createElement('option');
                         option.value = "{{ $kategori->id }}";
                         option.text = "{{ $kategori->name }}";
-                        kategoriDropdown.add(option);
-                    } else if (selectedJenisId == 2 && {{ $kategori->id_jenis }} == 2) {
-                        var option = document.createElement('option');
-                        option.value = "{{ $kategori->id }}";
-                        option.text = "{{ $kategori->name }}";
+                        option.selected = (selectedKategoriValue ==
+                            "{{ $kategori->id }}"); // Select the previously selected value
                         kategoriDropdown.add(option);
                     }
                 @endforeach

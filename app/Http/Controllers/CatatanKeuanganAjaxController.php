@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\CatatanKeuangan;
 use Illuminate\Http\Request;
-use App\KategoriCatatanKeuangan;
-use Yajra\DataTables\Facades\DataTables;
 
-class KategoriAjaxController extends Controller
+class CatatanKeuanganAjaxController extends Controller
 {
     public function destroy(Request $request, $id)
     {
         try {
-            $kategori = KategoriCatatanKeuangan::find($id);
+            $catatanKeuangan = CatatanKeuangan::find($id);
 
-            if (!$kategori) {
+            if (!$catatanKeuangan) {
                 return response()->json(['error' => 'Data not found'], 404);
             }
 
-            $kategori->delete();
+            $catatanKeuangan->delete();
 
             return response()->json(['message' => 'Data deleted successfully']);
         } catch (\Exception $e) {

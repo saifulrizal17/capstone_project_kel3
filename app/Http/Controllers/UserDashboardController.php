@@ -7,6 +7,7 @@ use App\CatatanKeuangan;
 use App\Labarugi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\PerubahanModal;
 
 class UserDashboardController extends Controller
 {
@@ -52,6 +53,30 @@ class UserDashboardController extends Controller
             $pengeluaran[$index] = $labarugi->pengeluaran;
         }
 
+        $data = PerubahanModal::where('id_user', $userId)
+            ->select('id_jenis', \DB::raw('SUM(jumlah) as total'))
+            ->groupBy('id_jenis')
+            ->get();
+
+        $labelspm = [];
+        $values = [];
+
+        foreach ($data as $item) {
+            switch ($item->id_jenis) {
+                case 1:
+                    $labelspm[] = 'Aset';
+                    break;
+                case 2:
+                    $labelspm[] = 'Kewajiban';
+                    break;
+                case 3:
+                    $labelspm[] = 'Ekuitas';
+                    break;
+            }
+
+            $values[] = $item->total;
+        }
+
         $incomeAll = CatatanKeuangan::where('id_user', $userId)
             ->where('id_jenis', 1)
             ->sum('jumlah');
@@ -76,6 +101,18 @@ class UserDashboardController extends Controller
 
         $balanceMonthNow = $incomeMonthNow - $expenseMonthNow;
 
+        $incomeTodayNow = CatatanKeuangan::where('id_user', $userId)
+            ->where('id_jenis', 1)
+            ->whereDate('tanggal_transaksi', Carbon::today())
+            ->sum('jumlah');
+
+        $expenseTodayNow = CatatanKeuangan::where('id_user', $userId)
+            ->where('id_jenis', 2)
+            ->whereDate('tanggal_transaksi', Carbon::today())
+            ->sum('jumlah');
+
+        $balanceTodayNow = $incomeTodayNow - $expenseTodayNow;
+
         return view('user.dashboard', [
             'balanceAll' => $balanceAll,
             'incomeAll' => $incomeAll,
@@ -83,9 +120,14 @@ class UserDashboardController extends Controller
             'balanceMonthNow' => $balanceMonthNow,
             'incomeMonthNow' => $incomeMonthNow,
             'expenseMonthNow' => $expenseMonthNow,
+            'balanceTodayNow' => $balanceTodayNow,
+            'incomeTodayNow' => $incomeTodayNow,
+            'expenseTodayNow' => $expenseTodayNow,
             'labels' => $labels,
             'pendapatan' => $pendapatan,
             'pengeluaran' => $pengeluaran,
+            'labelspm' => $labelspm,
+            'values' => $values,
         ]);
     }
 }

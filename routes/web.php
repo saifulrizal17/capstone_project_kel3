@@ -2,8 +2,6 @@
 
 
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +21,6 @@ Route::get('/', function () {
 //Sumbit Form Landing Page
 Route::post('/contact', 'ContactController@submitForm')->name('contact.submit');
 
-// Auth::routes();
-
 // Custum Authenticate 
 Route::get('/login', 'AuthController@showlogin')->name('login');
 Route::post('/login', 'AuthController@login')->name('login');
@@ -41,37 +37,41 @@ Route::post('/reset-password', 'ForgetPasswordController@resetPasswordForm')->na
 //Akses All Role
 Route::middleware('auth')->group(function () {
 
-    //========================= Ini Route My Profile =========================\\
+    // Ini Route My Profile
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::put('/profile/aboutme/{user}', 'ProfileController@updateAboutMe')->name('profile.update.aboutme');
     Route::put('/profile/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
     Route::get('/user/delete-profile-photo', 'ProfileController@deleteProfilePhoto')->name('user.deleteProfilePhoto');
 
-    //========================= Ini Route Perubahan Modal =========================\\
-    Route::get('/modals', 'PerubahanModalController@index')->name('perubahanmodal.index');
-    Route::get('/modals/create', 'PerubahanModalController@create')->name('perubahanmodal.create');
-    Route::post('/modals', 'PerubahanModalController@store')->name('perubahanmodal.store');
-    Route::get('/modals/{id}/edit', 'PerubahanModalController@edit')->name('perubahanmodal.edit');
-    Route::put('/modals/{id}', 'PerubahanModalController@update')->name('perubahanmodal.update');
-    Route::get('/modals/{id}/delete', 'PerubahanModalController@destroy')->name('perubahanmodal.delete');
-
-    //========================= Ini Route Neraca =========================\\
-    Route::get('/neraca', 'NeracaController@index')->name('neraca.index');
-
-    //========================= Ini Route Aruskas =========================\\
+    // Ini Route Catatan Keuangan
     Route::get('/aruskas', 'CatatanKeuanganController@index')->name('aruskas.index');
     Route::get('/aruskas/create', 'CatatanKeuanganController@create')->name('aruskas.create');
     Route::post('/aruskas', 'CatatanKeuanganController@store')->name('aruskas.store');
     Route::get('/aruskas/{catatanKeuangan}/edit', 'CatatanKeuanganController@edit')->name('aruskas.edit');
     Route::put('/aruskas/{catatanKeuangan}', 'CatatanKeuanganController@update')->name('aruskas.update');
-    Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
+    // Route::get('/aruskas/{catatanKeuangan}/delete', 'CatatanKeuanganController@destroy')->name('aruskas.delete');
     Route::post('/aruskas/filter', 'CatatanKeuanganController@filter')->name('aruskas.filter');
     Route::get('/aruskas/view/pdf', 'CatatanKeuanganController@viewPDF')->name('aruskas.viewpdf');
     Route::get('/aruskas/export/pdf', 'CatatanKeuanganController@exportPDF')->name('aruskas.exportPDF');
     Route::get('/aruskas/export/excel', 'CatatanKeuanganController@exportExcel')->name('aruskas.exportExcel');
+    //Route Perubahan Modal With Ajax
+    Route::delete('/aruskas/ajax/{id}', 'CatatanKeuanganAjaxController@destroy')->name('aruskas.ajaxDestroy');
 
-    //========================= Ini Pendapatan dan Pengeluaran =========================\\
+    // Ini Laba/Rugi
     Route::get('/labarugi', 'LabarugiController@index')->name('labarugi.index');
+
+    // Ini Route Perubahan Modal
+    Route::get('/modals', 'PerubahanModalController@index')->name('perubahanmodal.index');
+    Route::get('/modals/create', 'PerubahanModalController@create')->name('perubahanmodal.create');
+    Route::post('/modals', 'PerubahanModalController@store')->name('perubahanmodal.store');
+    Route::get('/modals/{id}/edit', 'PerubahanModalController@edit')->name('perubahanmodal.edit');
+    Route::put('/modals/{id}', 'PerubahanModalController@update')->name('perubahanmodal.update');
+    // Route::get('/modals/{id}/delete', 'PerubahanModalController@destroy')->name('perubahanmodal.delete');
+    //Route Perubahan Modal With Ajax
+    Route::delete('/modals/ajax/{id}', 'PerubahanModalAjaxController@destroy')->name('perubahanmodal.ajaxDestroy');
+
+    // Ini Route Neraca 
+    Route::get('/neraca', 'NeracaController@index')->name('neraca.index');
 });
 
 // Akses Role User 
@@ -86,19 +86,21 @@ Route::middleware(['checkrole:1'])->group(function () {
     //Dashboard Admin
     Route::get('/admin-dashboard', 'AdminDashboardController@index')->name('admin.dashboard');
 
-    //========================= Ini Route Manajemen Users =========================\\
+    // Ini Route Manajemen Users 
     Route::get('/users', 'ManajemenUsersController@index')->name('admin.users.index');
     Route::get('/users/create', 'ManajemenUsersController@create')->name('admin.users.create');
     Route::post('/users', 'ManajemenUsersController@store')->name('admin.users.store');
     Route::get('/users/{user}/edit', 'ManajemenUsersController@edit')->name('admin.users.edit');
     Route::put('/users/{user}', 'ManajemenUsersController@update')->name('admin.users.update');
-    Route::get('/users/delete/{user}', 'ManajemenUsersController@destroy')->name('admin.users.destroy');
+    // Route::get('/users/delete/{user}', 'ManajemenUsersController@destroy')->name('admin.users.destroy');
     Route::get('/user/delete-profile-photo/{user}', 'ManajemenUsersController@deleteProfilePhoto')->name('admin.users.deleteProfilePhoto');
     Route::get('/users/reset-password/{id}', 'ManajemenUsersController@resetPassword')->name('admin.users.resetPassword');
     Route::post('/users/import-excel', 'ManajemenUsersController@importExcel')->name('admin.users.import.excel');
     Route::get('/users/download/template', 'ManajemenUsersController@downloadTemplate')->name('admin.users.download.template');
+    //Route Manajemen Users With Ajax
+    Route::delete('/users/ajax/{id}', 'ManajemenUsersAjaxController@destroy')->name('admin.users.ajaxDestroy');
 
-    //========================= Ini Route Kategori =========================\\
+    // Ini Route Kategori
     Route::get('/kategori', 'KategoriController@index')->name('admin.kategori.index');
     Route::get('/kategori/create', 'KategoriController@create')->name('admin.kategori.create');
     Route::post('/kategori', 'KategoriController@store')->name('admin.kategori.store');
@@ -106,13 +108,9 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::get('/kategori/{kategori}/edit', 'KategoriController@edit')->name('admin.kategori.edit');
     Route::put('/kategori/{kategori}', 'KategoriController@update')->name('admin.kategori.update');
     // Route::get('/kategori/delete/{kategori}', 'KategoriController@destroy')->name('admin.kategori.destroy');
-
-    //Route Kategori With Ajax
-    Route::get('/kategoriAjax', 'KategoriAjaxController@index')->name('admin.kategori.ajaxIndex');
+    // Route Kategori With Ajax
     Route::delete('/kategori/ajax/{id}', 'KategoriAjaxController@destroy')->name('admin.kategori.ajaxDestroy');
 
-
-
-    //========================= Ini Route Contacts =========================\\
+    // Ini Route Contacts
     Route::get('/contact', 'ContactController@index')->name('admin.contact.index');
 });

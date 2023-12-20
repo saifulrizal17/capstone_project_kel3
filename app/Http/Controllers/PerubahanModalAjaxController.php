@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\KategoriCatatanKeuangan;
-use Yajra\DataTables\Facades\DataTables;
+use App\PerubahanModal;
 
-class KategoriAjaxController extends Controller
+class PerubahanModalAjaxController extends Controller
 {
     public function destroy(Request $request, $id)
     {
         try {
-            $kategori = KategoriCatatanKeuangan::find($id);
+            $perubahanModal = PerubahanModal::find($id);
 
-            if (!$kategori) {
+            if (!$perubahanModal) {
                 return response()->json(['error' => 'Data not found'], 404);
             }
 
-            $kategori->delete();
+            $perubahanModal->delete();
 
             return response()->json(['message' => 'Data deleted successfully']);
         } catch (\Exception $e) {

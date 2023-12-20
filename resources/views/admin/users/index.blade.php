@@ -2,6 +2,7 @@
 
 @section('addCss')
     <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <style>
         .btn-group .dropdown-menu a {
             color: #007bff;
@@ -160,9 +161,14 @@
                                                         data-target="#exampleModal{{ $user->id }}"><i
                                                             class='fas fa-info-circle'></i>
                                                         Detail</a>
-                                                    <a href="{{ route('admin.users.destroy', ['user' => $user->id]) }}"
+                                                    {{-- <a href="{{ route('admin.users.destroy', ['user' => $user->id]) }}"
                                                         class="btn btn-danger btn-sm"><i class='fas fa-trash-alt'></i>
-                                                        Hapus</a>
+                                                        Hapus</a> --}}
+                                                    <a href="#" class="btn btn-danger btn-sm btn-delete"
+                                                        data-user-id="{{ $user->id }}">
+                                                        <i class='fas fa-trash-alt'></i> Hapus
+                                                    </a>
+
                                                     <a href="{{ route('admin.users.resetPassword', ['id' => $user->id]) }}"
                                                         class="btn btn-secondary btn-sm"><i class='fas fa-key'></i>
                                                         Reset Password</a>
@@ -259,12 +265,77 @@
 @endsection
 
 @section('addJavascript')
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
     <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Script tambahan inisialisasi datatables --}}
     <script>
         $(function() {
             $("#data-table").DataTable();
         })
+    </script>
+    <script>
+        // GLOBAL SETUP 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+
+            // Hapus Data
+            $('#data-table').on('click', '.btn-delete', function() {
+                var id = $(this).data('user-id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data akan dihapus secara permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "",
+                            text: "Menghapus Data",
+                            imageUrl: "https://c.tenor.com/I6kN-6X7nhAAAAAj/Loading-buffering.gif",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        }).then(() => {
+                            $.ajax({
+                                type: 'DELETE',
+                                url: '/users/ajax/' + id,
+                                dataType: 'json',
+                                success: function(data) {
+                                    console.log('Success:', data);
+                                    location.reload();
+
+                                    Swal.fire({
+                                        title: 'Sukses!',
+                                        text: data.message,
+                                        icon: 'success',
+                                        allowOutsideClick: false,
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok',
+                                    });
+                                },
+                                error: function(error) {
+                                    console.error('Error:', error);
+                                    Swal.fire('Error!',
+                                        'Terjadi kesalahan saat menghapus data',
+                                        'error');
+                                },
+                            });
+                        });
+                    }
+                });
+            });
+        });
     </script>
 @endsection
