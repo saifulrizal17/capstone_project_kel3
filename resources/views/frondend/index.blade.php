@@ -178,7 +178,7 @@
                         <div class="pic"><img src="/img/rajendra.png" class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
-                            <h4>Rajendra A.</h4>
+                            <h4>Rajendra Anargya</h4>
                             <span>Anggota</span>
                             <p>"Sesulit apapun pelajaran, jangan pernah meragukan potensimu sendiri."</p>
                             <div class="social">
