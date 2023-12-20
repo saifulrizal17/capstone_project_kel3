@@ -6,12 +6,27 @@ Selamat datang di repositori **Capstone Project Kelompok 3** kami! "Sejahtera.id
 
 Nama "Sejahtera" dipilih karena merujuk pada keadaan sejahtera dan makmur, menciptakan gambaran positif terkait dengan keberhasilan finansial dan kesejahteraan.
 
+### Visi - Misi Sejahtera?
+## Inovasi Tanpa Henti
+Kami terus berkembang dan berinovasi untuk memberikan pengalaman terbaik bagi pengguna kami. Fitur-fitur terbaru dan solusi pintar kami dirancang untuk menjawab kebutuhan keuangan Anda.
+
+## Kemudahan Penggunaan
+Sejahtera.id didesain dengan antarmuka yang ramah pengguna, memastikan bahwa setiap orang, dari yang baru memulai hingga yang berpengalaman, dapat dengan mudah mengelola keuangan mereka tanpa kerumitan.
+
+## Keamanan Terbaik
+Keamanan adalah prioritas utama kami. Data keuangan Anda dienkripsi dengan teknologi tinggi dan kami mengambil langkah-langkah ekstra untuk melindungi privasi Anda.
+
+## Tujuan yang Jelas
+Sejahtera.id hadir untuk membantu Anda mencapai tujuan keuangan Anda. Apakah itu merencanakan masa depan, mengatur anggaran, atau mengumpulkan tabungan, kami ada di sini untuk mendukung Anda.
+
+
 ## **🙇 Nama Anggota Kelompok:**
 * Saiful Rizal
 * Aan Bayu Saputra
 * Rajendra Anargya
 * Salsabila
 * Salma Salsabila
+
 
 ## **🗒 Tentang Aplikasi**
 ### Deskripsi
