@@ -123,17 +123,6 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Foto Profile</th>
-                                            <th>Nama</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         @php $no = 1 @endphp
                                         @foreach ($users as $user)
@@ -168,9 +157,11 @@
                                                         data-user-id="{{ $user->id }}">
                                                         <i class='fas fa-trash-alt'></i> Hapus
                                                     </a>
-
-                                                    <a href="{{ route('admin.users.resetPassword', ['id' => $user->id]) }}"
+                                                    {{-- <a href="{{ route('admin.users.resetPassword', ['id' => $user->id]) }}"
                                                         class="btn btn-secondary btn-sm"><i class='fas fa-key'></i>
+                                                        Reset Password</a> --}}
+                                                    <a href="#" class="btn btn-secondary btn-sm btn-reset-password"
+                                                        data-user-id="{{ $user->id }}"><i class='fas fa-key'></i>
                                                         Reset Password</a>
 
 
@@ -329,6 +320,57 @@
                                     console.error('Error:', error);
                                     Swal.fire('Error!',
                                         'Terjadi kesalahan saat menghapus data',
+                                        'error');
+                                },
+                            });
+                        });
+                    }
+                });
+            });
+
+            // Reset Password
+            $('#data-table').on('click', '.btn-reset-password', function() {
+                var id = $(this).data('user-id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Password pengguna akan direset ke nilai default (12345678)',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, reset password!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "",
+                            text: "Merestet Password",
+                            imageUrl: "https://c.tenor.com/I6kN-6X7nhAAAAAj/Loading-buffering.gif",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        }).then(() => {
+                            // Perform the password reset action
+                            $.ajax({
+                                type: 'GET',
+                                url: '/users/reset-password/' + id,
+                                dataType: 'json',
+                                success: function(data) {
+                                    console.log('Success:', data);
+
+                                    Swal.fire({
+                                        title: 'Sukses!',
+                                        text: data.message,
+                                        icon: 'success',
+                                        allowOutsideClick: false,
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok',
+                                    });
+                                },
+                                error: function(error) {
+                                    console.error('Error:', error);
+                                    Swal.fire('Error!',
+                                        'Terjadi kesalahan saat mereset password',
                                         'error');
                                 },
                             });

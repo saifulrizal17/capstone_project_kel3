@@ -25,7 +25,7 @@ class CatatanKeuangansSeeder extends Seeder
             [
                 'id_user' => 2,
                 'id_jenis' => 2,
-                'id_kategori' => 2,
+                'id_kategori' => 3,
                 'tanggal_transaksi' => now(),
                 'jumlah' => 1500000.00,
                 'keterangan' => 'Membeli Kebutuhan Pokok',

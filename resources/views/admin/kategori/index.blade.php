@@ -78,7 +78,6 @@
                                                         data-target="#exampleModal{{ $kategori->id }}"><i
                                                             class='fas fa-info-circle'></i>
                                                         Detail</a>
-
                                                     <a href="#" class="btn btn-danger btn-sm btn-delete"
                                                         data-id="{{ $kategori->id }}">
                                                         <i class='fas fa-trash-alt'></i> Hapus

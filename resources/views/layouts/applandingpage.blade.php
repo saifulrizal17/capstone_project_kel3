@@ -22,7 +22,7 @@
     {{-- Jquery --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     {{-- Aos Animate --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -107,7 +107,8 @@
                 <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
                 <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/saifulrizal17/capstone_project_kel3.git" class="github"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/saifulrizal17/capstone_project_kel3.git" class="github"><i
+                        class="fab fa-github"></i></a>
                 <a href="https://id.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="copyright">
@@ -132,7 +133,7 @@
         new PureCounter();
     </script>
     {{-- AOS Animate --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>

@@ -94,11 +94,12 @@ Route::middleware(['checkrole:1'])->group(function () {
     Route::put('/users/{user}', 'ManajemenUsersController@update')->name('admin.users.update');
     // Route::get('/users/delete/{user}', 'ManajemenUsersController@destroy')->name('admin.users.destroy');
     Route::get('/user/delete-profile-photo/{user}', 'ManajemenUsersController@deleteProfilePhoto')->name('admin.users.deleteProfilePhoto');
-    Route::get('/users/reset-password/{id}', 'ManajemenUsersController@resetPassword')->name('admin.users.resetPassword');
+    // Route::get('/users/reset-password/{id}', 'ManajemenUsersController@resetPassword')->name('admin.users.resetPassword');
     Route::post('/users/import-excel', 'ManajemenUsersController@importExcel')->name('admin.users.import.excel');
     Route::get('/users/download/template', 'ManajemenUsersController@downloadTemplate')->name('admin.users.download.template');
     //Route Manajemen Users With Ajax
     Route::delete('/users/ajax/{id}', 'ManajemenUsersAjaxController@destroy')->name('admin.users.ajaxDestroy');
+    Route::get('/users/reset-password/{id}', 'ManajemenUsersAjaxController@resetPassword')->name('admin.users.ajaxPassword');
 
     // Ini Route Kategori
     Route::get('/kategori', 'KategoriController@index')->name('admin.kategori.index');
