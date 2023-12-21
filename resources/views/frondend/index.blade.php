@@ -162,7 +162,8 @@
                         <div class="member-info">
                             <h4>Aan Bayu Saputra</h4>
                             <span>Anggota</span>
-                            <p> "Hiduplah seolah engkau mati besok. Belajarlah seolah engkau hidup selamanya."</p>
+                            <p> "Jangan mengharapkan semuanya bisa jadi lebih mudah, berharaplah agar dirimu bisa jadi lebih
+                                baik"</p>
                             <div class="social">
                                 <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
                                 <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
