@@ -169,8 +169,10 @@
                             <div class="social">
                                 <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
                                 <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="https://id.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://www.instagram.com/anbayusptr/" class="instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/aan-bayu-saputra-57676a261/" class="linkedin"><i
+                                        class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
