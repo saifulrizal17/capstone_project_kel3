@@ -149,8 +149,10 @@
                             <div class="social">
                                 <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
                                 <a href="https://web.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="https://id.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://www.instagram.com/sairiz17" class="instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/saifulrizal17/" class="linkedin"><i
+                                        class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
@@ -181,13 +183,14 @@
                         <div class="member-info">
                             <h4>Rajendra Anargya</h4>
                             <span>Anggota</span>
-                            <p>"Jika kepintaranmu tidak cukup memukau dan meyakinkan orang lain, gunakan saja kebodohanmu untuk membingungkan mereka."</p>
+                            <p>"Jika kepintaranmu tidak cukup memukau dan meyakinkan orang lain, gunakan saja kebodohanmu
+                                untuk membingungkan mereka."</p>
                             <div class="social">
                                 <a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
                                 <a href="https://web.facebook.com/" class="facebook"><i
                                         class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.instagram.com/iron._.smile?igsh=OGQ5ZDc2ODk2ZA==" class="instagram"><i
-                                        class="fab fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/iron._.smile?igsh=OGQ5ZDc2ODk2ZA=="
+                                    class="instagram"><i class="fab fa-instagram"></i></a>
                                 <a href="https://www.linkedin.com/in/rajendra-anargya-61ab6b2a0" class="linkedin"><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
