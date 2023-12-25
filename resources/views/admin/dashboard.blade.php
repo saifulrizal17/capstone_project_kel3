@@ -137,7 +137,7 @@
                         <div class="card-body">
                             <div class="tab-content p-0">
                                 <div class="">
-                                    <canvas id="pieChart" height="240"></canvas>
+                                    <canvas id="aruskasMyChart" height="240"></canvas>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
@@ -152,7 +152,7 @@
                     <div class="card height-100">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="fa fa-chart-pie mr-1"></i>
+                                <i class="fa fa-chart-bar mr-1"></i>
                                 Grafik Keseluruhan Laba Rugi
                             </h3>
                         </div>
@@ -177,7 +177,7 @@
                         <div class="card-body">
                             <div class="tab-content p-0">
                                 <div class="">
-                                    <canvas id="grafikPerubahanModal" height="240"></canvas>
+                                    <canvas id="perubahanmodalMyChart" height="240"></canvas>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
@@ -195,7 +195,7 @@
                     <div class="card height-100">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="fa fa-chart-pie mr-1"></i>
+                                <i class="fa fa-chart-line mr-1"></i>
                                 Grafik Keseluruhan Neraca
                             </h3>
                         </div>
@@ -232,7 +232,7 @@
         </script>
     @endif
     <script>
-        var ctx = document.getElementById('grafikPerubahanModal').getContext('2d');
+        var ctx = document.getElementById('perubahanmodalMyChart').getContext('2d');
         var neracaMyChart = new Chart(ctx, {
             type: 'pie',
             data: {
@@ -260,9 +260,9 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var pieChartCanvas = document.getElementById("pieChart").getContext("2d");
+            var aruskasMyChartCanvas = document.getElementById("aruskasMyChart").getContext("2d");
 
-            var pieChartData = {
+            var aruskasMyChartData = {
                 labels: ["Saldo", "Pendapatan", "Pengeluaran"],
                 datasets: [{
                     data: [
@@ -274,15 +274,15 @@
                 }],
             };
 
-            var pieChartOptions = {
+            var aruskasMyChartOptions = {
                 maintainAspectRatio: false,
                 responsive: true,
             };
 
-            var pieChart = new Chart(pieChartCanvas, {
+            var aruskasMyChart = new Chart(aruskasMyChartCanvas, {
                 type: "doughnut",
-                data: pieChartData,
-                options: pieChartOptions,
+                data: aruskasMyChartData,
+                options: aruskasMyChartOptions,
             });
         });
     </script>

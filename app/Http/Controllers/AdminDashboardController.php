@@ -166,9 +166,6 @@ class AdminDashboardController extends Controller
             'neracaAset' => $neracaAset,
             'neracaKewajiban' => $neracaKewajiban,
             'neracaEkuitas' => $neracaEkuitas,
-            // 'labels' => $labels,
-            // 'pendapatan' => $pendapatan,
-            // 'pengeluaran' => $pengeluaran,
             'labelspm' => $labelspm,
             'values' => $values,
         ]);

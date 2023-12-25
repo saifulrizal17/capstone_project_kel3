@@ -252,40 +252,30 @@
                             <div class="tab-content p-0">
                                 <!-- Morris chart - Sales -->
                                 <div class="">
-                                    <canvas id="pieChart" height="240"></canvas>
+                                    <canvas id="arukasMyChart" height="240"></canvas>
                                 </div>
-                                {{-- <div class="col-md-3">
+                                <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
-                                        <li><i class="far fa-circle text-danger"></i> Ballance All</li>
-                                        <li><i class="far fa-circle text-success"></i> Income All</li>
-                                        <li><i class="far fa-circle text-warning"></i> Expense All</li>
+                                        <li style="color: #f56954"><i class="far fa-circle"></i> Saldo</li>
+                                        <li style="color: #00a65a"><i class="far fa-circle"></i> Pendapatan</li>
+                                        <li style="color: #f39c12"><i class="far fa-circle"></i> Pengeluaran</li>
                                     </ul>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card height-100">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="fa fa-chart-pie mr-1"></i>
-                                Grafik Keseluruhan Perubahan Modal
+                                <i class="fa fa-chart-bar mr-1"></i>
+                                Grafik Laba Rugi
                             </h3>
                         </div>
                         <div class="card-body">
                             <div class="tab-content p-0">
                                 <div class="">
-                                    <canvas id="grafikPerubahanModal" height="240"></canvas>
+                                    <canvas id="labarugiMyChart" height="180"></canvas>
                                 </div>
-                                {{-- <div class="col-md-3">
-                                    <ul class="chart-legend clearfix">
-                                        <li style="color: rgba(255, 99, 132, 0.7)"><i class="far fa-circle"></i> Ballance
-                                            All</li>
-                                        <li style="color: rgba(54, 162, 235, 0.7)"><i class="far fa-circle"></i> Income
-                                            All</li>
-                                        <li style="color: rgba(255, 206, 86, 0.7)"><i class="far fa-circle"></i> Expense
-                                            All</li>
-                                    </ul>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -296,14 +286,38 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fa fa-chart-pie mr-1"></i>
-                                Grafik Laba Rugi
+                                Grafik Keseluruhan Perubahan Modal
                             </h3>
                         </div>
                         <div class="card-body">
                             <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
                                 <div class="">
-                                    <canvas id="myChart" height="180"></canvas>
+                                    <canvas id="perubahanmodalMyChart" height="240"></canvas>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="chart-legend clearfix">
+                                        <li style="color: rgba(255, 99, 132, 0.7)"><i class="far fa-circle"></i> Aset
+                                        </li>
+                                        <li style="color: rgba(54, 162, 235, 0.7)"><i class="far fa-circle"></i> Kewajiban
+                                        </li>
+                                        <li style="color: rgba(255, 206, 86, 0.7)"><i class="far fa-circle"></i> Ekuitas
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card height-100">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fa fa-chart-line mr-1"></i>
+                                Grafik Neraca
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <div class="">
+                                    <canvas id="neracaMyChart" height="180"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -336,10 +350,9 @@
             });
         </script>
     @endif
-
     <script>
-        var ctx = document.getElementById('grafikPerubahanModal').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('perubahanmodalMyChart').getContext('2d');
+        var neracaMyChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: {!! json_encode($labelspm) !!},
@@ -366,10 +379,10 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var pieChartCanvas = document.getElementById("pieChart").getContext("2d");
+            var arukasMyChartCanvas = document.getElementById("arukasMyChart").getContext("2d");
 
-            var pieChartData = {
-                labels: ["Ballance All", "Income All", "Expense All"],
+            var arukasMyChartData = {
+                labels: ["Saldo", "Pendapatan", "Pengeluaran"],
                 datasets: [{
                     data: [
                         {{ $balanceAll }},
@@ -380,37 +393,81 @@
                 }],
             };
 
-            var pieChartOptions = {
+            var arukasMyChartOptions = {
                 maintainAspectRatio: false,
                 responsive: true,
             };
 
-            var pieChart = new Chart(pieChartCanvas, {
+            var arukasMyChart = new Chart(arukasMyChartCanvas, {
                 type: "doughnut",
-                data: pieChartData,
-                options: pieChartOptions,
+                data: arukasMyChartData,
+                options: arukasMyChartOptions,
             });
         });
     </script>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('labarugiMyChart').getContext('2d');
+        var labarugiMyChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: {!! json_encode($labels) !!},
+                labels: {!! json_encode($labaRugiLabels) !!},
                 datasets: [{
                     label: 'Pendapatan',
-                    data: {!! json_encode($pendapatan) !!},
+                    data: {!! json_encode($labaRugiPendapatan) !!},
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
                 }, {
                     label: 'Pengeluaran',
-                    data: {!! json_encode($pengeluaran) !!},
+                    data: {!! json_encode($labaRugiPengeluaran) !!},
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('neracaMyChart').getContext('2d');
+        var neracaMyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($neracaLabels) !!},
+                datasets: [{
+                        label: 'Aset',
+                        data: {!! json_encode($neracaAset) !!},
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Kewajiban',
+                        data: {!! json_encode($neracaKewajiban) !!},
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Ekuitas',
+                        data: {!! json_encode($neracaEkuitas) !!},
+                        backgroundColor: 'rgba(255, 255, 0, 0.2)',
+                        borderColor: 'rgba(255, 255, 0, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
             },
             options: {
                 scales: {

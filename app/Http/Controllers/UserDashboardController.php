@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CatatanKeuangan;
 use App\Labarugi;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\PerubahanModal;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class UserDashboardController extends Controller
 {
@@ -19,13 +20,26 @@ class UserDashboardController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $labarugiData = Labarugi::where('id_user', $userId)->orderBy('bulan')->get();
+        // Neraca
+        $dataNeraca = DB::table('tbl_perubahan_modals')
+            ->join('tbl_users', 'tbl_perubahan_modals.id_user', '=', 'tbl_users.id')
+            ->select(
+                'tbl_users.id',
+                'tbl_users.name',
+                DB::raw('SUM(CASE WHEN id_jenis = 1 THEN jumlah ELSE 0 END) as aset'),
+                DB::raw('SUM(CASE WHEN id_jenis = 2 THEN jumlah ELSE 0 END) as kewajiban'),
+                DB::raw('SUM(CASE WHEN id_jenis = 3 THEN jumlah ELSE 0 END) as ekuitas'),
+                DB::raw("DATE_FORMAT(tanggal_perubahan, '%Y-%m') as bulan")
+            )
+            ->where('tbl_users.id', $userId)
+            ->groupBy('bulan', 'tbl_users.id', 'tbl_users.name')
+            ->get();
 
-        $labels = [];
-        $pendapatan = [];
-        $pengeluaran = [];
+        $neracaLabels = [];
+        $neracaAset = [];
+        $neracaKewajiban = [];
+        $neracaEkuitas = [];
 
-        // Pemetaan nama bulan ke urutan
         $monthMapping = [
             'Januari' => 1,
             'Februari' => 2,
@@ -42,18 +56,66 @@ class UserDashboardController extends Controller
         ];
 
         foreach (range(1, 12) as $month) {
-            $labels[] = date('F', mktime(0, 0, 0, $month, 1));
-            $pendapatan[] = 0;
-            $pengeluaran[] = 0;
+            $neracaLabels[] = date('F', mktime(0, 0, 0, $month, 1));
+            $neracaAset[] = 0;
+            $neracaKewajiban[] = 0;
+            $neracaEkuitas[] = 0;
         }
 
-        foreach ($labarugiData as $labarugi) {
-            $index = $monthMapping[$labarugi->bulan] - 1;
-            $pendapatan[$index] = $labarugi->pendapatan;
-            $pengeluaran[$index] = $labarugi->pengeluaran;
+        foreach ($dataNeraca as $row) {
+            $index = $monthMapping[Carbon::parse($row->bulan)->isoFormat('MMMM')] - 1;
+            $neracaAset[$index] = $row->aset;
+            $neracaKewajiban[$index] = $row->kewajiban;
+            $neracaEkuitas[$index] = $row->ekuitas;
         }
 
-        $data = PerubahanModal::where('id_user', $userId)
+        //Laba Rugi
+        $dataLabaRugi = DB::table('tbl_catatan_keuangans')
+            ->join('tbl_users', 'tbl_catatan_keuangans.id_user', '=', 'tbl_users.id')
+            ->select(
+                'tbl_users.id',
+                'tbl_users.name',
+                DB::raw('SUM(CASE WHEN id_jenis = 1 THEN jumlah ELSE 0 END) as pendapatan'),
+                DB::raw('SUM(CASE WHEN id_jenis = 2 THEN jumlah ELSE 0 END) as pengeluaran'),
+                DB::raw("DATE_FORMAT(tanggal_transaksi, '%Y-%m') as bulan")
+            )
+            ->where('tbl_users.id', $userId)
+            ->groupBy('bulan', 'tbl_users.id', 'tbl_users.name')
+            ->get();
+
+        $labaRugiLabels = [];
+        $labaRugiPendapatan = [];
+        $labaRugiPengeluaran = [];
+
+        $monthMapping = [
+            'Januari' => 1,
+            'Februari' => 2,
+            'Maret' => 3,
+            'April' => 4,
+            'Mei' => 5,
+            'Juni' => 6,
+            'Juli' => 7,
+            'Agustus' => 8,
+            'September' => 9,
+            'Oktober' => 10,
+            'November' => 11,
+            'Desember' => 12,
+        ];
+
+        foreach (range(1, 12) as $month) {
+            $labaRugiLabels[] = date('F', mktime(0, 0, 0, $month, 1));
+            $labaRugiPendapatan[] = 0;
+            $labaRugiPengeluaran[] = 0;
+        }
+
+        foreach ($dataLabaRugi as $row) {
+            $index = $monthMapping[Carbon::parse($row->bulan)->isoFormat('MMMM')] - 1;
+            $labaRugiPendapatan[$index] = $row->pendapatan;
+            $labaRugiPengeluaran[$index] = $row->pengeluaran;
+        }
+
+        //Perubahan Modal
+        $dataPerubahanModal =  PerubahanModal::where('id_user', $userId)
             ->select('id_jenis', \DB::raw('SUM(jumlah) as total'))
             ->groupBy('id_jenis')
             ->get();
@@ -61,7 +123,7 @@ class UserDashboardController extends Controller
         $labelspm = [];
         $values = [];
 
-        foreach ($data as $item) {
+        foreach ($dataPerubahanModal as $item) {
             switch ($item->id_jenis) {
                 case 1:
                     $labelspm[] = 'Aset';
@@ -77,6 +139,7 @@ class UserDashboardController extends Controller
             $values[] = $item->total;
         }
 
+        //Arus Kas & Card"
         $incomeAll = CatatanKeuangan::where('id_user', $userId)
             ->where('id_jenis', 1)
             ->sum('jumlah');
@@ -123,9 +186,13 @@ class UserDashboardController extends Controller
             'balanceTodayNow' => $balanceTodayNow,
             'incomeTodayNow' => $incomeTodayNow,
             'expenseTodayNow' => $expenseTodayNow,
-            'labels' => $labels,
-            'pendapatan' => $pendapatan,
-            'pengeluaran' => $pengeluaran,
+            'labaRugiLabels' => $labaRugiLabels,
+            'labaRugiPendapatan' => $labaRugiPendapatan,
+            'labaRugiPengeluaran' => $labaRugiPengeluaran,
+            'neracaLabels' => $neracaLabels,
+            'neracaAset' => $neracaAset,
+            'neracaKewajiban' => $neracaKewajiban,
+            'neracaEkuitas' => $neracaEkuitas,
             'labelspm' => $labelspm,
             'values' => $values,
         ]);
