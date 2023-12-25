@@ -19,13 +19,17 @@ class CatatanKeuanganController extends Controller
     {
         if (Auth::check() && Auth::user()->role_id == '1') {
             // Admin
-            $catatanKeuangans = CatatanKeuangan::all();
+            $catatanKeuangans = CatatanKeuangan::orderBy('tanggal_transaksi', 'asc')->get();
         } else {
             // User
             $user = Auth::user();
-            $catatanKeuangans = CatatanKeuangan::where('id_user', $user->id)->get();
+            $catatanKeuangans = CatatanKeuangan::where('id_user', $user->id)
+                ->orderBy('tanggal_transaksi', 'asc')
+                ->get();
         }
+
         $jeniss = \App\JenisCatatanKeuangan::all();
+
         return view('CatatanKeuangan.index', [
             'catatanKeuangans' => $catatanKeuangans,
             'jeniss' => $jeniss,

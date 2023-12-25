@@ -18,12 +18,15 @@ class PerubahanModalController extends Controller
     {
         if (Auth::check() && Auth::user()->role_id == '1') {
             // Admin
-            $perubahanModals = PerubahanModal::all();
+            $perubahanModals = PerubahanModal::orderBy('tanggal_perubahan', 'asc')->get();
         } else {
             // User
             $user = Auth::user();
-            $perubahanModals = PerubahanModal::where('id_user', $user->id)->get();
+            $perubahanModals = PerubahanModal::where('id_user', $user->id)
+                ->orderBy('tanggal_perubahan', 'asc')
+                ->get();
         }
+
         return view('perubahan_modals.index', [
             'perubahanModals' => $perubahanModals,
         ]);

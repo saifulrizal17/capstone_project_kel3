@@ -44,7 +44,7 @@
                         <table id="data-table" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     @if (Auth::check() && Auth::user()->role_id == '1')
                                         <th>Nama Pengguna</th>
                                     @endif

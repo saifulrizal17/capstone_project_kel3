@@ -10,7 +10,9 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item text-primary"><a
+                                href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
+                        </li>
                         <li class="breadcrumb-item active">Edit Perubahan Modal</li>
                     </ol>
                 </div><!-- /.col -->

@@ -254,13 +254,13 @@
                                 <div class="">
                                     <canvas id="pieChart" height="240"></canvas>
                                 </div>
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
                                         <li><i class="far fa-circle text-danger"></i> Ballance All</li>
                                         <li><i class="far fa-circle text-success"></i> Income All</li>
                                         <li><i class="far fa-circle text-warning"></i> Expense All</li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                                 <div class="">
                                     <canvas id="grafikPerubahanModal" height="240"></canvas>
                                 </div>
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
                                         <li style="color: rgba(255, 99, 132, 0.7)"><i class="far fa-circle"></i> Ballance
                                             All</li>
@@ -285,7 +285,7 @@
                                         <li style="color: rgba(255, 206, 86, 0.7)"><i class="far fa-circle"></i> Expense
                                             All</li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

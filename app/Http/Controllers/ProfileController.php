@@ -101,12 +101,20 @@ class ProfileController extends Controller
     public function updatePassword(Request $request, User $user)
     {
         $request->validate([
+            'oldPassword' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    return $fail(__('Kata sandi lama salah.'));
+                }
+            }],
             'password' => 'required|string|min:8|confirmed',
         ], [
-            'password.required' => 'Kolom password wajib diisi.',
-            'password.string' => 'Password harus berupa teks.',
-            'password.min' => 'Password harus terdiri dari minimal 8 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'oldPassword.required' => 'Kolom password lama wajib diisi.',
+            'oldPassword.string' => 'Password lama harus berupa teks.',
+            'oldPassword.custom' => 'Password lama tidak sesuai.',
+            'password.required' => 'Kolom password baru wajib diisi.',
+            'password.string' => 'Password baru harus berupa teks.',
+            'password.min' => 'Password baru harus terdiri dari minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password baru tidak cocok.',
         ]);
 
         $user->update([

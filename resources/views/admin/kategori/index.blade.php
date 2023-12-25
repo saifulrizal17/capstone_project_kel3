@@ -54,7 +54,7 @@
                                 <table id="data-table" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>ID </th>
+                                            <th>No</th>
                                             <th>Jenis</th>
                                             <th>Nama Kategori</th>
                                             <th>Deskripsi</th>
@@ -66,7 +66,6 @@
                                         @foreach ($kategoris as $kategori)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                {{-- <td>{{ $kategori->id }}</td> --}}
                                                 <td>{{ $kategori->jenis->name ?? 'Tidak Tersedia' }}
                                                 </td>
                                                 <td>{{ $kategori->name }}</td>

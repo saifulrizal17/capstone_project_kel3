@@ -41,32 +41,82 @@
                                 <table id="data-table" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             @if (Auth::check() && Auth::user()->role_id == '1')
                                                 <th>Nama Pengguna</th>
                                             @endif
                                             <th>Pendapatan</th>
                                             <th>Pengeluaran</th>
                                             <th>Bulan</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php $no = 1 @endphp
-                                        @foreach ($labarugiData as $data)
+                                        @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 @if (Auth::check() && Auth::user()->role_id == '1')
-                                                    <td>
-                                                        @if ($data->user)
-                                                            {{ $data->user->name }}
-                                                        @else
-                                                            Pengguna tidak ditemukan
-                                                        @endif
-                                                    </td>
+                                                    <td>{{ $row->name }}</td>
                                                 @endif
-                                                <td>{{ 'Rp. ' . number_format($data->pendapatan, 2, ',', '.') }}</td>
-                                                <td>{{ 'Rp. ' . number_format($data->pengeluaran, 2, ',', '.') }}</td>
-                                                <td>{{ $data->bulan }}</td>
+                                                <td>{{ 'Rp. ' . number_format($row->pendapatan, 2, ',', '.') }}</td>
+                                                <td>{{ 'Rp. ' . number_format($row->pengeluaran, 2, ',', '.') }}</td>
+                                                <td>{{ $row->bulan }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#exampleModal{{ $row->id }}_{{ str_replace(' ', '', $row->bulan) }}"><i
+                                                            class='fas fa-info-circle'></i> Detail</a>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade"
+                                                        id="exampleModal{{ $row->id }}_{{ str_replace(' ', '', $row->bulan) }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Detail
+                                                                        Data Perubahan Modal</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="gg" style="width: 100%">
+                                                                        <tr>
+                                                                            <td class="navy">ID Pengguna </td>
+                                                                            <td>{{ $row->id }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy"> Nama Pengguna </td>
+                                                                            <td>{{ $row->name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy"> Pendapatan </td>
+                                                                            <td>{{ 'Rp. ' . number_format($row->pendapatan, 2, ',', '.') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy"> Pengeluaran </td>
+                                                                            <td>{{ 'Rp. ' . number_format($row->pengeluaran, 2, ',', '.') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="navy"> Bulan </td>
+                                                                            <td>{{ $row->bulan }}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal"> <i
+                                                                            class="fa fa-arrow-left"></i> Kembali</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

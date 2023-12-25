@@ -36,7 +36,7 @@
                             <p>Saldo Keseluruhan</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-balance-scale"></i> <!-- Updated icon class -->
+                            <i class="fa fa-balance-scale"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -49,7 +49,7 @@
                             <p>Pendapatan Keseluruhan</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-arrow-up"></i> <!-- Updated icon class for income -->
+                            <i class="fa fa-arrow-up"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -62,7 +62,7 @@
                             <p>Pengeluaran Keseluruhan</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-arrow-down"></i> <!-- Updated icon class for expense -->
+                            <i class="fa fa-arrow-down"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -98,8 +98,8 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-purple elevation-1"><i class="fa fa-user"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Admin</span>
-                            <span class="info-box-number">{{ $totalAdmins }}</span>
+                            <span class="info-box-text">Total User Mati</span>
+                            <span class="info-box-number">{{ $totalDieUsers }}</span>
                         </div>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-fuchsia elevation-1"><i class="fa fa-user"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Total User</span>
-                            <span class="info-box-number">{{ $totalUsers }}</span>
+                            <span class="info-box-text">Total Admin</span>
+                            <span class="info-box-number">{{ $totalAdmins }}</span>
                         </div>
                     </div>
                 </div>
@@ -118,8 +118,8 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-pink elevation-1"><i class="fa fa-eye"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Pengunjung</span>
-                            <span class="info-box-number">{{ $totalVisitors }}</span>
+                            <span class="info-box-text">Total User</span>
+                            <span class="info-box-number">{{ $totalUsers }}</span>
                         </div>
                     </div>
                 </div>
@@ -141,14 +141,32 @@
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
-                                        <li style="color: #f56954"><i class="far fa-circle"></i> Ballance All</li>
-                                        <li style="color: #00a65a"><i class="far fa-circle"></i> Income All</li>
-                                        <li style="color: #f39c12"><i class="far fa-circle"></i> Expense All</li>
+                                        <li style="color: #f56954"><i class="far fa-circle"></i> Saldo</li>
+                                        <li style="color: #00a65a"><i class="far fa-circle"></i> Pendapatan</li>
+                                        <li style="color: #f39c12"><i class="far fa-circle"></i> Pengeluaran</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="card height-100">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fa fa-chart-pie mr-1"></i>
+                                Grafik Keseluruhan Laba Rugi
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <div class="">
+                                    <canvas id="labarugiMyChart" height="180"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="col-lg-6 connectedSortable">
                     <div class="card height-100">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -163,37 +181,18 @@
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
-                                        <li style="color: rgba(255, 99, 132, 0.7)"><i class="far fa-circle"></i> Ballance
-                                            All</li>
-                                        <li style="color: rgba(54, 162, 235, 0.7)"><i class="far fa-circle"></i> Income
-                                            All</li>
-                                        <li style="color: rgba(255, 206, 86, 0.7)"><i class="far fa-circle"></i> Expense
-                                            All</li>
+                                        <li style="color: rgba(255, 99, 132, 0.7)"><i class="far fa-circle"></i> Aset
+                                        </li>
+                                        <li style="color: rgba(54, 162, 235, 0.7)"><i class="far fa-circle"></i> Kewajiban
+                                        </li>
+                                        <li style="color: rgba(255, 206, 86, 0.7)"><i class="far fa-circle"></i> Ekuitas
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-
-                <section class="col-lg-6 connectedSortable">
                     <div class="card height-100">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fa fa-chart-pie mr-1"></i>
-                                Grafik Keseluruhan Laba Rugi
-                            </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
-                                <div class="">
-                                    <canvas id="myChart" height="180"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <div class="card height-100">
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fa fa-chart-pie mr-1"></i>
@@ -202,9 +201,9 @@
                         </div>
                         <div class="card-body">
                             <div class="tab-content p-0">
-
-                        </div> --}}
-                    </ </div>
+                                <canvas id="neracaMyChart" height="180"></canvas>
+                            </div>
+                            </ </div>
                 </section>
             </div>
         </div><!-- /.container-fluid -->
@@ -234,7 +233,7 @@
     @endif
     <script>
         var ctx = document.getElementById('grafikPerubahanModal').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var neracaMyChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: {!! json_encode($labelspm) !!},
@@ -264,7 +263,7 @@
             var pieChartCanvas = document.getElementById("pieChart").getContext("2d");
 
             var pieChartData = {
-                labels: ["Ballance All", "Income All", "Expense All"],
+                labels: ["Saldo", "Pendapatan", "Pengeluaran"],
                 datasets: [{
                     data: [
                         {{ $balanceAll }},
@@ -288,24 +287,68 @@
         });
     </script>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('labarugiMyChart').getContext('2d');
+        var labarugiMyChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: {!! json_encode($labels) !!},
+                labels: {!! json_encode($labaRugiLabels) !!},
                 datasets: [{
                     label: 'Pendapatan',
-                    data: {!! json_encode($pendapatan) !!},
+                    data: {!! json_encode($labaRugiPendapatan) !!},
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
                 }, {
                     label: 'Pengeluaran',
-                    data: {!! json_encode($pengeluaran) !!},
+                    data: {!! json_encode($labaRugiPengeluaran) !!},
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('neracaMyChart').getContext('2d');
+        var neracaMyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($neracaLabels) !!},
+                datasets: [{
+                        label: 'Aset',
+                        data: {!! json_encode($neracaAset) !!},
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Kewajiban',
+                        data: {!! json_encode($neracaKewajiban) !!},
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Ekuitas',
+                        data: {!! json_encode($neracaEkuitas) !!},
+                        backgroundColor: 'rgba(255, 255, 0, 0.2)',
+                        borderColor: 'rgba(255, 255, 0, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
             },
             options: {
                 scales: {

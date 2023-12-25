@@ -57,7 +57,8 @@
                                         {{ number_format($balance, 2, ',', '.') }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Income All</b> <a class="float-right">Rp. {{ number_format($income, 2, ',', '.') }}</a>
+                                    <b>Income All</b> <a class="float-right">Rp.
+                                        {{ number_format($income, 2, ',', '.') }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Expense All</b> <a class="float-right">Rp.
@@ -174,11 +175,25 @@
                                         {{ method_field('PUT') }}
 
                                         <div class="form-group row">
-                                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                            <label for="oldPassword" class="col-sm-2 col-form-label">Password Lama</label>
+                                            <div class="col-sm-10">
+                                                <input id="oldPassword" type="password"
+                                                    class="form-control @error('oldPassword') is-invalid @enderror"
+                                                    placeholder="Password Lama" name="oldPassword"
+                                                    autocomplete="current-password">
+                                                @error('oldPassword')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Password Baru</label>
                                             <div class="col-sm-10">
                                                 <input id="password" type="password"
                                                     class="form-control @error('password') is-invalid @enderror"
-                                                    placeholder="Password" name="password" autocomplete="new-password">
+                                                    placeholder="Password Baru" name="password"
+                                                    autocomplete="new-password">
                                                 @error('password')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -186,11 +201,11 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="inputPasswordConfirm" class="col-sm-2 col-form-label">Confirm
-                                                Password</label>
+                                            <label for="inputPasswordConfirm" class="col-sm-2 col-form-label">Konfirmasi
+                                                Password Baru</label>
                                             <div class="col-sm-10">
                                                 <input id="password-confirm" type="password" class="form-control"
-                                                    placeholder="Confirm password" name="password_confirmation"
+                                                    placeholder="Konfirmasi Password Baru" name="password_confirmation"
                                                     autocomplete="new-password">
                                             </div>
                                         </div>
