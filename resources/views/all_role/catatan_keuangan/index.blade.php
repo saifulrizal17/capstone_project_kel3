@@ -77,8 +77,9 @@
                                             class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> Export PDF</a>
                                     </div>
                                     <div class="form-group mr-2 mb-2">
-                                        <a href="{{ route('aruskas.exportExcel') }}" class="btn btn-outline-primary"><i
-                                                class="fas fa-file-excel"></i> Export Excel</a>
+                                        <a href="{{ route('aruskas.exportExcel') }}" target="_blank"
+                                            class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Export
+                                            Excel</a>
                                     </div>
                                 </div>
                             </form>

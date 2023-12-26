@@ -9,10 +9,43 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
         }
 
         h1 {
+            position: fixed;
+            top: 0;
+            left: 0%;
+            transform: translateX(-0%);
             text-align: center;
+            width: 100%;
+            margin: 0;
+        }
+
+
+        h2 {
+            position: fixed;
+            top: 40px;
+            left: 0%;
+            transform: translateX(-0%);
+            text-align: center;
+            width: 100%;
+            margin: 0;
+        }
+
+        p {
+            position: fixed;
+            top: 80px;
+            left: 0%;
+            transform: translateX(-0%);
+            text-align: center;
+            width: 100%;
+            margin: 0;
+            font-style: italic;
+        }
+
+        hr {
+            border: 1px solid #ddd;
         }
 
         table {
@@ -30,12 +63,28 @@
 
         th {
             background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
         }
     </style>
+
 </head>
 
 <body>
-    <h1>Catatan Keuangan Report</h1>
+
+    <img src="https://i.ibb.co/qrKCKfT/logo.png" alt="Logo Sejahtera Indonesia">
+
+    <h1>Sejahtera Indonesia</h1>
+    <h2>Laporan Keuangan</h2>
+    <p>Tanggal Laporan: <?php echo date('d/m/Y'); ?></p>
+
+    <hr>
+
     <table>
         <tr>
             <th>No</th>
@@ -46,6 +95,7 @@
             <th>Kategori</th>
             <th>Tanggal Transaksi</th>
             <th>Jumlah</th>
+            <th>Keterangan</th>
         </tr>
 
         @php $no = 1 @endphp
@@ -71,7 +121,8 @@
                     @endif
                 </td>
                 <td>{{ $catatanKeuangan->tanggal_transaksi }}</td>
-                <td>{{ $catatanKeuangan->jumlah }}</td>
+                <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2, ',', '.') }}</td>
+                <td>{{ $catatanKeuangan->keterangan }}</td>
             </tr>
         @endforeach
 
