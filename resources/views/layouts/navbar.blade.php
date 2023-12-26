@@ -12,28 +12,43 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
         <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="fas fa-search"></i>
+            <a class="nav-link" href="https://time.is/Indonesia" target="_blank" role="button">
+                <i class="far fa-clock"></i>
+                <span id="real-time-clock"></span>
             </a>
-            <div class="navbar-search-block">
-                <form class="form-inline">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </li>
+
+        <script>
+            function updateRealTimeClock() {
+                const realTimeClockElement = document.getElementById('real-time-clock');
+
+                function updateClock() {
+                    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                    const months = [
+                        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                    ];
+
+                    const now = new Date();
+                    const day = days[now.getDay()];
+                    const date = now.getDate().toString().padStart(2, '0');
+                    const month = months[now.getMonth()];
+                    const year = now.getFullYear();
+                    const hours = now.getHours().toString().padStart(2, '0');
+                    const minutes = now.getMinutes().toString().padStart(2, '0');
+                    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+                    realTimeClockElement.textContent = `${day}, ${date} ${month} ${year} ${hours}:${minutes}:${seconds}`;
+                }
+
+                setInterval(updateClock, 1000);
+
+                updateClock();
+            }
+
+            document.addEventListener('DOMContentLoaded', updateRealTimeClock);
+        </script>
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">

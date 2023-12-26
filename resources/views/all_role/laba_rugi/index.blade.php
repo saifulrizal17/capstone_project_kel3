@@ -40,7 +40,7 @@
                             <div class="table-responsive">
                                 <table id="data-table" class="table table-striped table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center bg-primary">
                                             <th>No</th>
                                             @if (Auth::check() && Auth::user()->role_id == '1')
                                                 <th>Nama Pengguna</th>
@@ -54,13 +54,15 @@
                                     <tbody>
                                         @php $no = 1 @endphp
                                         @foreach ($data as $row)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{ $no++ }}</td>
                                                 @if (Auth::check() && Auth::user()->role_id == '1')
                                                     <td>{{ $row->name }}</td>
                                                 @endif
-                                                <td>{{ 'Rp. ' . number_format($row->pendapatan, 2, ',', '.') }}</td>
-                                                <td>{{ 'Rp. ' . number_format($row->pengeluaran, 2, ',', '.') }}</td>
+                                                <td class="text-right">
+                                                    {{ 'Rp. ' . number_format($row->pendapatan, 2, ',', '.') }}</td>
+                                                <td class="text-right">
+                                                    {{ 'Rp. ' . number_format($row->pengeluaran, 2, ',', '.') }}</td>
                                                 <td>{{ $row->bulan }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"

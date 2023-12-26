@@ -53,7 +53,7 @@
                             <div class="table-responsive">
                                 <table id="data-table" class="table table-striped table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center bg-primary">
                                             <th>No</th>
                                             <th>Jenis</th>
                                             <th>Nama Kategori</th>
@@ -64,7 +64,7 @@
                                     <tbody>
                                         @php $no = 1 @endphp
                                         @foreach ($kategoris as $kategori)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $kategori->jenis->name ?? 'Tidak Tersedia' }}
                                                 </td>
@@ -145,6 +145,11 @@
     <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $("#data-table").DataTable();
+        })
+    </script>
     <script>
         // GLOBAL SETUP 
         $.ajaxSetup({

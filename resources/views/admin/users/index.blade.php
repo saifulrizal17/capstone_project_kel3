@@ -113,7 +113,7 @@
                             <div class="table-responsive">
                                 <table id="data-table" class="table table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center bg-primary">
                                             <th>No</th>
                                             <th>Foto Profile</th>
                                             <th>Nama</th>
@@ -126,7 +126,7 @@
                                     <tbody>
                                         @php $no = 1 @endphp
                                         @foreach ($users as $user)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{ $no++ }}</td>
                                                 <td>
                                                     <img src="{{ $user->profile_photo ? asset('upload/profile photo/' . $user->profile_photo) : asset('upload/profile photo/profile-default.png') }}"

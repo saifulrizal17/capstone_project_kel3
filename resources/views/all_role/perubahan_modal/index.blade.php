@@ -43,7 +43,7 @@
                     <div class="table-responsive">
                         <table id="data-table" class="table table-striped table-bordered table-hover">
                             <thead>
-                                <tr>
+                                <tr class="text-center  bg-primary">
                                     <th>No</th>
                                     @if (Auth::check() && Auth::user()->role_id == '1')
                                         <th>Nama Pengguna</th>
@@ -57,7 +57,7 @@
                             <tbody>
                                 @php $no = 1 @endphp
                                 @foreach ($perubahanModals as $perubahanModal)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $no++ }}</td>
                                         @if (Auth::check() && Auth::user()->role_id == '1')
                                             <td>
@@ -70,7 +70,8 @@
                                         @endif
                                         <td> {{ $perubahanModal->jenis->name }}
                                         <td>{{ $perubahanModal->tanggal_perubahan }}</td>
-                                        <td>{{ 'Rp. ' . number_format($perubahanModal->jumlah, 2, ',', '.') }}</td>
+                                        <td class="text-right">
+                                            {{ 'Rp. ' . number_format($perubahanModal->jumlah, 2, ',', '.') }}</td>
                                         <td>
                                             <a href="{{ route('perubahanmodal.edit', $perubahanModal->id) }}"
                                                 class="btn btn-info btn-sm"><i class='fas fa-edit'></i> Edit</a>

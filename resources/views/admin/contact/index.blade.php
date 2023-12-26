@@ -38,7 +38,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="data-table">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center bg-primary">
                                             <th>No</th>
                                             <th>Nama Pengguna</th>
                                             <th>Email</th>
@@ -49,12 +49,12 @@
                                     <tbody>
                                         @php $no = 1 @endphp
                                         @foreach ($contacts as $contact)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $contact->name }}</td>
                                                 <td>{{ $contact->email }}</td>
-                                                <td>{{ $contact->subject }}</td>
-                                                <td>{{ $contact->message }}</td>
+                                                <td class="text-left">{{ $contact->subject }}</td>
+                                                <td class="text-left">{{ $contact->message }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

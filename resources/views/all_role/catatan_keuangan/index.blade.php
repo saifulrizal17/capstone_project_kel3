@@ -86,7 +86,7 @@
                             <div class="table-responsive">
                                 <table id="data-table" class="table table-striped table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center bg-primary">
                                             <th>No</th>
                                             @if (Auth::check() && Auth::user()->role_id == '1')
                                                 <th>Nama Pengguna</th>
@@ -101,7 +101,7 @@
                                     <tbody>
                                         @php $no = 1 @endphp
                                         @foreach ($catatanKeuangans as $catatanKeuangan)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{ $no++ }}</td>
                                                 @if (Auth::check() && Auth::user()->role_id == '1')
                                                     <td>
@@ -122,7 +122,8 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $catatanKeuangan->tanggal_transaksi }}</td>
-                                                <td>{{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2, ',', '.') }}
+                                                <td class="text-right">
+                                                    {{ 'Rp. ' . number_format($catatanKeuangan->jumlah, 2, ',', '.') }}
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('aruskas.edit', $catatanKeuangan->id) }}"
