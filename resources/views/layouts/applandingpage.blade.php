@@ -35,6 +35,44 @@
 </head>
 
 <body>
+    <button id="open-modal" class="btn btn-warning rounded-circle" title="join reseller">
+        <i class="bi bi-chat" style=" font-size: 2rem;"></i>
+    </button>
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hubungi Admin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="teks">
+                        <p>Jika Anda memiliki pertanyaan atau mengalami kendala, jangan ragu untuk menghubungi kami:</p>
+                        <ul>
+                            <li>
+                                <span>Dapatkan bantuan langsung dari admin melalui WhatsApp.</span>
+                            </li>
+                            <li><br></li>
+                            <li>
+                                <a class="btn btn-primary .get-started-btn" style="max-width: 200px"
+                                    href="https://api.whatsapp.com/send/?phone=6285162900946&text&type=phone_number&app_absent=0"
+                                    target="_blank">
+                                    <i class="bi bi-whatsapp" style="color: #fff; font-size: 2rem;"></i>
+                                    <span>Hubungi Admin</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header id="header" class="fixed-top ">
         <div class="container-fluid">
 
@@ -136,6 +174,12 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+    <script>
+        document.getElementById("open-modal").addEventListener("click", function() {
+            var myModal = new bootstrap.Modal(document.getElementById("myModal"));
+            myModal.show();
+        });
     </script>
 
     @include('sweetalert::alert')

@@ -3,6 +3,54 @@ body {
   color: #444444;
 }
 
+#open-modal {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffc107; 
+  color: white; 
+  border: none;
+  border-radius: 50%; 
+  width: 60px; 
+  height: 60px; 
+  font-size: 20px; 
+  cursor: pointer;
+  z-index: 999; 
+}
+
+.modal-content {
+  border: none;
+}
+
+.modal-title {
+  font-size: 24px;
+}
+
+.modal-body {
+  text-align: center;
+  padding: 20px;
+}
+
+#gambar-animasi {
+  max-width: 100%;
+  height: auto;
+}
+
+#teks {
+  margin-top: 20px;
+  color: #333;
+  font-size: 18px;
+}
+
+#teks p {
+  margin-bottom: 10px;
+}
+
+#teks ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
 a {
   color: #007bff;
   text-decoration: none;
