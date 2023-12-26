@@ -18,10 +18,8 @@ class DatabaseSeeder extends Seeder
             JenisCatatanKeuangansSeeder::class,
             KategoriCatatanKeuangansSeeder::class,
             CatatanKeuangansSeeder::class,
-            LabaRugisSeeder::class,
             JenisPerubahanModalsSeeder::class,
             PerubahanModalsSeeder::class,
-            NeracasSeeder::class,
             ContactsSeeder::class,
         ]);
     }
