@@ -51,6 +51,6 @@ class LabarugiController extends Controller
             $row->bulan = Carbon::parse($row->bulan)->isoFormat('MMMM Y');
         }
 
-        return view('Labarugi.index', compact('data'));
+        return view('all_role.laba_rugi.index', compact('data'));
     }
 }

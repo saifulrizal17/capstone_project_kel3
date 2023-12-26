@@ -39,8 +39,27 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="{{ Auth::user()->profile_photo ? asset('/upload/profile photo/' . Auth::user()->profile_photo) : asset('/upload/profile photo/profile-default.png') }}"
                     class="user-image img-circle elevation-2" alt="User Image">
+                <span class="d-none d-md-inline" id="userDropdownTrigger" onclick="toggleDropdown()">
+                    {{ Auth::user()->name }} &nbsp;
+                </span>
+                <i id="caretIcon" class="fas fa-caret-down" onclick="toggleDropdown()"></i>
 
-                <span class="d-none d-md-inline">&nbsp;{{ Auth::user()->name }}</span>
+                <script>
+                    var isDropdownOpen = false;
+
+                    function toggleDropdown() {
+                        isDropdownOpen = !isDropdownOpen;
+                        var caretIcon = document.getElementById('caretIcon');
+
+                        if (isDropdownOpen) {
+                            caretIcon.classList.remove('fa-caret-down');
+                            caretIcon.classList.add('fa-caret-up');
+                        } else {
+                            caretIcon.classList.remove('fa-caret-up');
+                            caretIcon.classList.add('fa-caret-down');
+                        }
+                    }
+                </script>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
@@ -50,7 +69,7 @@
 
                     <p>
                         {{ Auth::user()->name }} - {{ Auth::user()->job_title }}
-                        <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                        <small>Anggota Sejak {{ Auth::user()->created_at->locale('id')->isoFormat('MMMM Y') }}</small>
                     </p>
                 </li>
                 <li class="user-footer">

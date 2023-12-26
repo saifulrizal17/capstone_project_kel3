@@ -252,7 +252,7 @@
                             <div class="tab-content p-0">
                                 <!-- Morris chart - Sales -->
                                 <div class="">
-                                    <canvas id="arukasMyChart" height="240"></canvas>
+                                    <canvas id="aruskasMyChart" height="240"></canvas>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="chart-legend clearfix">
@@ -379,9 +379,9 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var arukasMyChartCanvas = document.getElementById("arukasMyChart").getContext("2d");
+            var aruskasMyChartCanvas = document.getElementById("aruskasMyChart").getContext("2d");
 
-            var arukasMyChartData = {
+            var aruskasMyChartData = {
                 labels: ["Saldo", "Pendapatan", "Pengeluaran"],
                 datasets: [{
                     data: [
@@ -393,15 +393,15 @@
                 }],
             };
 
-            var arukasMyChartOptions = {
+            var aruskasMyChartOptions = {
                 maintainAspectRatio: false,
                 responsive: true,
             };
 
-            var arukasMyChart = new Chart(arukasMyChartCanvas, {
+            var aruskasMyChart = new Chart(aruskasMyChartCanvas, {
                 type: "doughnut",
-                data: arukasMyChartData,
-                options: arukasMyChartOptions,
+                data: aruskasMyChartData,
+                options: aruskasMyChartOptions,
             });
         });
     </script>
@@ -414,14 +414,14 @@
                 datasets: [{
                     label: 'Pendapatan',
                     data: {!! json_encode($labaRugiPendapatan) !!},
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                    borderColor: 'rgba(0, 128, 0, 1)',
                     borderWidth: 1
                 }, {
                     label: 'Pengeluaran',
                     data: {!! json_encode($labaRugiPengeluaran) !!},
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 165, 0, 0.2)',
+                    borderColor: 'rgba(255, 165, 0, 1)',
                     borderWidth: 1
                 }]
             },
@@ -446,16 +446,16 @@
                 datasets: [{
                         label: 'Aset',
                         data: {!! json_encode($neracaAset) !!},
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1,
                         fill: false
                     },
                     {
                         label: 'Kewajiban',
                         data: {!! json_encode($neracaKewajiban) !!},
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
                         fill: false
                     },

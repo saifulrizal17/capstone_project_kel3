@@ -40,7 +40,7 @@ class ProfileController extends Controller
             $balance = $income - $expense;
         }
 
-        return view('profile.index', compact('user', 'financialHistory', 'balance', 'income', 'expense'));
+        return view('all_role.profile.index', compact('user', 'financialHistory', 'balance', 'income', 'expense'));
     }
 
     public function updateAboutMe(Request $request, User $user)

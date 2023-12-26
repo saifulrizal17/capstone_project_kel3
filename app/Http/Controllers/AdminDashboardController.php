@@ -21,16 +21,13 @@ class AdminDashboardController extends Controller
     {
         // Neraca
         $dataNeraca = DB::table('tbl_perubahan_modals')
-            ->join('tbl_users', 'tbl_perubahan_modals.id_user', '=', 'tbl_users.id')
             ->select(
-                'tbl_users.id',
-                'tbl_users.name',
                 DB::raw('SUM(CASE WHEN id_jenis = 1 THEN jumlah ELSE 0 END) as aset'),
                 DB::raw('SUM(CASE WHEN id_jenis = 2 THEN jumlah ELSE 0 END) as kewajiban'),
                 DB::raw('SUM(CASE WHEN id_jenis = 3 THEN jumlah ELSE 0 END) as ekuitas'),
                 DB::raw("DATE_FORMAT(tanggal_perubahan, '%Y-%m') as bulan")
             )
-            ->groupBy('bulan', 'tbl_users.id', 'tbl_users.name')
+            ->groupBy('bulan')
             ->get();
 
         $neracaLabels = [];
@@ -69,15 +66,12 @@ class AdminDashboardController extends Controller
 
         //Laba Rugi
         $dataLabaRugi = DB::table('tbl_catatan_keuangans')
-            ->join('tbl_users', 'tbl_catatan_keuangans.id_user', '=', 'tbl_users.id')
             ->select(
-                'tbl_users.id',
-                'tbl_users.name',
                 DB::raw('SUM(CASE WHEN id_jenis = 1 THEN jumlah ELSE 0 END) as pendapatan'),
                 DB::raw('SUM(CASE WHEN id_jenis = 2 THEN jumlah ELSE 0 END) as pengeluaran'),
                 DB::raw("DATE_FORMAT(tanggal_transaksi, '%Y-%m') as bulan")
             )
-            ->groupBy('bulan', 'tbl_users.id', 'tbl_users.name')
+            ->groupBy('bulan')
             ->get();
 
         $labaRugiLabels = [];

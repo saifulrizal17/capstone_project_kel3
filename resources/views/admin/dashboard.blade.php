@@ -295,14 +295,14 @@
                 datasets: [{
                     label: 'Pendapatan',
                     data: {!! json_encode($labaRugiPendapatan) !!},
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                    borderColor: 'rgba(0, 128, 0, 1)',
                     borderWidth: 1
                 }, {
                     label: 'Pengeluaran',
                     data: {!! json_encode($labaRugiPengeluaran) !!},
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 165, 0, 0.2)',
+                    borderColor: 'rgba(255, 165, 0, 1)',
                     borderWidth: 1
                 }]
             },
@@ -327,16 +327,16 @@
                 datasets: [{
                         label: 'Aset',
                         data: {!! json_encode($neracaAset) !!},
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1,
                         fill: false
                     },
                     {
                         label: 'Kewajiban',
                         data: {!! json_encode($neracaKewajiban) !!},
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
                         fill: false
                     },

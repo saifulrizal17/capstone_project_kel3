@@ -48,6 +48,6 @@ class NeracaController extends Controller
             $row->bulan = Carbon::parse($row->bulan)->isoFormat('MMMM Y');
         }
 
-        return view('neraca.index', compact('data'));
+        return view('all_role.neraca.index', compact('data'));
     }
 }

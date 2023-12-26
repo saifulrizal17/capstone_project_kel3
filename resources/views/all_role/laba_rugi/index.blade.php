@@ -33,7 +33,7 @@
                 <div class="col-md-12">
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Data Laba/Rugi</h3>
+                            <h3 class="card-title">List Data Laba/Rugi Bulanan</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

@@ -37,14 +37,15 @@ class ManajemenUsersController extends Controller
             'phone_number' => ['required', 'string', 'max:255'],
             'job_title' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
+
+        $validatedData['password'] = $request->filled('password') ? Hash::make($request->input('password')) : Hash::make('12345678');
 
         $validatedData['role_id'] = 2;
         $validatedData['is_active'] = 1;
         $validatedData['email_verified_at'] = now();
-        $validatedData['password'] = Hash::make($request->input('password'));
         $validatedData['remember_token'] = Str::random(60);
 
         if ($request->hasFile('profile_photo')) {
@@ -182,7 +183,7 @@ class ManajemenUsersController extends Controller
 
         Excel::import(new ManajemenUsersImport, $file);
 
-        return redirect()->back()->with('success', 'Data imported successfully.');
+        return redirect()->back()->with('success', 'Import Data Berhasil.');
     }
 
     public function downloadTemplate()
@@ -199,6 +200,6 @@ class ManajemenUsersController extends Controller
             return response()->download($templatePath, $fileName, $headers);
         }
 
-        abort(404, 'Template file not found');
+        abort(404, 'Template file tidak ditemukan');
     }
 }

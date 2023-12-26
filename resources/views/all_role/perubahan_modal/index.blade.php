@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Perubahan Modals</h1>
+                    <h1 class="m-0 text-dark">Perubahan Modal</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,9 +31,9 @@
         <div class="container-fluid">
 
             {{-- main content here --}}
-            <div class="card">
+            <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Daftar Catatan Keuangan</h3>
+                    <h3 class="card-title">List Data Perubahan Modal</h3>
                     <div class="card-tools">
                         <a href="{{ route('perubahanmodal.create') }}" class="btn btn-primary btn-sm"><i
                                 class="fas fa-plus"></i>Tambah Data</a>

@@ -30,7 +30,7 @@ class CatatanKeuanganController extends Controller
 
         $jeniss = \App\JenisCatatanKeuangan::all();
 
-        return view('CatatanKeuangan.index', [
+        return view('all_role.catatan_keuangan.index', [
             'catatanKeuangans' => $catatanKeuangans,
             'jeniss' => $jeniss,
         ]);
@@ -46,7 +46,7 @@ class CatatanKeuanganController extends Controller
         $users = \App\User::all();
         $jeniss = \App\JenisCatatanKeuangan::all();
         $kategoris = \App\KategoriCatatanKeuangan::all();
-        return view('CatatanKeuangan.create', [
+        return view('all_role.catatan_keuangan.create', [
             'users' => $users,
             'jeniss' => $jeniss,
             'kategoris' => $kategoris
@@ -98,7 +98,7 @@ class CatatanKeuanganController extends Controller
         $users = \App\User::all();
         $jeniss = \App\JenisCatatanKeuangan::all();
         $kategoris = \App\KategoriCatatanKeuangan::all();
-        return view('CatatanKeuangan.index', [
+        return view('all_role.catatan_keuangan.index', [
             'catatanKeuangan' => $catatanKeuangan,
             'users' => $users,
             'jeniss' => $jeniss,
@@ -117,7 +117,7 @@ class CatatanKeuanganController extends Controller
         $users = \App\User::all();
         $jeniss = \App\JenisCatatanKeuangan::all();
         $kategoris = \App\KategoriCatatanKeuangan::all();
-        return view('CatatanKeuangan.edit', [
+        return view('all_role.catatan_keuangan.edit', [
             'catatanKeuangan' => $catatanKeuangan,
             'users' => $users,
             'jeniss' => $jeniss,
@@ -204,7 +204,7 @@ class CatatanKeuanganController extends Controller
 
         session(['filtered_data' => $catatanKeuangans]);
 
-        return view('CatatanKeuangan.index', [
+        return view('all_role.catatan_keuangan.index', [
             'catatanKeuangans' => $catatanKeuangans,
             'jeniss' => $jeniss,
         ]);
@@ -219,7 +219,7 @@ class CatatanKeuanganController extends Controller
             $filteredData = $query->get();
         }
 
-        $pdfContent = view('CatatanKeuangan.viewpdf', compact('filteredData'))->render();
+        $pdfContent = view('all_role.catatan_keuangan.viewpdf', compact('filteredData'))->render();
 
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->WriteHTML($pdfContent);
@@ -235,7 +235,7 @@ class CatatanKeuanganController extends Controller
             $filteredData = $query->get();
         }
 
-        $pdfContent = view('CatatanKeuangan.viewpdf', compact('filteredData'))->render();
+        $pdfContent = view('all_role.catatan_keuangan.viewpdf', compact('filteredData'))->render();
 
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->WriteHTML($pdfContent);

@@ -27,7 +27,7 @@ class PerubahanModalController extends Controller
                 ->get();
         }
 
-        return view('perubahan_modals.index', [
+        return view('all_role.perubahan_modal.index', [
             'perubahanModals' => $perubahanModals,
         ]);
     }
@@ -41,7 +41,7 @@ class PerubahanModalController extends Controller
     {
         $users = \App\User::all();
         $jeniss = \App\JenisPerubahanModal::all();
-        return view('perubahan_modals.create', [
+        return view('all_role.perubahan_modal.create', [
             'users' => $users,
             'jeniss' => $jeniss,
         ]);
@@ -93,7 +93,7 @@ class PerubahanModalController extends Controller
         $perubahanModal = PerubahanModal::findOrFail($id);
         $users = \App\User::all();
         $jeniss = \App\JenisPerubahanModal::all();
-        return view('perubahan_modals.index', [
+        return view('all_role.perubahan_modal.index', [
             'perubahanModal' => $perubahanModal,
             'users' => $users,
             'jeniss' => $jeniss,
@@ -111,7 +111,7 @@ class PerubahanModalController extends Controller
         $perubahanModal = PerubahanModal::findOrFail($id);
         $users = \App\User::all();
         $jeniss = \App\JenisPerubahanModal::all();
-        return view('perubahan_modals.edit', [
+        return view('all_role.perubahan_modal.edit', [
             'perubahanModal' => $perubahanModal,
             'users' => $users,
             'jeniss' => $jeniss,

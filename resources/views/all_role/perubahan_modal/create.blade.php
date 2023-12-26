@@ -6,17 +6,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Arus Kas</h1>
+                    <h1 class="m-0 text-dark">Tambah Modals</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item text-primary"><a
                                 href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
                         </li>
-                        <li class="breadcrumb-item text-primary"><a href="{{ route('aruskas.index') }}">Data
-                                Arus Kas</a>
-                        </li>
-                        <li class="breadcrumb-item active">Tambah Data Arus Kas</li>
+                        <li class="breadcrumb-item active">Tambah Modals</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -24,20 +21,18 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
 
             {{-- main content here --}}
-            <div class="card">
+            <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Tambah Catatan Keuangan</h3>
+                    <h3 class="card-title">Tambah Perubahan Modal</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('aruskas.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('perubahanmodal.store') }}"method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
-
                         <div class="card-body">
                             @if (Auth::check() && Auth::user()->role_id == '1')
                                 <div class="form-group">
@@ -46,7 +41,6 @@
                                         <option value="">-- Pilih Nama User --</option>
                                         @foreach ($users as $user)
                                             @if ($user->role_id != '1')
-                                                {{-- Hanya tampilkan user, bukan admin --}}
                                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                                             @endif
                                         @endforeach
@@ -57,12 +51,10 @@
                                 </div>
                             @endif
 
-
                             <div class="form-group">
-                                <label for="id_jenis">Jenis Catatan</label>
-                                <select class="form-control" name="id_jenis" id="id_jenis" required="required"
-                                    onchange="updateKategoriOptions()">
-                                    <option value="">-- Pilih Jenis Catatan --</option>
+                                <label for="id_jenis">Jenis Perubahan</label>
+                                <select class="form-control" name="id_jenis" id="id_jenis" required="required">
+                                    <option value="">-- Pilih Jenis Perubahan Modal --</option>
                                     @foreach ($jeniss as $jenis)
                                         <option value="{{ $jenis->id }}">
                                             {{ $jenis->name }}</option>
@@ -74,25 +66,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="id_kategori">Jenis Kategori</label>
-                                <select class="form-control" name="id_kategori" id="id_kategori" required="required">
-                                    @foreach ($kategoris as $kategori)
-                                        <option value="{{ $kategori->id }}" data-jenisid="{{ $kategori->id_jenis }}">
-                                            {{ $kategori->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_kategori')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tanggal_transaksi">Tanggal Transaksi</label>
-                                <input type="date" name="tanggal_transaksi" id="tanggal_transaksi" class="form-control"
+                                <label for="tanggal_perubahan">Tanggal Perubahan</label>
+                                <input type="date" name="tanggal_perubahan" id="tanggal_perubahan" class="form-control"
                                     required>
-                                @error('tanggal_transaksi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <div class="form-group">
@@ -103,7 +79,7 @@
                                     </div>
                                     <input type="text" name="jumlah" class="form-control currency" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
+                                        <span class="input-group-text">,00</span>
                                     </div>
                                 </div>
                                 @error('jumlah')
@@ -111,15 +87,15 @@
                                 @enderror
                             </div>
 
-
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
-                                <textarea name="keterangan" class="form-control"></textarea>
+                                <textarea name="keterangan" id="keterangan" rows="3" class="form-control" required
+                                    placeholder="Masukkan keterangan"></textarea>
                             </div>
-                        </div>
 
+                        </div>
                         <div class="card-footer">
-                            <a class="btn btn-secondary" href="{{ route('aruskas.index') }}">
+                            <a class="btn btn-secondary" href="{{ route('perubahanmodal.index') }}">
                                 <i class="fa fa-arrow-left"></i> Kembali
                             </a>
                             <button type="submit" class="btn btn-primary"
@@ -131,9 +107,8 @@
                     </form>
                 </div>
             </div>
-
         </div><!-- /.container-fluid -->
-    </div>
+    </div><!-- /.container-fluid -->
     <!-- /.content -->
 @endsection
 
@@ -149,40 +124,6 @@
             });
         });
 
-        document.getElementById('tanggal_transaksi').valueAsDate = new Date();
-
-        function updateKategoriOptions() {
-            var selectedJenisId = document.getElementById('id_jenis').value;
-            var kategoriDropdown = document.getElementById('id_kategori');
-
-            // Reset options
-            kategoriDropdown.innerHTML = '';
-
-            // Add options based on selected id_jenis
-            if (selectedJenisId !== "") {
-                @foreach ($kategoris as $kategori)
-                    if (selectedJenisId == 1 && {{ $kategori->id_jenis }} == 1) {
-                        var option = document.createElement('option');
-                        option.value = "{{ $kategori->id }}";
-                        option.text = "{{ $kategori->name }}";
-                        kategoriDropdown.add(option);
-                    } else if (selectedJenisId == 2 && {{ $kategori->id_jenis }} == 2) {
-                        var option = document.createElement('option');
-                        option.value = "{{ $kategori->id }}";
-                        option.text = "{{ $kategori->name }}";
-                        kategoriDropdown.add(option);
-                    }
-                @endforeach
-            } else {
-                // If no jenis is selected, display a placeholder in the kategoriDropdown
-                var placeholderOption = document.createElement('option');
-                placeholderOption.value = "";
-                placeholderOption.text = "Pilih Jenis Catatan Terlebih Dahulu";
-                kategoriDropdown.add(placeholderOption);
-            }
-        }
-
-        // Initial call to populate kategori options based on default selected id_jenis
-        updateKategoriOptions();
+        document.getElementById('tanggal_perubahan').valueAsDate = new Date();
     </script>
 @endsection
