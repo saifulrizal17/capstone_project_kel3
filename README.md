@@ -7,16 +7,13 @@ Selamat datang di repositori **Capstone Project Kelompok 3** kami! "Sejahtera.id
 Nama "Sejahtera" dipilih karena merujuk pada keadaan sejahtera dan makmur, menciptakan gambaran positif terkait dengan keberhasilan finansial dan kesejahteraan.
 
 ### Visi - Misi Sejahtera?
-## Inovasi Tanpa Henti
+#### Inovasi Tanpa Henti
 Kami terus berkembang dan berinovasi untuk memberikan pengalaman terbaik bagi pengguna kami. Fitur-fitur terbaru dan solusi pintar kami dirancang untuk menjawab kebutuhan keuangan Anda.
-
-## Kemudahan Penggunaan
+#### Kemudahan Penggunaan
 Sejahtera.id didesain dengan antarmuka yang ramah pengguna, memastikan bahwa setiap orang, dari yang baru memulai hingga yang berpengalaman, dapat dengan mudah mengelola keuangan mereka tanpa kerumitan.
-
-## Keamanan Terbaik
+#### Keamanan Terbaik
 Keamanan adalah prioritas utama kami. Data keuangan Anda dienkripsi dengan teknologi tinggi dan kami mengambil langkah-langkah ekstra untuk melindungi privasi Anda.
-
-## Tujuan yang Jelas
+#### Tujuan yang Jelas
 Sejahtera.id hadir untuk membantu Anda mencapai tujuan keuangan Anda. Apakah itu merencanakan masa depan, mengatur anggaran, atau mengumpulkan tabungan, kami ada di sini untuk mendukung Anda.
 
 
@@ -60,9 +57,38 @@ Aplikasi ini dibangun menggunakan Laravel v5.8 dan membutuhkan PHP v7.1 minimal.
      ```bash
      php artisan migrate
      ```
+   - Jalankan perintah berikut untuk mengisi database dengan data contoh:
+     ```bash
+     php artisan db:seed
+     ```
    - Jalankan perintah berikut untuk memulai server Laravel:
      ```bash
      php artisan serve
      ```
    - Buka browser dan akses `http://localhost:8000` untuk mengakses aplikasi Sejahtera.id.
 
+### Role
+-   Admin
+-   User
+
+### Informasi Akun Login
+<table>
+    <tr>
+        <td>Account Type</td>
+        <td>Email</td>
+        <td>Password</td>
+    </tr>
+    <tr>
+        <td>Admin</td>
+        <td>admin@gmail.com</td>
+        <td>12345678</td>
+    </tr>
+    <tr>
+        <td>User</td>
+        <td>user@gmail.com</td>
+        <td>12345678</td>
+    </tr>
+
+</table>
+
+# 🚀 Selamat menggunakan aplikasi Sejahtera.id!
