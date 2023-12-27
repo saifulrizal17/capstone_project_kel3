@@ -10,18 +10,17 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Dashboard User</h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
                         </li>
                     </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -36,18 +35,13 @@
                             <span class="info-box-text">Saldo Keseluruhan</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($balanceAll, 2, ',', '.') }}</h3>
-
-
                             </span>
 
                             <a href="#" class="small-box-footer">Detail<i class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
+
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fa fa-arrow-up"></i></span>
@@ -56,20 +50,15 @@
                             <span class="info-box-text">Pendapatan Keseluruhan</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($incomeAll, 2, ',', '.') }}</h3>
-
                             </span>
 
                             <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
                                     class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
 
-                <!-- fix for small devices only -->
+                    </div>
+                </div>
+
                 <div class="clearfix hidden-md-up"></div>
 
                 <div class="col-12 col-sm-6 col-md-4">
@@ -80,22 +69,15 @@
                             <span class="info-box-text">Pengeluran Keseluruhan</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($expenseAll, 2, ',', '.') }}</h3>
-
                             </span>
 
                             <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
                                     class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
+
 
             <!-- Info Mouth -->
             <div class="row">
@@ -108,17 +90,13 @@
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($balanceMonthNow, 2, ',', '.') }}</h3>
 
-
                             </span>
 
                             <a href="#" class="small-box-footer">Detail<i class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
+
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fa fa-arrow-up"></i></span>
@@ -127,20 +105,14 @@
                             <span class="info-box-text">Pendapatan Bulan Ini</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($incomeMonthNow, 2, ',', '.') }}</h3>
-
                             </span>
 
                             <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
                                     class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
 
-                <!-- fix for small devices only -->
                 <div class="clearfix hidden-md-up"></div>
 
                 <div class="col-12 col-sm-6 col-md-4">
@@ -151,22 +123,14 @@
                             <span class="info-box-text">Pengeluran Bulan Ini</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($expenseMonthNow, 2, ',', '.') }}</h3>
-
                             </span>
 
                             <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
                                     class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
 
             <!-- Info Today -->
             <div class="row">
@@ -178,18 +142,13 @@
                             <span class="info-box-text">Saldo Hari Ini </span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($balanceTodayNow, 2, ',', '.') }}</h3>
-
-
                             </span>
 
                             <a href="#" class="small-box-footer">Detail<i class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
+
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fa fa-arrow-up"></i></span>
@@ -198,20 +157,14 @@
                             <span class="info-box-text">Pendapatan Hari Ini</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($incomeTodayNow, 2, ',', '.') }}</h3>
-
                             </span>
 
                             <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
                                     class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
 
-                <!-- fix for small devices only -->
                 <div class="clearfix hidden-md-up"></div>
 
                 <div class="col-12 col-sm-6 col-md-4">
@@ -222,22 +175,15 @@
                             <span class="info-box-text">Pengeluran Hari Ini</span>
                             <span class="info-box-number">
                                 <h3>Rp. {{ number_format($expenseTodayNow, 2, ',', '.') }}</h3>
-
                             </span>
 
                             <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail<i
                                     class="fas fa-arrow-circle-right"></i></a>
-
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
+
 
             <div class="row">
                 <section class="col-lg-6 connectedSortable">
@@ -250,7 +196,6 @@
                         </div>
                         <div class="card-body">
                             <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
                                 <div class="">
                                     <canvas id="aruskasMyChart" height="240"></canvas>
                                 </div>
@@ -325,8 +270,8 @@
                 </section>
             </div>
 
-        </div><!-- /.container-fluid -->
-    </section> <!-- /.content -->
+        </div>
+    </section>
 @endsection
 
 @section('addJavascript')

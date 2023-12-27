@@ -10,24 +10,21 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Dashboard Admin</h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('user.dashboard') }}">Home</a>
                         </li>
                     </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-
-            <!-- Main content -->
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
@@ -38,20 +35,26 @@
                         <div class="icon">
                             <i class="fa fa-balance-scale"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>Rp. {{ number_format($incomeAll, 2, ',', '.') }}</h3>
-                            <p>Pendapatan Keseluruhan</p>
+                            <h3 class="color-light text-white">
+                                Rp. {{ number_format($incomeAll, 2, ',', '.') }}
+                            </h3>
+                            <p class="text-white">Pendapatan Keseluruhan</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-arrow-up"></i>
+                            <i class="fa fa-arrow-up "></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('aruskas.index') }}" class="small-box-footer"><span
+                                class="text-white">Detail</span>
+                            <i class="fa fa-arrow-circle-right text-white"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -64,7 +67,8 @@
                         <div class="icon">
                             <i class="fa fa-arrow-down"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('aruskas.index') }}" class="small-box-footer">Detail <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -77,12 +81,12 @@
                         <div class="icon">
                             <i class="fa fa-users"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.users.index') }}" class="small-box-footer">Detail <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <!-- Additional Cards for Admin -->
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
@@ -206,7 +210,7 @@
                             </ </div>
                 </section>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 @endsection
 
